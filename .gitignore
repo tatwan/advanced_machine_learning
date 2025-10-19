@@ -28,9 +28,9 @@ env/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
-!explainability_regulation_lab.ipynb
-!advanced_feature_engineering.ipynb
+# *.ipynb
+# !explainability_regulation_lab.ipynb
+# !advanced_feature_engineering.ipynb
 
 # IDEs
 .vscode/

@@ -34,6 +34,25 @@ pip install -r requirements.txt
 
 ## Course Structure
 
+### 📓 Hands-On Lab Notebooks
+
+- **[Linear Models: Optimization and Evaluation](linear_models_optimization_evaluation.ipynb)** - Comprehensive hands-on lab covering:
+  - Gradient descent optimization techniques
+  - L1, L2, and ElasticNet regularization
+  - Support Vector Machines with different kernels
+  - k-Folds cross-validation
+  - Model evaluation metrics
+  - Hyperparameter tuning with Grid Search
+  - Threshold adjustment for business needs
+  - Handling class imbalance (SMOTE, class weights)
+  - Advanced metrics (ROC-AUC, PR curves)
+  
+  👉 See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for detailed usage instructions.
+
+- **[Advanced Feature Engineering](advanced_feature_engineering.ipynb)** - Data preprocessing and feature engineering techniques
+
+---
+
 ### Day 1: Data Management and Model Optimization
 **Duration**: 8 hours
 
@@ -59,6 +78,7 @@ pip install -r requirements.txt
 4. **Hands-on Lab** (2 hours)
    - Complete data preprocessing pipeline
    - Model optimization exercises
+   - **Recommended**: Work through `linear_models_optimization_evaluation.ipynb`
 
 **Materials**: `day1/`
 
@@ -77,6 +97,11 @@ pip install -r requirements.txt
    - Random Forests: Theory and practice
    - Gradient Boosted Trees (GBMs, XGBoost, LightGBM)
    - Stacking and blending techniques
+   - **Hands-on Lab**: `ensemble_methods_lab.ipynb`
+     - Using multiple models together
+     - Bootstrap aggregation demonstration
+     - Combining heterogeneous models
+     - Comprehensive ensemble evaluation
 
 #### Afternoon Session (4 hours)
 3. **Bias Mitigation** (2 hours)
