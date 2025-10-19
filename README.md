@@ -151,38 +151,44 @@ pip install -r requirements.txt
 
 **Materials**: `day3/`
 
+**Hands-On Lab**: `marketing_mix_modeling_and_attribution.ipynb`
+- Comprehensive Jupyter notebook covering MMM and MTA concepts
+- Includes real-world inspired datasets (simulated retail/e-commerce data)
+- Interactive exercises and visualizations
+- Budget optimization practical exercise
+- Comparison of attribution models
+
 ---
 
 ## Repository Structure
 
 ```
 advanced_machine_learning/
-├── README.md                              # This file
-├── requirements.txt                      # Python dependencies
-├── EXPLAINABILITY_LAB_README.md          # Guide for explainability lab
-├── explainability_regulation_lab.ipynb   # Hands-on SHAP/LIME notebook
-├── advanced_feature_engineering.ipynb    # Feature engineering notebook
-├── day1/                                 # Day 1 materials
+├── README.md                                    # This file
+├── requirements.txt                            # Python dependencies
+├── advanced_feature_engineering.ipynb          # Feature engineering hands-on lab
+├── marketing_mix_modeling_and_attribution.ipynb # MMM & MTA hands-on lab
+├── day1/                                       # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
 │   └── 06_hyperparameter_tuning.py
-├── day2/                                 # Day 2 materials
+├── day2/                                       # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
 │   └── 05_probabilistic_methods.py
-├── day3/                                 # Day 3 materials
+├── day3/                                       # Day 3 materials
 │   ├── 01_marketing_analytics.py
 │   ├── 02_shap_explainability.py
 │   ├── 03_lime_explainability.py
 │   └── 04_production_ml.py
-├── data/                                 # Sample datasets
-├── exercises/                            # Exercise notebooks
-└── solutions/                            # Solution notebooks
+├── data/                                       # Sample datasets
+├── exercises/                                  # Exercise notebooks
+└── solutions/                                  # Solution notebooks
 ```
 
 ## Learning Outcomes
