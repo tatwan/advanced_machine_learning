@@ -44,8 +44,24 @@ python day1/01_data_management.py
 # Day 2 - Evaluation Metrics
 python day2/01_evaluation_metrics.py
 
-# Day 3 - SHAP Explainability
-python day3/02_shap_explainability.py
+# Day 3 - Marketing Analytics
+python day3/01_marketing_analytics.py
+```
+
+### 4. Running Jupyter Notebooks
+
+For hands-on labs, launch Jupyter:
+
+```bash
+# Start Jupyter Notebook
+jupyter notebook
+
+# Or Jupyter Lab
+jupyter lab
+
+# Then open:
+# - advanced_feature_engineering.ipynb
+# - marketing_mix_modeling_and_attribution.ipynb
 ```
 
 ## Day-by-Day Breakdown
@@ -109,6 +125,13 @@ python day3/02_shap_explainability.py
   - Media Mix Modeling (MMM)
   - Multi-Touch Attribution (MTA)
   - Customer Lifetime Value (CLV)
+  
+- **Hands-On Lab**: MMM & MTA (`marketing_mix_modeling_and_attribution.ipynb`)
+  - Interactive Jupyter notebook with comprehensive examples
+  - Real-world inspired datasets (retail/e-commerce simulation)
+  - Budget optimization exercises
+  - Comparison of attribution models
+  - Visualizations and practical insights
   
 - Module 2: SHAP Explainability (`02_shap_explainability.py`)
   - Shapley values explained
