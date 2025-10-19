@@ -44,8 +44,39 @@ python day1/01_data_management.py
 # Day 2 - Evaluation Metrics
 python day2/01_evaluation_metrics.py
 
-# Day 3 - SHAP Explainability
-python day3/02_shap_explainability.py
+# Day 3 - Marketing Analytics
+python day3/01_marketing_analytics.py
+```
+
+### 4. Running Jupyter Notebooks
+
+For hands-on labs, launch Jupyter:
+
+```bash
+# Start Jupyter Notebook
+jupyter notebook
+
+# Or Jupyter Lab
+jupyter lab
+
+# Then open:
+# - advanced_feature_engineering.ipynb
+# - marketing_mix_modeling_and_attribution.ipynb
+```
+
+### 4. Running Jupyter Notebooks
+
+Interactive hands-on labs are available as Jupyter notebooks:
+
+```bash
+# Start Jupyter Lab or Notebook
+jupyter lab
+# or
+jupyter notebook
+
+# Then open the notebook:
+# - ensemble_methods_lab.ipynb - Comprehensive ensemble methods hands-on lab
+# - advanced_feature_engineering.ipynb - Advanced feature engineering techniques
 ```
 
 ## Day-by-Day Breakdown
@@ -93,6 +124,13 @@ python day3/02_shap_explainability.py
   - XGBoost, LightGBM, CatBoost
   - Library comparison
 
+- **Hands-on Lab**: Ensemble Methods (`ensemble_methods_lab.ipynb`)
+  - Using multiple models together
+  - Random Forests and Gradient Boosted Trees
+  - Bootstrap aggregation (bagging)
+  - Combining heterogeneous models (stacking)
+  - Comprehensive evaluation of ensembles
+
 **Afternoon (4 hours)**
 - Module 4: Bias Mitigation (`04_bias_mitigation.py`)
   - Fairness metrics and definitions
@@ -109,6 +147,13 @@ python day3/02_shap_explainability.py
   - Media Mix Modeling (MMM)
   - Multi-Touch Attribution (MTA)
   - Customer Lifetime Value (CLV)
+  
+- **Hands-On Lab**: MMM & MTA (`marketing_mix_modeling_and_attribution.ipynb`)
+  - Interactive Jupyter notebook with comprehensive examples
+  - Real-world inspired datasets (retail/e-commerce simulation)
+  - Budget optimization exercises
+  - Comparison of attribution models
+  - Visualizations and practical insights
   
 - Module 2: SHAP Explainability (`02_shap_explainability.py`)
   - Shapley values explained

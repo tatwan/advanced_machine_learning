@@ -64,6 +64,25 @@ Topics covered:
 
 ## Course Structure
 
+### 📓 Hands-On Lab Notebooks
+
+- **[Linear Models: Optimization and Evaluation](linear_models_optimization_evaluation.ipynb)** - Comprehensive hands-on lab covering:
+  - Gradient descent optimization techniques
+  - L1, L2, and ElasticNet regularization
+  - Support Vector Machines with different kernels
+  - k-Folds cross-validation
+  - Model evaluation metrics
+  - Hyperparameter tuning with Grid Search
+  - Threshold adjustment for business needs
+  - Handling class imbalance (SMOTE, class weights)
+  - Advanced metrics (ROC-AUC, PR curves)
+  
+  👉 See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for detailed usage instructions.
+
+- **[Advanced Feature Engineering](advanced_feature_engineering.ipynb)** - Data preprocessing and feature engineering techniques
+
+---
+
 ### Day 1: Data Management and Model Optimization
 **Duration**: 8 hours
 
@@ -89,6 +108,7 @@ Topics covered:
 4. **Hands-on Lab** (2 hours)
    - Complete data preprocessing pipeline
    - Model optimization exercises
+   - **Recommended**: Work through `linear_models_optimization_evaluation.ipynb`
 
 **Materials**: `day1/`
 
@@ -107,6 +127,11 @@ Topics covered:
    - Random Forests: Theory and practice
    - Gradient Boosted Trees (GBMs, XGBoost, LightGBM)
    - Stacking and blending techniques
+   - **Hands-on Lab**: `ensemble_methods_lab.ipynb`
+     - Using multiple models together
+     - Bootstrap aggregation demonstration
+     - Combining heterogeneous models
+     - Comprehensive ensemble evaluation
 
 #### Afternoon Session (4 hours)
 3. **Bias Mitigation** (2 hours)
@@ -156,6 +181,13 @@ Topics covered:
 
 **Materials**: `day3/`
 
+**Hands-On Lab**: `marketing_mix_modeling_and_attribution.ipynb`
+- Comprehensive Jupyter notebook covering MMM and MTA concepts
+- Includes real-world inspired datasets (simulated retail/e-commerce data)
+- Interactive exercises and visualizations
+- Budget optimization practical exercise
+- Comparison of attribution models
+
 ---
 
 ## Repository Structure
@@ -203,6 +235,30 @@ By the end of this course, participants will be able to:
 8. ✅ Explain and interpret complex ML models
 9. ✅ Deploy and maintain ML models in production
 10. ✅ Monitor and retrain models to handle drift
+
+## Hands-On Labs
+
+The repository includes interactive Jupyter notebooks for hands-on practice:
+
+### 📓 Explainability and Regulation Lab
+**File**: `explainability_regulation_lab.ipynb`
+
+A comprehensive lab covering:
+- Model interpretability fundamentals
+- SHAP (SHapley Additive exPlanations) with real-world dataset
+- LIME (Local Interpretable Model-agnostic Explanations)
+- Regulatory considerations (GDPR, ECOA, Fair Lending)
+- Bias detection and fairness analysis
+- Generating adverse action notices
+
+**Dataset**: Adult Income dataset from UCI ML Repository
+
+**See**: `EXPLAINABILITY_LAB_README.md` for detailed instructions
+
+### 📓 Advanced Feature Engineering Lab
+**File**: `advanced_feature_engineering.ipynb`
+
+Covers techniques for handling dirty data, feature imputation, and engineered features.
 
 ## Additional Resources
 
