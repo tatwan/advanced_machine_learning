@@ -48,6 +48,21 @@ python day2/01_evaluation_metrics.py
 python day3/02_shap_explainability.py
 ```
 
+### 4. Running Jupyter Notebooks
+
+Interactive hands-on labs are available as Jupyter notebooks:
+
+```bash
+# Start Jupyter Lab or Notebook
+jupyter lab
+# or
+jupyter notebook
+
+# Then open the notebook:
+# - ensemble_methods_lab.ipynb - Comprehensive ensemble methods hands-on lab
+# - advanced_feature_engineering.ipynb - Advanced feature engineering techniques
+```
+
 ## Day-by-Day Breakdown
 
 ### Day 1: Data Management and Model Optimization (8 hours)
@@ -92,6 +107,13 @@ python day3/02_shap_explainability.py
 - Module 3: Gradient Boosting (`03_gradient_boosting.py`)
   - XGBoost, LightGBM, CatBoost
   - Library comparison
+
+- **Hands-on Lab**: Ensemble Methods (`ensemble_methods_lab.ipynb`)
+  - Using multiple models together
+  - Random Forests and Gradient Boosted Trees
+  - Bootstrap aggregation (bagging)
+  - Combining heterogeneous models (stacking)
+  - Comprehensive evaluation of ensembles
 
 **Afternoon (4 hours)**
 - Module 4: Bias Mitigation (`04_bias_mitigation.py`)
