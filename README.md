@@ -97,6 +97,11 @@ pip install -r requirements.txt
    - Random Forests: Theory and practice
    - Gradient Boosted Trees (GBMs, XGBoost, LightGBM)
    - Stacking and blending techniques
+   - **Hands-on Lab**: `ensemble_methods_lab.ipynb`
+     - Using multiple models together
+     - Bootstrap aggregation demonstration
+     - Combining heterogeneous models
+     - Comprehensive ensemble evaluation
 
 #### Afternoon Session (4 hours)
 3. **Bias Mitigation** (2 hours)
