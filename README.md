@@ -32,6 +32,33 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+4. Launch Jupyter Notebook (for hands-on labs):
+```bash
+jupyter notebook
+# or
+jupyter lab
+```
+
+## Hands-on Labs
+
+This course includes interactive Jupyter notebooks for hands-on practice:
+
+### 📓 **Probabilistic Methods Lab** (`probabilistic_methods_lab.ipynb`)
+A comprehensive hands-on lab covering:
+- **Bayesian Inference Basics**: Learn about prior, likelihood, and posterior distributions with practical examples
+  - Coin flip inference with sequential updating
+  - Real-world classification with uncertainty quantification
+- **Probabilistic Graphical Models**: Introduction to Bayesian Networks
+  - Medical diagnosis example with inference
+  - Application to real datasets (Breast Cancer, Iris)
+- **Real Datasets Used**: 
+  - Breast Cancer Wisconsin Dataset (classification)
+  - Iris Dataset (multi-class classification)
+- **Visualizations**: Interactive plots showing prior, likelihood, posterior, and model predictions
+
+### 📓 **Advanced Feature Engineering Lab** (`advanced_feature_engineering.ipynb`)
+Practical techniques for improving model performance through feature engineering.
+
 ## Course Structure
 
 ### 📓 Hands-On Lab Notebooks
@@ -164,31 +191,31 @@ pip install -r requirements.txt
 
 ```
 advanced_machine_learning/
-├── README.md                                    # This file
-├── requirements.txt                            # Python dependencies
-├── advanced_feature_engineering.ipynb          # Feature engineering hands-on lab
-├── marketing_mix_modeling_and_attribution.ipynb # MMM & MTA hands-on lab
-├── day1/                                       # Day 1 materials
+├── README.md                           # This file
+├── requirements.txt                   # Python dependencies
+├── probabilistic_methods_lab.ipynb    # Hands-on lab: Bayesian Inference & PGMs
+├── advanced_feature_engineering.ipynb # Hands-on lab: Feature Engineering
+├── day1/                              # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
 │   └── 06_hyperparameter_tuning.py
-├── day2/                                       # Day 2 materials
+├── day2/                              # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
 │   └── 05_probabilistic_methods.py
-├── day3/                                       # Day 3 materials
+├── day3/                              # Day 3 materials
 │   ├── 01_marketing_analytics.py
 │   ├── 02_shap_explainability.py
 │   ├── 03_lime_explainability.py
 │   └── 04_production_ml.py
-├── data/                                       # Sample datasets
-├── exercises/                                  # Exercise notebooks
-└── solutions/                                  # Solution notebooks
+├── data/                              # Sample datasets
+├── exercises/                         # Exercise notebooks
+└── solutions/                         # Solution notebooks
 ```
 
 ## Learning Outcomes
