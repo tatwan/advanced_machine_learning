@@ -34,6 +34,25 @@ pip install -r requirements.txt
 
 ## Course Structure
 
+### 📓 Hands-On Lab Notebooks
+
+- **[Linear Models: Optimization and Evaluation](linear_models_optimization_evaluation.ipynb)** - Comprehensive hands-on lab covering:
+  - Gradient descent optimization techniques
+  - L1, L2, and ElasticNet regularization
+  - Support Vector Machines with different kernels
+  - k-Folds cross-validation
+  - Model evaluation metrics
+  - Hyperparameter tuning with Grid Search
+  - Threshold adjustment for business needs
+  - Handling class imbalance (SMOTE, class weights)
+  - Advanced metrics (ROC-AUC, PR curves)
+  
+  👉 See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for detailed usage instructions.
+
+- **[Advanced Feature Engineering](advanced_feature_engineering.ipynb)** - Data preprocessing and feature engineering techniques
+
+---
+
 ### Day 1: Data Management and Model Optimization
 **Duration**: 8 hours
 
@@ -59,6 +78,7 @@ pip install -r requirements.txt
 4. **Hands-on Lab** (2 hours)
    - Complete data preprocessing pipeline
    - Model optimization exercises
+   - **Recommended**: Work through `linear_models_optimization_evaluation.ipynb`
 
 **Materials**: `day1/`
 
@@ -137,31 +157,32 @@ pip install -r requirements.txt
 
 ```
 advanced_machine_learning/
-├── README.md                  # This file
-├── requirements.txt          # Python dependencies
-├── day1/                     # Day 1 materials
+├── README.md                                      # This file
+├── NOTEBOOK_GUIDE.md                              # Guide for the optimization notebook
+├── requirements.txt                               # Python dependencies
+├── linear_models_optimization_evaluation.ipynb    # Hands-on lab notebook
+├── advanced_feature_engineering.ipynb             # Feature engineering notebook
+├── day1/                                          # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
 │   └── 06_hyperparameter_tuning.py
-├── day2/                     # Day 2 materials
+├── day2/                                          # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
 │   └── 05_probabilistic_methods.py
-├── day3/                     # Day 3 materials
+├── day3/                                          # Day 3 materials
 │   ├── 01_marketing_analytics.py
 │   ├── 02_shap_explainability.py
 │   ├── 03_lime_explainability.py
 │   └── 04_production_ml.py
-├── data/                     # Sample datasets
-├── exercises/                # Exercise notebooks
-├── solutions/                # Solution notebooks
-├── ensemble_methods_lab.ipynb           # Hands-on ensemble methods lab
-└── advanced_feature_engineering.ipynb  # Feature engineering lab
+├── data/                                          # Sample datasets
+├── exercises/                                     # Exercise notebooks
+└── solutions/                                     # Solution notebooks
 ```
 
 ## Learning Outcomes
