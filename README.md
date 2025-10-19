@@ -132,29 +132,32 @@ pip install -r requirements.txt
 
 ```
 advanced_machine_learning/
-├── README.md                  # This file
-├── requirements.txt          # Python dependencies
-├── day1/                     # Day 1 materials
+├── README.md                              # This file
+├── requirements.txt                      # Python dependencies
+├── EXPLAINABILITY_LAB_README.md          # Guide for explainability lab
+├── explainability_regulation_lab.ipynb   # Hands-on SHAP/LIME notebook
+├── advanced_feature_engineering.ipynb    # Feature engineering notebook
+├── day1/                                 # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
 │   └── 06_hyperparameter_tuning.py
-├── day2/                     # Day 2 materials
+├── day2/                                 # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
 │   └── 05_probabilistic_methods.py
-├── day3/                     # Day 3 materials
+├── day3/                                 # Day 3 materials
 │   ├── 01_marketing_analytics.py
 │   ├── 02_shap_explainability.py
 │   ├── 03_lime_explainability.py
 │   └── 04_production_ml.py
-├── data/                     # Sample datasets
-├── exercises/                # Exercise notebooks
-└── solutions/                # Solution notebooks
+├── data/                                 # Sample datasets
+├── exercises/                            # Exercise notebooks
+└── solutions/                            # Solution notebooks
 ```
 
 ## Learning Outcomes
@@ -171,6 +174,30 @@ By the end of this course, participants will be able to:
 8. ✅ Explain and interpret complex ML models
 9. ✅ Deploy and maintain ML models in production
 10. ✅ Monitor and retrain models to handle drift
+
+## Hands-On Labs
+
+The repository includes interactive Jupyter notebooks for hands-on practice:
+
+### 📓 Explainability and Regulation Lab
+**File**: `explainability_regulation_lab.ipynb`
+
+A comprehensive lab covering:
+- Model interpretability fundamentals
+- SHAP (SHapley Additive exPlanations) with real-world dataset
+- LIME (Local Interpretable Model-agnostic Explanations)
+- Regulatory considerations (GDPR, ECOA, Fair Lending)
+- Bias detection and fairness analysis
+- Generating adverse action notices
+
+**Dataset**: Adult Income dataset from UCI ML Repository
+
+**See**: `EXPLAINABILITY_LAB_README.md` for detailed instructions
+
+### 📓 Advanced Feature Engineering Lab
+**File**: `advanced_feature_engineering.ipynb`
+
+Covers techniques for handling dirty data, feature imputation, and engineered features.
 
 ## Additional Resources
 
