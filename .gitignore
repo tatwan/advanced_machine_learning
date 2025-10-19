@@ -28,7 +28,10 @@ env/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
+# Exclude notebooks except the hands-on labs
+# *.ipynb
+!advanced_feature_engineering.ipynb
+!marketing_mix_modeling_and_attribution.ipynb
 
 # IDEs
 .vscode/
