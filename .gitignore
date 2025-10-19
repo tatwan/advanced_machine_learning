@@ -29,6 +29,8 @@ env/
 # Jupyter Notebook
 .ipynb_checkpoints
 *.ipynb
+!advanced_feature_engineering.ipynb
+!linear_models_optimization_evaluation.ipynb
 
 # IDEs
 .vscode/
