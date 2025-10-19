@@ -32,6 +32,36 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## Hands-On Lab Notebooks
+
+This repository includes interactive Jupyter notebooks for hands-on practice:
+
+### 📓 Model Drift and Retraining
+**Notebook**: `model_drift_and_retraining.ipynb`
+
+A comprehensive hands-on lab demonstrating:
+- **Understanding Model Drift**: Concept drift vs. data drift with visual examples
+- **Detecting Data Drift**: Statistical tests (KS-test), Population Stability Index (PSI)
+- **Detecting Concept Drift**: Performance monitoring and degradation detection
+- **Retraining Strategies**: Trigger-based, periodic, and incremental learning approaches
+- **Automated Retraining Pipeline**: Complete implementation with monitoring and alerts
+
+**Dataset**: Simulated credit card fraud detection (realistic patterns with temporal drift)
+
+**To run**: 
+```bash
+jupyter notebook model_drift_and_retraining.ipynb
+```
+
+### 📓 Advanced Feature Engineering
+**Notebook**: `advanced_feature_engineering.ipynb`
+
+Topics covered:
+- Handling dirty data and missing values
+- Feature imputation techniques
+- Creating engineered features
+- Denoising with ML models
+
 ## Course Structure
 
 ### Day 1: Data Management and Model Optimization
@@ -132,29 +162,31 @@ pip install -r requirements.txt
 
 ```
 advanced_machine_learning/
-├── README.md                  # This file
-├── requirements.txt          # Python dependencies
-├── day1/                     # Day 1 materials
+├── README.md                              # This file
+├── requirements.txt                      # Python dependencies
+├── model_drift_and_retraining.ipynb     # Hands-on lab: Model drift & retraining
+├── advanced_feature_engineering.ipynb   # Hands-on lab: Feature engineering
+├── day1/                                 # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
 │   └── 06_hyperparameter_tuning.py
-├── day2/                     # Day 2 materials
+├── day2/                                 # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
 │   └── 05_probabilistic_methods.py
-├── day3/                     # Day 3 materials
+├── day3/                                 # Day 3 materials
 │   ├── 01_marketing_analytics.py
 │   ├── 02_shap_explainability.py
 │   ├── 03_lime_explainability.py
 │   └── 04_production_ml.py
-├── data/                     # Sample datasets
-├── exercises/                # Exercise notebooks
-└── solutions/                # Solution notebooks
+├── data/                                 # Sample datasets
+├── exercises/                            # Exercise notebooks
+└── solutions/                            # Solution notebooks
 ```
 
 ## Learning Outcomes
