@@ -1,0 +1,62 @@
+# Core ML Libraries
+numpy>=1.21.0
+pandas>=1.3.0
+scikit-learn>=1.0.0
+scipy>=1.7.0
+
+# Gradient Boosting Libraries
+xgboost>=1.5.0
+lightgbm>=3.3.0
+catboost>=1.0.0
+
+# Deep Learning (Optional for advanced topics)
+tensorflow>=2.8.0
+keras>=2.8.0
+
+# Explainability Tools
+shap>=0.41.0
+lime>=0.2.0
+
+# Visualization
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Bayesian Optimization
+scikit-optimize>=0.9.0
+bayesian-optimization>=1.2.0
+
+# Model Monitoring and Drift Detection
+alibi-detect>=0.10.0
+evidently>=0.1.50
+
+# Marketing Analytics
+pymc3>=3.11.0
+lifetimes>=0.11.0
+
+# Fairness and Bias Mitigation
+fairlearn>=0.7.0
+aif360>=0.4.0
+
+# Hyperparameter Tuning
+optuna>=3.0.0
+hyperopt>=0.2.7
+
+# Utilities
+joblib>=1.1.0
+tqdm>=4.62.0
+jupyter>=1.0.0
+jupyterlab>=3.2.0
+notebook>=6.4.0
+
+# Data Processing
+imbalanced-learn>=0.9.0
+category_encoders>=2.3.0
+
+# Model Serialization
+dill>=0.3.4
+cloudpickle>=2.0.0
+
+# Testing and Validation
+pytest>=7.0.0
+pytest-cov>=3.0.0
