@@ -25,12 +25,24 @@ pip install -r requirements.txt
 
 ```
 advanced_machine_learning/
-├── day1/          # Data Management & Model Optimization
-├── day2/          # Evaluation, Ensembles, Bias & Probabilistic Methods
-├── day3/          # Marketing Analytics, Explainability & Production ML
-├── data/          # Sample datasets
-├── exercises/     # Exercise notebooks
-└── solutions/     # Solution notebooks
+├── README.md                                    # Comprehensive course documentation
+├── QUICKSTART.md                                # This quick start guide
+├── requirements.txt                             # Python dependencies
+├── day1/                                        # Day 1: Data Management & Model Optimization
+│   ├── Python modules (01-06)
+│   ├── advanced_feature_engineering.ipynb
+│   ├── linear_models_optimization_evaluation.ipynb
+│   └── Reference materials
+├── day2/                                        # Day 2: Evaluation, Ensembles, Bias & Probabilistic Methods
+│   ├── Python modules (01-05)
+│   ├── ensemble_methods_lab.ipynb
+│   ├── marketing_mix_modeling_and_attribution.ipynb
+│   └── probabilistic_methods_lab.ipynb
+└── day3/                                        # Day 3: Marketing Analytics, Explainability & Production ML
+    ├── Python modules (01-04)
+    ├── explainability_regulation_lab.ipynb
+    ├── model_drift_and_retraining.ipynb
+    └── Reference materials and guides
 ```
 
 ### 3. Running the Modules
@@ -50,23 +62,7 @@ python day3/01_marketing_analytics.py
 
 ### 4. Running Jupyter Notebooks
 
-For hands-on labs, launch Jupyter:
-
-```bash
-# Start Jupyter Notebook
-jupyter notebook
-
-# Or Jupyter Lab
-jupyter lab
-
-# Then open:
-# - advanced_feature_engineering.ipynb
-# - marketing_mix_modeling_and_attribution.ipynb
-```
-
-### 4. Running Jupyter Notebooks
-
-Interactive hands-on labs are available as Jupyter notebooks:
+Interactive hands-on labs are available as Jupyter notebooks in each day folder:
 
 ```bash
 # Start Jupyter Lab or Notebook
@@ -74,9 +70,18 @@ jupyter lab
 # or
 jupyter notebook
 
-# Then open the notebook:
-# - ensemble_methods_lab.ipynb - Comprehensive ensemble methods hands-on lab
-# - advanced_feature_engineering.ipynb - Advanced feature engineering techniques
+# Day 1 Notebooks:
+# - day1/linear_models_optimization_evaluation.ipynb
+# - day1/advanced_feature_engineering.ipynb
+
+# Day 2 Notebooks:
+# - day2/ensemble_methods_lab.ipynb
+# - day2/marketing_mix_modeling_and_attribution.ipynb
+# - day2/probabilistic_methods_lab.ipynb
+
+# Day 3 Notebooks:
+# - day3/explainability_regulation_lab.ipynb
+# - day3/model_drift_and_retraining.ipynb
 ```
 
 ## Day-by-Day Breakdown
@@ -124,7 +129,7 @@ jupyter notebook
   - XGBoost, LightGBM, CatBoost
   - Library comparison
 
-- **Hands-on Lab**: Ensemble Methods (`ensemble_methods_lab.ipynb`)
+- **Hands-on Lab**: Ensemble Methods (`day2/ensemble_methods_lab.ipynb`)
   - Using multiple models together
   - Random Forests and Gradient Boosted Trees
   - Bootstrap aggregation (bagging)
@@ -148,7 +153,7 @@ jupyter notebook
   - Multi-Touch Attribution (MTA)
   - Customer Lifetime Value (CLV)
   
-- **Hands-On Lab**: MMM & MTA (`marketing_mix_modeling_and_attribution.ipynb`)
+- **Hands-On Lab**: MMM & MTA (`day2/marketing_mix_modeling_and_attribution.ipynb`)
   - Interactive Jupyter notebook with comprehensive examples
   - Real-world inspired datasets (retail/e-commerce simulation)
   - Budget optimization exercises
@@ -168,6 +173,16 @@ jupyter notebook
   - Drift detection (data and concept)
   - Model monitoring and retraining
   - Production best practices
+  
+- **Hands-On Lab**: Model Drift and Retraining (`day3/model_drift_and_retraining.ipynb`)
+  - Understanding and detecting model drift
+  - Data drift vs. concept drift
+  - Retraining strategies and automated pipelines
+  
+- **Hands-On Lab**: Explainability and Regulation (`day3/explainability_regulation_lab.ipynb`)
+  - SHAP and LIME explainability techniques
+  - Regulatory considerations (GDPR, Fair Lending)
+  - Bias detection and fairness analysis
 
 ## Learning Objectives
 

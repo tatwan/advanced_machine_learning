@@ -34,10 +34,84 @@ pip install -r requirements.txt
 
 ## Hands-On Lab Notebooks
 
-This repository includes interactive Jupyter notebooks for hands-on practice:
+This repository includes interactive Jupyter notebooks for hands-on practice, organized by day:
 
-### 📓 Model Drift and Retraining
-**Notebook**: `model_drift_and_retraining.ipynb`
+### Day 1 Notebooks
+
+#### 📓 Linear Models: Optimization and Evaluation
+**Notebook**: `day1/linear_models_optimization_evaluation.ipynb`
+
+Comprehensive hands-on lab covering:
+- Gradient descent optimization techniques
+- L1, L2, and ElasticNet regularization
+- Support Vector Machines with different kernels
+- k-Folds cross-validation
+- Model evaluation metrics
+- Hyperparameter tuning with Grid Search
+- Threshold adjustment for business needs
+- Handling class imbalance (SMOTE, class weights)
+- Advanced metrics (ROC-AUC, PR curves)
+
+#### 📓 Advanced Feature Engineering
+**Notebook**: `day1/advanced_feature_engineering.ipynb`
+
+Topics covered:
+- Handling dirty data and missing values
+- Feature imputation techniques
+- Creating engineered features
+- Denoising with ML models
+
+### Day 2 Notebooks
+
+#### 📓 Ensemble Methods Lab
+**Notebook**: `day2/ensemble_methods_lab.ipynb`
+
+Hands-on lab featuring:
+- Using multiple models together
+- Random Forests and Gradient Boosted Trees
+- Bootstrap aggregation (bagging)
+- Combining heterogeneous models (stacking)
+- Comprehensive ensemble evaluation
+
+#### 📓 Marketing Mix Modeling and Attribution
+**Notebook**: `day2/marketing_mix_modeling_and_attribution.ipynb`
+
+Interactive lab covering:
+- Media Mix Modeling (MMM)
+- Multi-Touch Attribution (MTA)
+- Real-world inspired datasets (retail/e-commerce simulation)
+- Budget optimization exercises
+- Comparison of attribution models
+
+See `day2/MMM_MTA_README.md` for detailed instructions.
+
+#### 📓 Probabilistic Methods Lab
+**Notebook**: `day2/probabilistic_methods_lab.ipynb`
+
+Topics covered:
+- Bayesian methods in ML
+- Probabilistic graphical models
+- Uncertainty quantification
+
+### Day 3 Notebooks
+
+#### 📓 Explainability and Regulation Lab
+**Notebook**: `day3/explainability_regulation_lab.ipynb`
+
+Comprehensive lab covering:
+- Model interpretability fundamentals
+- SHAP (SHapley Additive exPlanations) with real-world dataset
+- LIME (Local Interpretable Model-agnostic Explanations)
+- Regulatory considerations (GDPR, ECOA, Fair Lending)
+- Bias detection and fairness analysis
+- Generating adverse action notices
+
+**Dataset**: Adult Income dataset from UCI ML Repository
+
+See `day3/EXPLAINABILITY_LAB_README.md` for detailed instructions.
+
+#### 📓 Model Drift and Retraining
+**Notebook**: `day3/model_drift_and_retraining.ipynb`
 
 A comprehensive hands-on lab demonstrating:
 - **Understanding Model Drift**: Concept drift vs. data drift with visual examples
@@ -48,40 +122,7 @@ A comprehensive hands-on lab demonstrating:
 
 **Dataset**: Simulated credit card fraud detection (realistic patterns with temporal drift)
 
-**To run**: 
-```bash
-jupyter notebook model_drift_and_retraining.ipynb
-```
-
-### 📓 Advanced Feature Engineering
-**Notebook**: `advanced_feature_engineering.ipynb`
-
-Topics covered:
-- Handling dirty data and missing values
-- Feature imputation techniques
-- Creating engineered features
-- Denoising with ML models
-
 ## Course Structure
-
-### 📓 Hands-On Lab Notebooks
-
-- **[Linear Models: Optimization and Evaluation](linear_models_optimization_evaluation.ipynb)** - Comprehensive hands-on lab covering:
-  - Gradient descent optimization techniques
-  - L1, L2, and ElasticNet regularization
-  - Support Vector Machines with different kernels
-  - k-Folds cross-validation
-  - Model evaluation metrics
-  - Hyperparameter tuning with Grid Search
-  - Threshold adjustment for business needs
-  - Handling class imbalance (SMOTE, class weights)
-  - Advanced metrics (ROC-AUC, PR curves)
-  
-  👉 See [NOTEBOOK_GUIDE.md](NOTEBOOK_GUIDE.md) for detailed usage instructions.
-
-- **[Advanced Feature Engineering](advanced_feature_engineering.ipynb)** - Data preprocessing and feature engineering techniques
-
----
 
 ### Day 1: Data Management and Model Optimization
 **Duration**: 8 hours
@@ -108,7 +149,7 @@ Topics covered:
 4. **Hands-on Lab** (2 hours)
    - Complete data preprocessing pipeline
    - Model optimization exercises
-   - **Recommended**: Work through `linear_models_optimization_evaluation.ipynb`
+   - **Recommended**: Work through `day1/linear_models_optimization_evaluation.ipynb`
 
 **Materials**: `day1/`
 
@@ -127,7 +168,7 @@ Topics covered:
    - Random Forests: Theory and practice
    - Gradient Boosted Trees (GBMs, XGBoost, LightGBM)
    - Stacking and blending techniques
-   - **Hands-on Lab**: `ensemble_methods_lab.ipynb`
+   - **Hands-on Lab**: `day2/ensemble_methods_lab.ipynb`
      - Using multiple models together
      - Bootstrap aggregation demonstration
      - Combining heterogeneous models
@@ -144,7 +185,7 @@ Topics covered:
    - Bayesian methods in ML
    - Probabilistic graphical models
    - Uncertainty quantification
-   - Hands-on: Bayesian optimization
+   - **Hands-on Lab**: `day2/probabilistic_methods_lab.ipynb`
 
 **Materials**: `day2/`
 
@@ -159,12 +200,14 @@ Topics covered:
    - Multi-Touch Attribution (MTA)
    - Customer lifetime value prediction
    - Campaign optimization
+   - **Hands-on Lab**: `day2/marketing_mix_modeling_and_attribution.ipynb`
 
 2. **Explainability Tools** (2 hours)
    - Model interpretability vs. explainability
    - SHAP (SHapley Additive exPlanations)
    - LIME (Local Interpretable Model-agnostic Explanations)
    - Feature importance analysis
+   - **Hands-on Lab**: `day3/explainability_regulation_lab.ipynb`
 
 #### Afternoon Session (4 hours)
 3. **Production ML** (3 hours)
@@ -173,6 +216,7 @@ Topics covered:
    - Model monitoring and logging
    - Automated retraining pipelines
    - A/B testing in production
+   - **Hands-on Lab**: `day3/model_drift_and_retraining.ipynb`
 
 4. **Final Lab & Wrap-up** (1 hour)
    - End-to-end ML project
@@ -181,44 +225,47 @@ Topics covered:
 
 **Materials**: `day3/`
 
-**Hands-On Lab**: `marketing_mix_modeling_and_attribution.ipynb`
-- Comprehensive Jupyter notebook covering MMM and MTA concepts
-- Includes real-world inspired datasets (simulated retail/e-commerce data)
-- Interactive exercises and visualizations
-- Budget optimization practical exercise
-- Comparison of attribution models
-
 ---
 
 ## Repository Structure
 
 ```
 advanced_machine_learning/
-├── README.md                              # This file
-├── requirements.txt                      # Python dependencies
-├── model_drift_and_retraining.ipynb     # Hands-on lab: Model drift & retraining
-├── advanced_feature_engineering.ipynb   # Hands-on lab: Feature engineering
-├── day1/                                 # Day 1 materials
+├── README.md                                    # This file
+├── QUICKSTART.md                                # Quick start guide
+├── requirements.txt                             # Python dependencies
+├── day1/                                        # Day 1 materials
 │   ├── 01_data_management.py
 │   ├── 02_outlier_detection.py
 │   ├── 03_feature_engineering.py
 │   ├── 04_gradient_descent.py
 │   ├── 05_svm_and_kernels.py
-│   └── 06_hyperparameter_tuning.py
-├── day2/                                 # Day 2 materials
+│   ├── 06_hyperparameter_tuning.py
+│   ├── advanced_feature_engineering.ipynb      # Hands-on lab: Feature engineering
+│   ├── linear_models_optimization_evaluation.ipynb  # Hands-on lab: Linear models
+│   ├── Linear_Models_Reference.md
+│   └── Linear_Models.MD
+├── day2/                                        # Day 2 materials
 │   ├── 01_evaluation_metrics.py
 │   ├── 02_random_forests.py
 │   ├── 03_gradient_boosting.py
 │   ├── 04_bias_mitigation.py
-│   └── 05_probabilistic_methods.py
-├── day3/                                 # Day 3 materials
-│   ├── 01_marketing_analytics.py
-│   ├── 02_shap_explainability.py
-│   ├── 03_lime_explainability.py
-│   └── 04_production_ml.py
-├── data/                                 # Sample datasets
-├── exercises/                            # Exercise notebooks
-└── solutions/                            # Solution notebooks
+│   ├── 05_probabilistic_methods.py
+│   ├── ensemble_methods_lab.ipynb              # Hands-on lab: Ensemble methods
+│   ├── marketing_mix_modeling_and_attribution.ipynb  # Hands-on lab: MMM & MTA
+│   ├── MMM_MTA_README.md
+│   └── probabilistic_methods_lab.ipynb         # Hands-on lab: Probabilistic methods
+└── day3/                                        # Day 3 materials
+    ├── 01_marketing_analytics.py
+    ├── 02_shap_explainability.py
+    ├── 03_lime_explainability.py
+    ├── 04_production_ml.py
+    ├── explainability_regulation_lab.ipynb     # Hands-on lab: Explainability
+    ├── model_drift_and_retraining.ipynb        # Hands-on lab: Model drift & retraining
+    ├── EXPLAINABILITY_LAB_README.md
+    ├── IMPLEMENTATION_SUMMARY.md
+    ├── INSTRUCTOR_GUIDE.md
+    └── Model_Drift.md
 ```
 
 ## Learning Outcomes
@@ -235,30 +282,6 @@ By the end of this course, participants will be able to:
 8. ✅ Explain and interpret complex ML models
 9. ✅ Deploy and maintain ML models in production
 10. ✅ Monitor and retrain models to handle drift
-
-## Hands-On Labs
-
-The repository includes interactive Jupyter notebooks for hands-on practice:
-
-### 📓 Explainability and Regulation Lab
-**File**: `explainability_regulation_lab.ipynb`
-
-A comprehensive lab covering:
-- Model interpretability fundamentals
-- SHAP (SHapley Additive exPlanations) with real-world dataset
-- LIME (Local Interpretable Model-agnostic Explanations)
-- Regulatory considerations (GDPR, ECOA, Fair Lending)
-- Bias detection and fairness analysis
-- Generating adverse action notices
-
-**Dataset**: Adult Income dataset from UCI ML Repository
-
-**See**: `EXPLAINABILITY_LAB_README.md` for detailed instructions
-
-### 📓 Advanced Feature Engineering Lab
-**File**: `advanced_feature_engineering.ipynb`
-
-Covers techniques for handling dirty data, feature imputation, and engineered features.
 
 ## Additional Resources
 
