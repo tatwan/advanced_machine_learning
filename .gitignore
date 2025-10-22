@@ -3,3 +3,6 @@ dev1/
 **solved_**
 .DS_Store
 **/.DS_Store
+solutions/*
+anaconda_projects/
+.virtual_documents/
