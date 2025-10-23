@@ -1,8 +1,8 @@
 dev1/
-**/Solved/
-**solved_**
+# **/Solved/
+# **solved_**
 .DS_Store
 **/.DS_Store
-solutions/*
+# solutions/*
 anaconda_projects/
 .virtual_documents/
