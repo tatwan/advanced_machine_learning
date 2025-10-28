@@ -1,4 +1,4 @@
-# Advanced Machine Learning Class
+# Advanced Machine Learning Class Outline
 
 > [!NOTE]
 > - [X] **Content for Day 1: Advanced Data Management and Model Optimization**
