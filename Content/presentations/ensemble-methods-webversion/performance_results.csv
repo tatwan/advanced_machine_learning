@@ -1,0 +1,14 @@
+Method,Accuracy,Category
+Logistic Regression,0.6833333333333333,Individual
+K-Nearest Neighbors,0.82,Individual
+Support Vector Machine,0.82,Individual
+Decision Tree,0.5566666666666666,Individual
+Naive Bayes,0.6733333333333333,Individual
+Random Forest,0.77,Ensemble
+Bagging Classifier,0.7533333333333333,Ensemble
+AdaBoost,0.6466666666666666,Ensemble
+Gradient Boosting,0.7766666666666666,Ensemble
+Hard Voting,0.7733333333333333,Ensemble
+Soft Voting,0.7333333333333333,Ensemble
+Basic Stacking,0.8333333333333334,Ensemble
+Stacking with Passthrough,0.8333333333333334,Ensemble

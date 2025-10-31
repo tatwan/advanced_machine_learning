@@ -1,0 +1,11 @@
+Method,Type,Training,Reduces,Speed,Overfitting Risk,Best Use Case
+Random Forest,Bagging,Parallel,Variance,Fast,Low,High variance models
+Bagging,Bagging,Parallel,Variance,Fast,Low,High variance models
+AdaBoost,Boosting,Sequential,Bias,Medium,High,Weak learners
+Gradient Boosting,Boosting,Sequential,Bias & Variance,Medium,Medium,General purpose
+Hard Voting,Voting,Parallel,Variance,Fast,Low,Diverse models
+Soft Voting,Voting,Parallel,Variance,Fast,Low,Calibrated models
+Stacking,Stacking,Multi-level,Both,Slow,Medium,Different model types
+XGBoost*,Boosting,Sequential,Bias & Variance,Fast,Medium,Tabular data
+LightGBM*,Boosting,Sequential,Bias & Variance,Very Fast,Medium,Large datasets
+CatBoost*,Boosting,Sequential,Bias & Variance,Medium,Low,Categorical features

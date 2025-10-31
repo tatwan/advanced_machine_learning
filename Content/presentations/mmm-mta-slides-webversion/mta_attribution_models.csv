@@ -1,0 +1,6 @@
+Model,Credit Distribution,Best For,Complexity
+Linear,Equal credit to all touchpoints,"Long consideration cycles, awareness campaigns",Low
+Time Decay,More credit to recent touchpoints,"Short sales cycles, promotional campaigns",Low
+U-Shaped (Position-Based),"40% first, 40% last, 20% middle",Awareness + conversion focus,Medium
+W-Shaped,"Credit to first, key middle, and last",Complex B2B journeys with nurturing,Medium
+Data-Driven (Algorithmic),ML-based credit assignment,"Data-rich environments, complex paths",High

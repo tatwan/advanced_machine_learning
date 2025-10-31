@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMM &amp; MTA Educational Presentation</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  --radius-base: 8px;
+  --radius-lg: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-gray-400-rgb: 119, 124, 124;
+    --color-teal-300-rgb: 50, 184, 198;
+    --color-gray-300-rgb: 167, 169, 169;
+    --color-gray-200-rgb: 245, 245, 245;
+
+    --color-bg-1: rgba(29, 78, 216, 0.15);
+    --color-bg-2: rgba(180, 83, 9, 0.15);
+    --color-bg-3: rgba(21, 128, 61, 0.15);
+    --color-bg-4: rgba(185, 28, 28, 0.15);
+    --color-bg-5: rgba(107, 33, 168, 0.15);
+
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-primary-hover: var(--color-teal-400);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+.presentation-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: calc(100vh - 80px);
+    padding: 60px 80px;
+    overflow-y: auto;
+}
+
+.slide.active {
+    display: flex;
+    flex-direction: column;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+    margin-bottom: var(--space-32);
+    border-bottom: 3px solid var(--color-primary);
+    padding-bottom: var(--space-16);
+}
+
+.slide-subtitle {
+    font-size: var(--font-size-2xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-24);
+}
+
+.slide-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+}
+
+.content-section {
+    background: var(--color-surface);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+}
+
+ul, ol {
+    margin-left: var(--space-24);
+}
+
+li {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+}
+
+li strong {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Title Slide */
+.title-slide {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--color-bg-1);
+}
+
+.title-slide h1 {
+    font-size: 48px;
+    margin-bottom: var(--space-24);
+    color: var(--color-text);
+}
+
+.title-slide h2 {
+    font-size: var(--font-size-3xl);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Section Divider */
+.section-divider {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: var(--color-bg-2);
+}
+
+.section-divider h1 {
+    font-size: 56px;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Visual Elements */
+.visual-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-32);
+    margin: var(--space-24) 0;
+}
+
+.diagram {
+    width: 100%;
+    max-width: 900px;
+}
+
+.journey-map {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-16);
+}
+
+.touchpoint {
+    flex: 1;
+    text-align: center;
+    padding: var(--space-16);
+    background: var(--color-bg-3);
+    border-radius: var(--radius-base);
+    border: 2px solid var(--color-primary);
+}
+
+.touchpoint-name {
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-8);
+}
+
+.touchpoint-credit {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+.arrow {
+    font-size: 24px;
+    color: var(--color-primary);
+}
+
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--space-24) 0;
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: var(--space-16);
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+.comparison-table th {
+    background: var(--color-bg-1);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text);
+}
+
+.comparison-table .mmm-col {
+    background: var(--color-bg-1);
+}
+
+.comparison-table .mta-col {
+    background: var(--color-bg-3);
+}
+
+/* Model Cards */
+.model-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-16);
+    margin: var(--space-24) 0;
+}
+
+.model-card {
+    padding: var(--space-24);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: transform 0.2s;
+}
+
+.model-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-primary);
+}
+
+.model-card h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-16);
+    font-size: var(--font-size-xl);
+}
+
+.model-card p {
+    line-height: 1.6;
+    margin-bottom: var(--space-8);
+}
+
+/* Timeline */
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+    margin: var(--space-24) 0;
+}
+
+.timeline-item {
+    display: flex;
+    gap: var(--space-24);
+    padding: var(--space-16);
+    background: var(--color-surface);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-base);
+}
+
+.timeline-number {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    min-width: 50px;
+}
+
+.timeline-content h3 {
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+}
+
+.timeline-content p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-8);
+}
+
+/* Graph Visualization */
+.graph {
+    width: 100%;
+    height: 250px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.graph svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Challenge Icons */
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-16);
+    margin: var(--space-24) 0;
+}
+
+.challenge-item {
+    padding: var(--space-16);
+    background: var(--color-bg-4);
+    border-radius: var(--radius-base);
+    text-align: center;
+}
+
+.challenge-icon {
+    font-size: 32px;
+    margin-bottom: var(--space-8);
+}
+
+.challenge-item h4 {
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+}
+
+/* Navigation */
+.navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--space-32);
+}
+
+.nav-button {
+    padding: 12px 24px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-lg);
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    transition: background 0.2s;
+}
+
+.nav-button:hover {
+    background: var(--color-primary-hover);
+}
+
+.nav-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.slide-counter {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Two Column Layout */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-32);
+}
+
+.column h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-16);
+    font-size: var(--font-size-2xl);
+}
+
+/* Equation Display */
+.equation {
+    font-size: var(--font-size-xl);
+    text-align: center;
+    padding: var(--space-32);
+    background: var(--color-bg-5);
+    border-radius: var(--radius-lg);
+    margin: var(--space-24) 0;
+    font-weight: var(--font-weight-medium);
+}
+
+.equation-component {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Case Study */
+.case-study {
+    background: var(--color-bg-3);
+    padding: var(--space-24);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-primary);
+}
+
+.case-study h3 {
+    color: var(--color-primary);
+    margin-bottom: var(--space-16);
+}
+
+.case-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-24);
+    margin-top: var(--space-24);
+}
+
+.result-box {
+    padding: var(--space-16);
+    background: var(--color-surface);
+    border-radius: var(--radius-base);
+}
+
+.result-box h4 {
+    margin-bottom: var(--space-16);
+    color: var(--color-text);
+}
+
+/* Resources */
+.resources {
+    margin-top: var(--space-32);
+    padding: var(--space-24);
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+}
+
+.resources h3 {
+    margin-bottom: var(--space-16);
+    color: var(--color-primary);
+}
+
+.resources ul {
+    list-style: none;
+    margin-left: 0;
+}
+
+.resources li {
+    padding: var(--space-8);
+    margin-bottom: var(--space-8);
+}
+
+.resources a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+}
+
+.resources a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slide {
+        padding: 40px 24px;
+    }
+    
+    .two-columns,
+    .case-results {
+        grid-template-columns: 1fr;
+    }
+    
+    .journey-map {
+        flex-direction: column;
+    }
+    
+    .arrow {
+        transform: rotate(90deg);
+    }
+    
+    .slide-title {
+        font-size: var(--font-size-3xl);
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <div>
+                <h1>Marketing Mix Modeling &amp;<br>Multi-Touch Attribution</h1>
+                <h2>Understanding Marketing Analytics in the Age of ML</h2>
+            </div>
+        </div>
+
+        <!-- Slide 2: Agenda -->
+        <div class="slide">
+            <h1 class="slide-title">Agenda</h1>
+            <div class="slide-content">
+                <div class="content-section">
+                    <ol style="font-size: var(--font-size-xl); line-height: 2;">
+                        <li><strong>Introduction to Marketing Measurement</strong></li>
+                        <li><strong>Multi-Touch Attribution (MTA)</strong></li>
+                        <li><strong>Marketing Mix Modeling (MMM)</strong></li>
+                        <li><strong>MMM vs MTA Comparison</strong></li>
+                        <li><strong>Implementation &amp; Tools</strong></li>
+                        <li><strong>Practical Applications</strong></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Why Marketing Measurement Matters -->
+        <div class="slide">
+            <h1 class="slide-title">Why Marketing Measurement Matters</h1>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">The Challenge</h3>
+                    <p style="font-size: var(--font-size-xl); margin-bottom: var(--space-24);">"Which marketing activities actually drive sales?"</p>
+                    
+                    <ul>
+                        <li><strong>Traditional Approach:</strong> Single-touch attribution (last click gets all credit)</li>
+                        <li><strong>Modern Reality:</strong> Complex, multi-channel customer journeys spanning weeks or months</li>
+                        <li><strong>Business Impact:</strong> Optimize marketing spend—often millions or billions of dollars</li>
+                        <li><strong>Decision Quality:</strong> Without proper measurement, marketing budgets are based on guesswork</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="diagram">
+                        <h4 style="text-align: center; margin-bottom: var(--space-16); color: var(--color-text-secondary);">Typical Customer Journey</h4>
+                        <div class="journey-map">
+                            <div class="touchpoint">
+                                <div class="touchpoint-name">📱 Social Media Ad</div>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="touchpoint">
+                                <div class="touchpoint-name">📧 Email Campaign</div>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="touchpoint">
+                                <div class="touchpoint-name">🔍 Google Search</div>
+                            </div>
+                            <div class="arrow">→</div>
+                            <div class="touchpoint">
+                                <div class="touchpoint-name">✅ Conversion</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Section Divider MTA -->
+        <div class="slide section-divider">
+            <h1>Multi-Touch Attribution<br>(MTA)</h1>
+        </div>
+
+        <!-- Slide 5: What is MTA -->
+        <div class="slide">
+            <h1 class="slide-title">What is Multi-Touch Attribution (MTA)?</h1>
+            <div class="slide-content">
+                <div class="content-section">
+                    <p style="font-size: var(--font-size-xl); margin-bottom: var(--space-24); font-weight: var(--font-weight-medium);">Marketing measurement method that assigns credit for conversions across ALL touchpoints in the customer journey</p>
+                    
+                    <ul>
+                        <li><strong>Key Concept:</strong> Distributes credit rather than giving 100% to one interaction</li>
+                        <li><strong>Focus:</strong> User-level, digital journey tracking</li>
+                        <li><strong>Granularity:</strong> Individual campaign and ad performance</li>
+                        <li><strong>Data Source:</strong> User tracking (cookies, device IDs, pixels)</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section" style="background: var(--color-bg-3);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Example Scenario</h3>
+                    <div class="journey-map">
+                        <div class="touchpoint">
+                            <div class="touchpoint-name">Facebook Ad</div>
+                            <div class="touchpoint-credit">25%</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="touchpoint">
+                            <div class="touchpoint-name">Email Click</div>
+                            <div class="touchpoint-credit">15%</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="touchpoint">
+                            <div class="touchpoint-name">Google Search</div>
+                            <div class="touchpoint-credit">20%</div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="touchpoint">
+                            <div class="touchpoint-name">Retargeting Ad</div>
+                            <div class="touchpoint-credit">40%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: How MTA Works -->
+        <div class="slide">
+            <h1 class="slide-title">How MTA Works</h1>
+            <div class="slide-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h3>Track All Customer Touchpoints</h3>
+                            <p>Capture clicks, impressions, visits across all digital channels</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h3>Link Touchpoints to Conversions</h3>
+                            <p>Use tracking technologies: cookies, UTM codes, device IDs, CRM data</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h3>Apply Attribution Model</h3>
+                            <p>Distribute conversion credit across touchpoints using chosen methodology</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h3>Analyze Performance</h3>
+                            <p>Identify which channels and touchpoints drive the most value</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Data Requirements</h3>
+                    <ul>
+                        <li>User-level tracking capabilities</li>
+                        <li>Cookie consent and tracking pixels</li>
+                        <li>CRM integration for conversion tracking</li>
+                        <li>Cross-platform data unification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: MTA Models - Rule Based -->
+        <div class="slide">
+            <h1 class="slide-title">MTA Attribution Models: Rule-Based</h1>
+            <div class="slide-content">
+                <div class="model-grid">
+                    <div class="model-card">
+                        <h3>Linear</h3>
+                        <p><strong>Credit:</strong> Equal credit to all touchpoints</p>
+                        <p><strong>Best For:</strong> Long consideration cycles, awareness campaigns</p>
+                        <p><strong>Example:</strong> 4 touchpoints = 25% each</p>
+                        <div style="margin-top: var(--space-16); padding: var(--space-8); background: var(--color-bg-1); border-radius: var(--radius-base); text-align: center;">
+                            25% | 25% | 25% | 25%
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Time Decay</h3>
+                        <p><strong>Credit:</strong> More credit to recent touchpoints</p>
+                        <p><strong>Best For:</strong> Short sales cycles, promotional campaigns</p>
+                        <p><strong>Assumption:</strong> Recency = Influence</p>
+                        <div style="margin-top: var(--space-16); padding: var(--space-8); background: var(--color-bg-2); border-radius: var(--radius-base); text-align: center;">
+                            10% | 20% | 30% | 40%
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>U-Shaped (Position-Based)</h3>
+                        <p><strong>Credit:</strong> 40% first, 40% last, 20% middle</p>
+                        <p><strong>Best For:</strong> Awareness + conversion focus</p>
+                        <p><strong>Philosophy:</strong> Values discovery and conversion equally</p>
+                        <div style="margin-top: var(--space-16); padding: var(--space-8); background: var(--color-bg-3); border-radius: var(--radius-base); text-align: center;">
+                            40% | 10% | 10% | 40%
+                        </div>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>W-Shaped</h3>
+                        <p><strong>Credit:</strong> First, key middle, and last touchpoints</p>
+                        <p><strong>Best For:</strong> Complex B2B journeys with nurturing</p>
+                        <p><strong>Philosophy:</strong> Recognition of key conversion moments</p>
+                        <div style="margin-top: var(--space-16); padding: var(--space-8); background: var(--color-bg-4); border-radius: var(--radius-base); text-align: center;">
+                            30% | 10% | 30% | 30%
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: MTA Models - Data Driven -->
+        <div class="slide">
+            <h1 class="slide-title">MTA Attribution Models: Data-Driven</h1>
+            <div class="slide-content">
+                <div class="content-section" style="background: var(--color-bg-5);">
+                    <h2 style="margin-bottom: var(--space-24);">Algorithmic / Data-Driven Attribution</h2>
+                    <p style="font-size: var(--font-size-xl); margin-bottom: var(--space-24);">Uses machine learning and historical data to learn optimal credit distribution</p>
+                    
+                    <div class="two-columns">
+                        <div>
+                            <h3>Common Approaches</h3>
+                            <ul>
+                                <li><strong>Markov Chains:</strong> Evaluate "removal effect"—what happens if touchpoint is removed?</li>
+                                <li><strong>Shapley Value:</strong> Game theory approach for fair credit allocation</li>
+                                <li><strong>Logistic Regression:</strong> Predict conversion probability per touchpoint</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3>Advantages</h3>
+                            <ul>
+                                <li>Learns from actual conversion patterns</li>
+                                <li>Adapts to your specific customer journey</li>
+                                <li>More accurate than rule-based models</li>
+                            </ul>
+                            
+                            <h3 style="margin-top: var(--space-24);">Challenges</h3>
+                            <ul>
+                                <li>Requires significant historical data</li>
+                                <li>Needs ML expertise to implement</li>
+                                <li>Less transparent than rule-based</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Example: Markov Chain Attribution</h3>
+                    <p>Calculates the probability of conversion with and without each touchpoint, measuring incremental contribution</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: MTA Challenges -->
+        <div class="slide">
+            <h1 class="slide-title">MTA Challenges</h1>
+            <div class="slide-content">
+                <div class="challenges-grid">
+                    <div class="challenge-item">
+                        <div class="challenge-icon">🔒</div>
+                        <h4>Privacy Regulations</h4>
+                        <p>GDPR, CCPA, ATT framework limit user tracking capabilities</p>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">🍪</div>
+                        <h4>Cookie Deprecation</h4>
+                        <p>Third-party cookies being phased out by browsers</p>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">📱</div>
+                        <h4>Cross-Device Tracking</h4>
+                        <p>Hard to connect mobile, desktop, and in-store behavior</p>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">🏰</div>
+                        <h4>Walled Gardens</h4>
+                        <p>Meta, Google don't share full attribution data</p>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">📺</div>
+                        <h4>Offline Blindness</h4>
+                        <p>Can't track TV, radio, print, or out-of-home ads</p>
+                    </div>
+                    
+                    <div class="challenge-item">
+                        <div class="challenge-icon">⚖️</div>
+                        <h4>Lower Funnel Bias</h4>
+                        <p>Over-credits retargeting, under-credits awareness channels</p>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24); background: var(--color-bg-4);">
+                    <p style="font-size: var(--font-size-xl); text-align: center; font-weight: var(--font-weight-medium);">These challenges have led to a resurgence of Marketing Mix Modeling (MMM) as a privacy-friendly alternative</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Section Divider MMM -->
+        <div class="slide section-divider">
+            <h1>Marketing Mix Modeling<br>(MMM)</h1>
+        </div>
+
+        <!-- Slide 11: What is MMM -->
+        <div class="slide">
+            <h1 class="slide-title">What is Marketing Mix Modeling (MMM)?</h1>
+            <div class="slide-content">
+                <div class="content-section">
+                    <p style="font-size: var(--font-size-xl); margin-bottom: var(--space-24); font-weight: var(--font-weight-medium);">Statistical analysis using aggregated data to measure the impact of marketing activities on sales</p>
+                    
+                    <ul>
+                        <li><strong>Historical Technique:</strong> Developed in 1960s-70s, recently resurged due to privacy changes</li>
+                        <li><strong>Focus:</strong> Channel-level, strategic budget decisions</li>
+                        <li><strong>Key Question:</strong> "How much does each channel contribute to overall sales?"</li>
+                        <li><strong>Comprehensive:</strong> Analyzes both online AND offline channels (TV, radio, print, digital)</li>
+                        <li><strong>Privacy-Friendly:</strong> Uses aggregated data, no individual user tracking required</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="diagram">
+                        <h4 style="text-align: center; margin-bottom: var(--space-16); color: var(--color-text-secondary);">Channel Contribution to Sales</h4>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-16);">
+                            <div style="padding: var(--space-24); background: var(--color-bg-1); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">35%</div>
+                                <div>TV Advertising</div>
+                            </div>
+                            <div style="padding: var(--space-24); background: var(--color-bg-3); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">25%</div>
+                                <div>Digital Search</div>
+                            </div>
+                            <div style="padding: var(--space-24); background: var(--color-bg-2); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">15%</div>
+                                <div>Social Media</div>
+                            </div>
+                            <div style="padding: var(--space-24); background: var(--color-bg-4); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">12%</div>
+                                <div>Radio</div>
+                            </div>
+                            <div style="padding: var(--space-24); background: var(--color-bg-5); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">8%</div>
+                                <div>Print</div>
+                            </div>
+                            <div style="padding: var(--space-24); background: var(--color-bg-3); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-size: 32px; font-weight: var(--font-weight-bold); color: var(--color-primary);">5%</div>
+                                <div>Other</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 12: How MMM Works -->
+        <div class="slide">
+            <h1 class="slide-title">How MMM Works: The Equation</h1>
+            <div class="slide-content">
+                <div class="equation">
+                    <strong>Sales = Base Sales + Marketing Effect + External Factors + Error</strong>
+                </div>
+                
+                <div class="model-grid">
+                    <div class="model-card" style="border-color: var(--color-primary);">
+                        <h3>📊 Base Sales</h3>
+                        <p><strong>Natural demand without marketing</strong></p>
+                        <ul style="margin-left: var(--space-16);">
+                            <li>Price effects</li>
+                            <li>Seasonality patterns</li>
+                            <li>Long-term trends</li>
+                            <li>Brand equity</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="model-card" style="border-color: var(--color-teal-500);">
+                        <h3>📢 Marketing Effect</h3>
+                        <p><strong>Incremental sales from advertising</strong></p>
+                        <ul style="margin-left: var(--space-16);">
+                            <li>TV spend</li>
+                            <li>Digital campaigns</li>
+                            <li>Radio advertising</li>
+                            <li>Print media</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="model-card" style="border-color: var(--color-orange-500);">
+                        <h3>🌍 External Factors</h3>
+                        <p><strong>Outside influences on sales</strong></p>
+                        <ul style="margin-left: var(--space-16);">
+                            <li>Economic indicators</li>
+                            <li>Weather conditions</li>
+                            <li>Competitor actions</li>
+                            <li>Special events</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Statistical Approach</h3>
+                    <p style="font-size: var(--font-size-lg);">MMM uses <strong>multiple regression analysis</strong> with time-series data (typically weekly or monthly) to isolate the impact of each marketing channel while controlling for all other factors.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 13: MMM Key Concepts - Adstock -->
+        <div class="slide">
+            <h1 class="slide-title">MMM Key Concepts: Adstock</h1>
+            <div class="slide-content">
+                <div class="content-section" style="background: var(--color-bg-1);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">The Problem</h3>
+                    <p style="font-size: var(--font-size-xl);">Advertising effects don't happen instantly—they carry over time</p>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">What is Adstock?</h3>
+                    <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-16);"><strong>Adstock</strong> models the lagging, decaying effect of advertising over time</p>
+                    
+                    <ul>
+                        <li><strong>Example:</strong> TV ad runs in Week 1, but people buy in Weeks 2, 3, and 4</li>
+                        <li><strong>Carryover Effect:</strong> Ad impressions don't disappear immediately from memory</li>
+                        <li><strong>Different by Channel:</strong> TV has longer adstock than search ads</li>
+                    </ul>
+                </div>
+                
+                <div class="equation">
+                    <strong>Adstock<sub>t</sub> = Spend<sub>t</sub> + α × Adstock<sub>t-1</sub></strong>
+                </div>
+                
+                <div class="content-section">
+                    <p style="font-size: var(--font-size-lg);"><strong>Parameter α (alpha):</strong> Decay rate (0-1)</p>
+                    <ul>
+                        <li>α = 0: No carryover (immediate effect only)</li>
+                        <li>α = 0.5: 50% of previous week's effect carries over</li>
+                        <li>α = 0.9: Strong carryover (long-lasting brand campaigns)</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="diagram">
+                        <svg viewBox="0 0 800 300" style="max-height: 250px;">
+                            <text x="400" y="20" text-anchor="middle" fill="var(--color-text-secondary)" font-size="14">Ad Spend vs Effect Over Time</text>
+                            
+                            <!-- Axes -->
+                            <line x1="50" y1="250" x2="750" y2="250" stroke="var(--color-border)" stroke-width="2"/>
+                            <line x1="50" y1="50" x2="50" y2="250" stroke="var(--color-border)" stroke-width="2"/>
+                            
+                            <!-- Spend bar (Week 1) -->
+                            <rect x="150" y="100" width="80" height="150" fill="var(--color-primary)" opacity="0.7"/>
+                            <text x="190" y="90" text-anchor="middle" fill="var(--color-text)" font-size="12">Spend</text>
+                            
+                            <!-- Effect decay curve -->
+                            <path d="M 190 100 Q 300 120, 400 160 Q 500 190, 600 220" stroke="var(--color-orange-500)" stroke-width="3" fill="none"/>
+                            <text x="600" y="210" fill="var(--color-orange-500)" font-size="12">Effect</text>
+                            
+                            <!-- Week labels -->
+                            <text x="190" y="270" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12">Week 1</text>
+                            <text x="350" y="270" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12">Week 2</text>
+                            <text x="510" y="270" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12">Week 3</text>
+                            <text x="670" y="270" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12">Week 4</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 14: MMM Key Concepts - Saturation -->
+        <div class="slide">
+            <h1 class="slide-title">MMM Key Concepts: Saturation</h1>
+            <div class="slide-content">
+                <div class="content-section" style="background: var(--color-bg-2);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">The Problem</h3>
+                    <p style="font-size: var(--font-size-xl);">More spend doesn't always equal proportionally more sales</p>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Diminishing Returns</h3>
+                    <ul>
+                        <li><strong>Initial Spend:</strong> First $10K reaches eager, high-intent customers → High ROI</li>
+                        <li><strong>Additional Spend:</strong> Next $10K reaches less interested audience → Lower ROI</li>
+                        <li><strong>Saturation Point:</strong> Eventually, additional spend yields minimal incremental sales</li>
+                        <li><strong>Non-Linear Effect:</strong> Relationship between spend and sales follows an S-curve</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Saturation Functions</h3>
+                    <p style="font-size: var(--font-size-lg); margin-bottom: var(--space-16);">Common mathematical functions used to model saturation:</p>
+                    <ul>
+                        <li><strong>Logistic Function:</strong> Classic S-curve shape</li>
+                        <li><strong>Hill Function:</strong> Used in pharmacology, flexible saturation modeling</li>
+                        <li><strong>Michaelis-Menten:</strong> From enzyme kinetics, models saturation well</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="diagram">
+                        <svg viewBox="0 0 800 300" style="max-height: 250px;">
+                            <text x="400" y="20" text-anchor="middle" fill="var(--color-text-secondary)" font-size="14">Saturation Curve: Diminishing Returns</text>
+                            
+                            <!-- Axes -->
+                            <line x1="50" y1="250" x2="750" y2="250" stroke="var(--color-border)" stroke-width="2"/>
+                            <line x1="50" y1="50" x2="50" y2="250" stroke="var(--color-border)" stroke-width="2"/>
+                            
+                            <!-- Labels -->
+                            <text x="400" y="280" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12">Marketing Spend →</text>
+                            <text x="20" y="150" text-anchor="middle" fill="var(--color-text-secondary)" font-size="12" transform="rotate(-90 20 150)">Sales →</text>
+                            
+                            <!-- S-Curve -->
+                            <path d="M 50 240 Q 150 230, 250 180 T 450 100 T 650 70 L 750 65" 
+                                  stroke="var(--color-primary)" stroke-width="4" fill="none"/>
+                            
+                            <!-- Annotation: High ROI -->
+                            <circle cx="200" cy="200" r="5" fill="var(--color-teal-500)"/>
+                            <text x="210" y="195" fill="var(--color-teal-500)" font-size="12">High ROI</text>
+                            
+                            <!-- Annotation: Diminishing -->
+                            <circle cx="500" cy="90" r="5" fill="var(--color-orange-500)"/>
+                            <text x="510" y="85" fill="var(--color-orange-500)" font-size="12">Diminishing Returns</text>
+                            
+                            <!-- Annotation: Saturated -->
+                            <circle cx="700" cy="67" r="5" fill="var(--color-red-500)"/>
+                            <text x="640" y="45" fill="var(--color-red-500)" font-size="12">Saturated</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 15: MMM Implementation Process -->
+        <div class="slide">
+            <h1 class="slide-title">MMM Implementation Process</h1>
+            <div class="slide-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-number">1</div>
+                        <div class="timeline-content">
+                            <h3>Business Understanding</h3>
+                            <p>Define KPIs, scope, and business objectives</p>
+                            <p><strong>Duration:</strong> 1-2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">2</div>
+                        <div class="timeline-content">
+                            <h3>Data Collection</h3>
+                            <p>Gather marketing spend, sales data, and external variables</p>
+                            <p><strong>Duration:</strong> 1-4 weeks (variable)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">3</div>
+                        <div class="timeline-content">
+                            <h3>Data Preparation</h3>
+                            <p>Clean, normalize, align time periods, handle missing values</p>
+                            <p><strong>Duration:</strong> 2-3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">4</div>
+                        <div class="timeline-content">
+                            <h3>Variable Selection</h3>
+                            <p>Choose media channels, control variables, external factors</p>
+                            <p><strong>Duration:</strong> 1 week</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">5</div>
+                        <div class="timeline-content">
+                            <h3>Model Building</h3>
+                            <p>Apply adstock &amp; saturation transformations, run regression models</p>
+                            <p><strong>Duration:</strong> 2-4 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">6</div>
+                        <div class="timeline-content">
+                            <h3>Model Validation</h3>
+                            <p>Test accuracy, check residuals, validate assumptions</p>
+                            <p><strong>Duration:</strong> 1-2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">7</div>
+                        <div class="timeline-content">
+                            <h3>Optimization</h3>
+                            <p>Budget allocation recommendations, scenario planning</p>
+                            <p><strong>Duration:</strong> 1 week</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-number">8</div>
+                        <div class="timeline-content">
+                            <h3>Deployment</h3>
+                            <p>Dashboard creation, stakeholder training, documentation</p>
+                            <p><strong>Duration:</strong> 1-2 weeks</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24); background: var(--color-bg-5); text-align: center;">
+                    <p style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold);">Total Timeline: 2-6 months typically</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 16: MMM vs MTA Comparison -->
+        <div class="slide">
+            <h1 class="slide-title">MMM vs MTA: Side-by-Side Comparison</h1>
+            <div class="slide-content">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Aspect</th>
+                            <th style="width: 37.5%; background: var(--color-bg-1);">MMM</th>
+                            <th style="width: 37.5%; background: var(--color-bg-3);">MTA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td class="mmm-col">Strategic, business-level decisions</td>
+                            <td class="mta-col">Tactical, campaign-level optimization</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Level</strong></td>
+                            <td class="mmm-col">Aggregated (channel/campaign level)</td>
+                            <td class="mta-col">User-level (individual touchpoints)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timeframe</strong></td>
+                            <td class="mmm-col">Long-term (6 months - 3 years)</td>
+                            <td class="mta-col">Short-term (weeks to months)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Channels</strong></td>
+                            <td class="mmm-col">Online + Offline (TV, radio, print, digital)</td>
+                            <td class="mta-col">Primarily digital channels</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Measurement</strong></td>
+                            <td class="mmm-col">Statistical modeling (regression, Bayesian)</td>
+                            <td class="mta-col">Touchpoint tracking &amp; attribution</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privacy Impact</strong></td>
+                            <td class="mmm-col">Privacy-friendly (no user tracking)</td>
+                            <td class="mta-col">Privacy-sensitive (requires cookies/tracking)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>External Factors</strong></td>
+                            <td class="mmm-col">Includes economy, seasonality, competitors</td>
+                            <td class="mta-col">Limited external factor consideration</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implementation</strong></td>
+                            <td class="mmm-col">2-6 months</td>
+                            <td class="mta-col">Weeks to implement</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best Use Case</strong></td>
+                            <td class="mmm-col">Budget allocation across all channels</td>
+                            <td class="mta-col">Digital journey optimization</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Slide 17: When to Use MMM vs MTA -->
+        <div class="slide">
+            <h1 class="slide-title">When to Use MMM vs MTA</h1>
+            <div class="slide-content">
+                <div class="two-columns">
+                    <div class="content-section" style="background: var(--color-bg-1);">
+                        <h3 style="margin-bottom: var(--space-24);">Use MMM When:</h3>
+                        <ul>
+                            <li>Need to measure <strong>offline channels</strong> (TV, radio, print, out-of-home)</li>
+                            <li>Making <strong>strategic, long-term</strong> budget allocation decisions</li>
+                            <li><strong>Privacy regulations</strong> limit user tracking capabilities</li>
+                            <li>Want to include <strong>external factors</strong> (economy, seasonality, weather)</li>
+                            <li>Have <strong>months-years</strong> of historical data available</li>
+                            <li>Need <strong>holistic view</strong> of entire marketing mix</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section" style="background: var(--color-bg-3);">
+                        <h3 style="margin-bottom: var(--space-24);">Use MTA When:</h3>
+                        <ul>
+                            <li>Focus on <strong>digital-only</strong> campaigns and channels</li>
+                            <li>Need <strong>granular, campaign-level</strong> performance insights</li>
+                            <li>Optimizing <strong>short-term tactical</strong> decisions</li>
+                            <li>Can track <strong>user-level data</strong> compliantly</li>
+                            <li>Have <strong>complex digital</strong> customer journeys to analyze</li>
+                            <li>Want <strong>real-time</strong> or near-real-time attribution</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24); background: var(--color-bg-5); text-align: center;">
+                    <h2 style="margin-bottom: var(--space-16); color: var(--color-primary);">Best Approach: Use BOTH</h2>
+                    <p style="font-size: var(--font-size-xl);"><strong>Unified Measurement:</strong> Combine MMM for strategic planning with MTA for tactical optimization</p>
+                    <p style="margin-top: var(--space-16); font-size: var(--font-size-lg);">MMM provides the strategic roadmap, MTA provides the tactical execution details</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Section Divider Implementation -->
+        <div class="slide section-divider">
+            <h1>Implementation<br>&amp; Tools</h1>
+        </div>
+
+        <!-- Slide 19: Python Libraries for MMM -->
+        <div class="slide">
+            <h1 class="slide-title">Python Libraries for MMM</h1>
+            <div class="slide-content">
+                <div class="model-grid">
+                    <div class="model-card" style="border-color: var(--color-primary); border-width: 3px;">
+                        <h3>🐍 PyMC-Marketing</h3>
+                        <p><strong>Language:</strong> Python</p>
+                        <p><strong>Approach:</strong> Bayesian (PyMC)</p>
+                        <p><strong>Features:</strong> Most flexible, time-varying coefficients, budget optimization</p>
+                        <p><strong>Best For:</strong> Advanced users needing flexibility</p>
+                    </div>
+                    
+                    <div class="model-card" style="border-color: var(--color-teal-500); border-width: 3px;">
+                        <h3>🔷 Google Meridian</h3>
+                        <p><strong>Language:</strong> Python</p>
+                        <p><strong>Approach:</strong> Bayesian (TensorFlow Probability)</p>
+                        <p><strong>Features:</strong> Geo hierarchical models, Google ecosystem integration</p>
+                        <p><strong>Best For:</strong> Google advertisers</p>
+                    </div>
+                    
+                    <div class="model-card" style="border-color: var(--color-teal-700); border-width: 3px;">
+                        <h3>📘 Meta Robyn</h3>
+                        <p><strong>Language:</strong> R</p>
+                        <p><strong>Approach:</strong> Traditional ML + Bayesian</p>
+                        <p><strong>Features:</strong> Meta ecosystem, automated model selection, budget optimizer</p>
+                        <p><strong>Best For:</strong> Meta/Facebook advertisers</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>⚡ LightweightMMM</h3>
+                        <p><strong>Language:</strong> Python</p>
+                        <p><strong>Approach:</strong> Bayesian (NumPyro/JAX)</p>
+                        <p><strong>Features:</strong> Fast, simple Bayesian MMM</p>
+                        <p><strong>Status:</strong> ⚠️ Deprecated - use Meridian instead</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>🌟 Orbit KTR</h3>
+                        <p><strong>Language:</strong> Python</p>
+                        <p><strong>Approach:</strong> Bayesian (STAN)</p>
+                        <p><strong>Features:</strong> Time-varying intercept and coefficients</p>
+                        <p><strong>Best For:</strong> Time-series focused analysis</p>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Key Selection Criteria</h3>
+                    <ul>
+                        <li><strong>Flexibility:</strong> How much control do you need over model specification?</li>
+                        <li><strong>Ease of Use:</strong> What's your team's technical expertise level?</li>
+                        <li><strong>Ecosystem:</strong> Which advertising platforms do you use most?</li>
+                        <li><strong>Community:</strong> Is there active support and documentation?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 20: Commercial MMM Platforms -->
+        <div class="slide">
+            <h1 class="slide-title">Commercial MMM Platforms</h1>
+            <div class="slide-content">
+                <div class="model-grid">
+                    <div class="model-card" style="border-color: var(--color-primary); border-width: 3px;">
+                        <h3>Arima</h3>
+                        <p><strong>Pricing:</strong> Flat-rate, unlimited models</p>
+                        <p><strong>Features:</strong> Easy to use, fast (hours/days), synthetic data generation</p>
+                        <p><strong>Best For:</strong> All sizes, agencies (white-label available)</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Sellforte</h3>
+                        <p><strong>Pricing:</strong> $20K+ per year</p>
+                        <p><strong>Features:</strong> eCommerce/DTC focus, causal MMM, lift testing</p>
+                        <p><strong>Best For:</strong> eCommerce, DTC, retail brands</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Keen Decision Systems</h3>
+                        <p><strong>Pricing:</strong> $35K-$75K per year</p>
+                        <p><strong>Features:</strong> AI recommendations, 300+ integrations</p>
+                        <p><strong>Best For:</strong> Mid-large businesses with complex needs</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Cassandra</h3>
+                        <p><strong>Pricing:</strong> Not public</p>
+                        <p><strong>Features:</strong> No-code, ML-powered, 3-week turnaround</p>
+                        <p><strong>Best For:</strong> Non-technical marketing teams</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Rockerbox</h3>
+                        <p><strong>Pricing:</strong> Not public</p>
+                        <p><strong>Features:</strong> MMM + MTA combined platform</p>
+                        <p><strong>Best For:</strong> Mid-large businesses wanting unified measurement</p>
+                    </div>
+                    
+                    <div class="model-card">
+                        <h3>Recast</h3>
+                        <p><strong>Pricing:</strong> Not public</p>
+                        <p><strong>Features:</strong> MMM + MTA, AI forecasting, advanced analytics</p>
+                        <p><strong>Best For:</strong> Sophisticated analytics teams</p>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Trade-offs to Consider</h3>
+                    <ul>
+                        <li><strong>Ease of Use:</strong> SaaS platforms are faster but less customizable</li>
+                        <li><strong>Control:</strong> Open-source libraries offer more control but require expertise</li>
+                        <li><strong>Cost:</strong> Open-source is free (minus engineering time), SaaS ranges $20K-$100K+/year</li>
+                        <li><strong>Speed:</strong> Commercial platforms often deliver results faster</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 21: MTA Implementation -->
+        <div class="slide">
+            <h1 class="slide-title">MTA Implementation Considerations</h1>
+            <div class="slide-content">
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Data Requirements</h3>
+                    <ul>
+                        <li><strong>User-Level Tracking:</strong> Cookies, device IDs, authenticated user data</li>
+                        <li><strong>CRM Integration:</strong> Connect touchpoints to actual conversions and revenue</li>
+                        <li><strong>Cross-Platform Data:</strong> Web analytics, mobile app, email, social platforms</li>
+                        <li><strong>Data Quality:</strong> Clean, consistent tracking across all touchpoints</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Technical Setup</h3>
+                    <ul>
+                        <li><strong>Attribution Platform:</strong> Google Analytics 4, Adobe Analytics, or custom solution</li>
+                        <li><strong>Tag Management:</strong> Google Tag Manager for tracking implementation</li>
+                        <li><strong>Data Warehousing:</strong> BigQuery, Snowflake, or similar for data aggregation</li>
+                        <li><strong>Identity Resolution:</strong> Cross-device and cross-session user matching</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Key Challenges</h3>
+                    <ul>
+                        <li><strong>Data Quality:</strong> Ensuring complete and accurate tracking across channels</li>
+                        <li><strong>Identity Resolution:</strong> Matching users across devices and sessions</li>
+                        <li><strong>Privacy Compliance:</strong> GDPR, CCPA consent management</li>
+                        <li><strong>Attribution Window:</strong> Determining appropriate lookback period</li>
+                        <li><strong>Walled Gardens:</strong> Limited data sharing from platforms like Facebook, Google</li>
+                    </ul>
+                </div>
+                
+                <div class="visual-container" style="margin-top: var(--space-24);">
+                    <div class="diagram">
+                        <h4 style="text-align: center; margin-bottom: var(--space-16); color: var(--color-text-secondary);">MTA Architecture</h4>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-16);">
+                            <div style="padding: var(--space-16); background: var(--color-bg-1); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-8);">Data Collection</div>
+                                <div style="font-size: var(--font-size-base);">Tags, Pixels, APIs</div>
+                            </div>
+                            <div style="padding: var(--space-16); background: var(--color-bg-3); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-8);">Processing</div>
+                                <div style="font-size: var(--font-size-base);">Attribution Model, Identity Resolution</div>
+                            </div>
+                            <div style="padding: var(--space-16); background: var(--color-bg-5); border-radius: var(--radius-base); text-align: center;">
+                                <div style="font-weight: var(--font-weight-bold); margin-bottom: var(--space-8);">Insights</div>
+                                <div style="font-size: var(--font-size-base);">Dashboards, Reports, Optimization</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 22: Case Study MMM -->
+        <div class="slide">
+            <h1 class="slide-title">Practical Application: MMM Case Study</h1>
+            <div class="slide-content">
+                <div class="case-study">
+                    <h3>Consumer Packaged Goods (CPG) Company</h3>
+                    
+                    <div style="margin: var(--space-24) 0;">
+                        <p><strong>Scenario:</strong> Large CPG company with $50M annual marketing budget</p>
+                        <p><strong>Channels:</strong> TV, Radio, Print, Digital Display, Search, Social Media</p>
+                        <p><strong>Goal:</strong> Optimize budget allocation across all channels</p>
+                    </div>
+                    
+                    <div class="content-section" style="background: var(--color-surface); margin: var(--space-16) 0;">
+                        <h4 style="margin-bottom: var(--space-16); color: var(--color-text);">MMM Findings:</h4>
+                        <ul>
+                            <li><strong>TV Advertising:</strong> 35% contribution to sales | Highest ROI during Q4 holiday season</li>
+                            <li><strong>Digital Search:</strong> 25% contribution | Consistent performance year-round</li>
+                            <li><strong>Social Media:</strong> 15% contribution | Reached saturation point, diminishing returns</li>
+                            <li><strong>Radio:</strong> 10% contribution | Regional effectiveness varies significantly</li>
+                            <li><strong>Print:</strong> 8% contribution | Long adstock effect but declining effectiveness</li>
+                            <li><strong>Display:</strong> 7% contribution | Strong support channel for other media</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="case-results">
+                        <div class="result-box">
+                            <h4>Action Taken</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li>Reallocate 20% budget from social to TV during Q4</li>
+                                <li>Reduce print spend by 30%</li>
+                                <li>Increase search budget by 15%</li>
+                                <li>Optimize radio to high-performing regions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="result-box" style="background: var(--color-bg-3);">
+                            <h4>Results</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li><strong>12% increase</strong> in total sales</li>
+                                <li><strong>15% better ROI</strong> overall</li>
+                                <li><strong>$6M additional revenue</strong> with same budget</li>
+                                <li>More efficient media mix</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 23: Case Study MTA -->
+        <div class="slide">
+            <h1 class="slide-title">Practical Application: MTA Case Study</h1>
+            <div class="slide-content">
+                <div class="case-study">
+                    <h3>B2B SaaS Company</h3>
+                    
+                    <div style="margin: var(--space-24) 0;">
+                        <p><strong>Scenario:</strong> B2B SaaS company with complex digital customer journey</p>
+                        <p><strong>Journey:</strong> LinkedIn Ad → Blog Post → Email → Webinar → Demo Request → Close</p>
+                        <p><strong>Goal:</strong> Understand which touchpoints drive the most conversions</p>
+                    </div>
+                    
+                    <div class="visual-container">
+                        <div class="diagram">
+                            <h4 style="text-align: center; margin-bottom: var(--space-16);">Customer Journey with Attribution Credits</h4>
+                            <div class="journey-map">
+                                <div class="touchpoint">
+                                    <div class="touchpoint-name">💼 LinkedIn Ad</div>
+                                    <div class="touchpoint-credit">25%</div>
+                                    <div style="font-size: 12px; margin-top: 8px;">Strong awareness driver</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="touchpoint">
+                                    <div class="touchpoint-name">📝 Blog Content</div>
+                                    <div class="touchpoint-credit">15%</div>
+                                    <div style="font-size: 12px; margin-top: 8px;">Education phase</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="touchpoint">
+                                    <div class="touchpoint-name">📧 Email Nurture</div>
+                                    <div class="touchpoint-credit">20%</div>
+                                    <div style="font-size: 12px; margin-top: 8px;">Keeps leads engaged</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="touchpoint">
+                                    <div class="touchpoint-name">🎥 Webinar</div>
+                                    <div class="touchpoint-credit">35%</div>
+                                    <div style="font-size: 12px; margin-top: 8px;">Highest conversion impact</div>
+                                </div>
+                                <div class="arrow">→</div>
+                                <div class="touchpoint">
+                                    <div class="touchpoint-name">📞 Demo Request</div>
+                                    <div class="touchpoint-credit">5%</div>
+                                    <div style="font-size: 12px; margin-top: 8px;">Already convinced</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="case-results" style="margin-top: var(--space-24);">
+                        <div class="result-box">
+                            <h4>Action Taken</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li>Invest 40% more in webinar production</li>
+                                <li>Expand blog content marketing</li>
+                                <li>Reduce demo request advertising</li>
+                                <li>Optimize email sequences</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="result-box" style="background: var(--color-bg-3);">
+                            <h4>Results</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li><strong>30% increase</strong> in qualified leads</li>
+                                <li><strong>Lower CAC</strong> (Customer Acquisition Cost)</li>
+                                <li><strong>Better lead quality</strong> from webinars</li>
+                                <li>Optimized digital spend</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 24: Combining MMM and MTA -->
+        <div class="slide">
+            <h1 class="slide-title">Combining MMM &amp; MTA: Unified Measurement</h1>
+            <div class="slide-content">
+                <div class="content-section" style="background: var(--color-bg-5);">
+                    <h2 style="margin-bottom: var(--space-16); color: var(--color-primary);">Why Combine Both?</h2>
+                    <div class="two-columns">
+                        <div>
+                            <h4>MMM Strengths:</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li>Strategic view</li>
+                                <li>Offline + online channels</li>
+                                <li>Privacy-safe</li>
+                                <li>External factors included</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>MTA Strengths:</h4>
+                            <ul style="margin-left: var(--space-16);">
+                                <li>Tactical granularity</li>
+                                <li>Real-time insights</li>
+                                <li>Campaign-level detail</li>
+                                <li>Journey understanding</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-section">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16);">Unified Measurement Approach</h3>
+                    <ol style="font-size: var(--font-size-lg); line-height: 1.8;">
+                        <li><strong>Use MMM for strategic budget allocation</strong> across all channels (online + offline)</li>
+                        <li><strong>Use MTA for tactical optimization</strong> of digital campaigns within the allocated budget</li>
+                        <li><strong>Cross-validate insights</strong> between both methodologies to identify discrepancies</li>
+                        <li><strong>Triangulate with incrementality tests</strong> (A/B tests, geo-lift experiments)</li>
+                    </ol>
+                </div>
+                
+                <div class="visual-container">
+                    <div class="diagram">
+                        <h4 style="text-align: center; margin-bottom: var(--space-24); color: var(--color-text-secondary);">The Measurement Triangle</h4>
+                        <svg viewBox="0 0 600 400" style="max-height: 300px;">
+                            <!-- Triangle -->
+                            <polygon points="300,80 100,320 500,320" fill="none" stroke="var(--color-primary)" stroke-width="3"/>
+                            
+                            <!-- MMM -->
+                            <circle cx="300" cy="80" r="60" fill="var(--color-bg-1)" stroke="var(--color-primary)" stroke-width="2"/>
+                            <text x="300" y="75" text-anchor="middle" fill="var(--color-text)" font-size="14" font-weight="bold">MMM</text>
+                            <text x="300" y="92" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11">Strategic</text>
+                            
+                            <!-- MTA -->
+                            <circle cx="100" cy="320" r="60" fill="var(--color-bg-3)" stroke="var(--color-teal-500)" stroke-width="2"/>
+                            <text x="100" y="315" text-anchor="middle" fill="var(--color-text)" font-size="14" font-weight="bold">MTA</text>
+                            <text x="100" y="332" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11">Tactical</text>
+                            
+                            <!-- Testing -->
+                            <circle cx="500" cy="320" r="60" fill="var(--color-bg-2)" stroke="var(--color-orange-500)" stroke-width="2"/>
+                            <text x="500" y="310" text-anchor="middle" fill="var(--color-text)" font-size="14" font-weight="bold">Incrementality</text>
+                            <text x="500" y="327" text-anchor="middle" fill="var(--color-text)" font-size="14" font-weight="bold">Testing</text>
+                            <text x="500" y="342" text-anchor="middle" fill="var(--color-text-secondary)" font-size="11">Validation</text>
+                            
+                            <!-- Center text -->
+                            <text x="300" y="220" text-anchor="middle" fill="var(--color-primary)" font-size="16" font-weight="bold">Complete</text>
+                            <text x="300" y="240" text-anchor="middle" fill="var(--color-primary)" font-size="16" font-weight="bold">Measurement</text>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24); background: var(--color-bg-3); text-align: center;">
+                    <p style="font-size: var(--font-size-xl); font-weight: var(--font-weight-medium);">Result: More robust, complete picture of marketing effectiveness</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 25: Key Takeaways -->
+        <div class="slide">
+            <h1 class="slide-title">Key Takeaways</h1>
+            <div class="slide-content">
+                <div class="model-grid">
+                    <div class="model-card" style="border-color: var(--color-primary); border-width: 3px;">
+                        <h3>📊 MMM</h3>
+                        <ul style="margin-left: var(--space-16);">
+                            <li>Strategic decisions</li>
+                            <li>Aggregated data</li>
+                            <li>Privacy-friendly</li>
+                            <li>Offline + online</li>
+                            <li>2-6 month implementation</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="model-card" style="border-color: var(--color-teal-500); border-width: 3px;">
+                        <h3>🎯 MTA</h3>
+                        <ul style="margin-left: var(--space-16);">
+                            <li>Tactical optimization</li>
+                            <li>User-level insights</li>
+                            <li>Digital-focused</li>
+                            <li>Granular details</li>
+                            <li>Weeks to implement</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--space-16); text-align: center; font-size: var(--font-size-2xl);">Critical Points</h3>
+                    <ul style="font-size: var(--font-size-lg); line-height: 2;">
+                        <li><strong>Both answer different questions</strong> — not either/or, but complementary approaches</li>
+                        <li><strong>Privacy trends favor MMM resurgence</strong> as cookie tracking becomes harder</li>
+                        <li><strong>ML/AI making both more accessible</strong> with open-source libraries and commercial platforms</li>
+                        <li><strong>Best practice: Unified measurement</strong> combining MMM + MTA + incrementality testing</li>
+                        <li><strong>Implementation requires:</strong> Data quality, statistical/ML expertise, stakeholder buy-in</li>
+                        <li><strong>Start with business questions</strong> before choosing methodology</li>
+                    </ul>
+                </div>
+                
+                <div class="content-section" style="margin-top: var(--space-24); background: var(--color-bg-5); text-align: center;">
+                    <p style="font-size: var(--font-size-xl); font-weight: var(--font-weight-bold); color: var(--color-primary);">The future of marketing measurement is multi-method, privacy-first, and ML-powered</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 26: Questions -->
+        <div class="slide title-slide" style="background: var(--color-bg-3);">
+            <div>
+                <h1 style="margin-bottom: var(--space-32);">Questions?</h1>
+                <div class="resources" style="max-width: 700px; margin: 0 auto; text-align: left;">
+                    <h3>Key Resources</h3>
+                    <ul>
+                        <li><strong>PyMC-Marketing:</strong> <a href="https://www.pymc-marketing.io/" target="_blank">pymc-marketing.io</a></li>
+                        <li><strong>Google Meridian:</strong> <a href="https://github.com/google/meridian" target="_blank">github.com/google/meridian</a></li>
+                        <li><strong>Meta Robyn:</strong> <a href="https://github.com/facebookexperimental/Robyn" target="_blank">github.com/facebookexperimental/Robyn</a></li>
+                        <li><strong>Marketing Science:</strong> Research papers, case studies, best practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="nav-button" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <div class="slide-counter" id="slideCounter">1 / 26</div>
+            <button class="nav-button" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const slideCounter = document.getElementById('slideCounter');
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            
+            if (n >= totalSlides) {
+                currentSlide = totalSlides - 1;
+            } else if (n < 0) {
+                currentSlide = 0;
+            } else {
+                currentSlide = n;
+            }
+            
+            slides[currentSlide].classList.add('active');
+            slides[currentSlide].scrollTop = 0;
+            
+            // Update button states
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === totalSlides - 1;
+            
+            // Update counter
+            slideCounter.textContent = `${currentSlide + 1} / ${totalSlides}`;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+Phase,Key Activities,Duration
+1. Business Understanding,"Define KPIs, business questions, scope",1-2 weeks
+2. Data Collection,"Gather marketing spend, sales, external data",Variable (1-4 weeks)
+3. Data Preparation,"Clean, normalize, handle missing values",2-3 weeks
+4. Variable Selection,"Select media channels, control variables",1 week
+5. Model Building,"Apply adstock & saturation transformations, run regression",2-4 weeks
+6. Model Validation,"Test model accuracy, check residuals",1-2 weeks
+7. Optimization,"Budget allocation, scenario planning",1 week
+8. Deployment,"Dashboard creation, stakeholder training",1-2 weeks

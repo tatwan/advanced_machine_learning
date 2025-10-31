@@ -1,0 +1,6 @@
+Tool/Library,Type,Approach,Key Features,Best For
+PyMC-Marketing,Open Source (Python),Bayesian (PyMC),"Most flexible, time-varying coefficients, budget optimization",Advanced users needing flexibility
+Google Meridian,Open Source (Python),Bayesian (TensorFlow Probability),"Geo hierarchical models, Google ecosystem integration",Google advertisers
+Meta Robyn,Open Source (R),Traditional ML + Bayesian,"Meta ecosystem, automated, budget optimizer",Meta/Facebook advertisers
+LightweightMMM,Open Source (Python) - Deprecated,Bayesian (NumPyro/JAX),"Fast, simple Bayesian MMM (now deprecated)",Legacy projects only
+Orbit KTR,Open Source (Python),Bayesian (STAN),Time-varying intercept/coefficients,Time-varying analysis

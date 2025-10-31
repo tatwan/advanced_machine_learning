@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensemble Methods in Machine Learning - Interactive Presentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Ensemble Methods in Machine Learning</h1>
+            <p class="subtitle">An Interactive Guide to Bagging, Boosting, and Stacking</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="tabs">
+            <button class="tab active" data-tab="intro">Introduction</button>
+            <button class="tab" data-tab="bagging">Bagging</button>
+            <button class="tab" data-tab="boosting">Boosting</button>
+            <button class="tab" data-tab="voting">Voting</button>
+            <button class="tab" data-tab="stacking">Stacking</button>
+            <button class="tab" data-tab="advanced">Advanced</button>
+            <button class="tab" data-tab="lab">Practical Lab</button>
+            <button class="tab" data-tab="comparison">Comparison</button>
+            <button class="tab" data-tab="quiz">Quiz</button>
+        </nav>
+
+        <!-- Content Sections -->
+        <main class="content">
+            <!-- Introduction Section -->
+            <section class="tab-content active" id="intro">
+                <h2>Welcome to Ensemble Learning</h2>
+                <div class="intro-grid">
+                    <div class="intro-card">
+                        <h3>🎯 What are Ensemble Methods?</h3>
+                        <p>Ensemble methods combine multiple machine learning models to create a more powerful predictor. The key idea: "wisdom of crowds" - many weak learners can create a strong learner.</p>
+                    </div>
+                    <div class="intro-card">
+                        <h3>📊 Why Use Ensembles?</h3>
+                        <ul>
+                            <li>Reduce overfitting and variance</li>
+                            <li>Improve prediction accuracy</li>
+                            <li>Increase model robustness</li>
+                            <li>Handle complex patterns better</li>
+                        </ul>
+                    </div>
+                    <div class="intro-card">
+                        <h3>🔬 Three Main Approaches</h3>
+                        <ul>
+                            <li><strong>Bagging:</strong> Parallel training with bootstrap sampling</li>
+                            <li><strong>Boosting:</strong> Sequential training focusing on errors</li>
+                            <li><strong>Stacking:</strong> Multi-level learning with meta-models</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="visual-section">
+                    <h3>Ensemble Methods Overview</h3>
+                    <img src="https://user-gen-media-assets.s3.amazonaws.com/seedream_images/df023a1a-b063-45f9-a6a3-49c344c1c584.png" alt="Ensemble Methods Comparison" class="diagram-img">
+                    <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/cab32f502791839b04f1a8696879462f/586e9600-6c92-42a3-9a0a-85ba2a6e4dba/148ac49b.png" alt="Ensemble Flowchart" class="diagram-img">
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">76.5%</div>
+                        <div class="stat-label">Avg Ensemble Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">71.1%</div>
+                        <div class="stat-label">Avg Individual Accuracy</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">+7.6%</div>
+                        <div class="stat-label">Improvement</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">83.3%</div>
+                        <div class="stat-label">Best Method (Stacking)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bagging Section -->
+            <section class="tab-content" id="bagging">
+                <h2>🗳️ Bagging (Bootstrap Aggregating)</h2>
+                <div class="method-badge badge-bagging">Parallel Training • Reduces Variance</div>
+                
+                <div class="explanation-card">
+                    <h3>How Bagging Works</h3>
+                    <p>Bagging creates multiple versions of the training set using bootstrap sampling (random sampling with replacement). Each model trains independently on a different bootstrap sample, and predictions are aggregated through voting (classification) or averaging (regression).</p>
+                    
+                    <h4>Key Characteristics:</h4>
+                    <ul>
+                        <li><strong>Parallel Training:</strong> All models train simultaneously</li>
+                        <li><strong>Bootstrap Sampling:</strong> Random samples with replacement</li>
+                        <li><strong>Variance Reduction:</strong> Averaging reduces model variance</li>
+                        <li><strong>Out-of-Bag (OOB) Error:</strong> Built-in validation estimate</li>
+                    </ul>
+                </div>
+
+                <div class="visual-section">
+                    <h3>Random Forest Visualization</h3>
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1755071827/pplx_project_search_images/5315bda5ffe271ada38e2ced5810c0c71c6c8041.png" alt="Random Forest" class="diagram-img">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1754912810/pplx_project_search_images/fada48520ff23c484e9ebb28001eeb98645aa6c0.png" alt="Decision Tree" class="diagram-img">
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>Random Forest Example</h3>
+                        <button class="copy-btn" data-code="bagging">Copy Code</button>
+                    </div>
+                    <pre><code id="code-bagging"># BAGGING EXAMPLE - Random Forest
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Create and train Random Forest
+rf_model = RandomForestClassifier(
+    n_estimators=100,    # Number of trees
+    max_depth=10,        # Maximum depth of trees
+    random_state=42
+)
+
+rf_model.fit(X_train, y_train)
+predictions = rf_model.predict(X_test)
+accuracy = accuracy_score(y_test, predictions)
+print(f"Random Forest Accuracy: {accuracy:.4f}")
+
+# Feature importance
+feature_importance = rf_model.feature_importances_
+print("Top 5 Most Important Features:")
+for i, importance in enumerate(feature_importance[:5]):
+    print(f"Feature {i}: {importance:.4f}")</code></pre>
+                </div>
+
+                <div class="tips-card">
+                    <h4>💡 Best Practices</h4>
+                    <ul>
+                        <li>Use 100-500 trees for good performance</li>
+                        <li>Consider max_depth to control overfitting</li>
+                        <li>Random Forest works well with high-variance models</li>
+                        <li>OOB score provides validation without separate test set</li>
+                    </ul>
+                </div>
+
+                <div class="performance-card">
+                    <h4>📊 Performance Results</h4>
+                    <div class="result-item">
+                        <span>Random Forest:</span>
+                        <span class="accuracy">77.0%</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Bagging Classifier:</span>
+                        <span class="accuracy">75.3%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Boosting Section -->
+            <section class="tab-content" id="boosting">
+                <h2>🚀 Boosting</h2>
+                <div class="method-badge badge-boosting">Sequential Training • Reduces Bias</div>
+                
+                <div class="explanation-card">
+                    <h3>How Boosting Works</h3>
+                    <p>Boosting trains models sequentially, where each new model focuses on correcting the errors of the previous models. Misclassified instances get higher weights, forcing subsequent models to pay more attention to difficult cases.</p>
+                    
+                    <h4>Popular Boosting Algorithms:</h4>
+                    <ul>
+                        <li><strong>AdaBoost:</strong> Adaptive Boosting - adjusts weights based on errors</li>
+                        <li><strong>Gradient Boosting:</strong> Optimizes loss function using gradient descent</li>
+                        <li><strong>XGBoost:</strong> Extreme Gradient Boosting with regularization</li>
+                    </ul>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>Boosting Examples</h3>
+                        <button class="copy-btn" data-code="boosting">Copy Code</button>
+                    </div>
+                    <pre><code id="code-boosting"># BOOSTING EXAMPLES
+from sklearn.ensemble import AdaBoostClassifier, GradientBoostingClassifier
+from sklearn.tree import DecisionTreeClassifier
+
+# AdaBoost
+ada_boost = AdaBoostClassifier(
+    estimator=DecisionTreeClassifier(max_depth=1),  # Weak learners
+    n_estimators=50,
+    learning_rate=1.0
+)
+ada_boost.fit(X_train, y_train)
+ada_pred = ada_boost.predict(X_test)
+
+# Gradient Boosting
+grad_boost = GradientBoostingClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3
+)
+grad_boost.fit(X_train, y_train)
+grad_pred = grad_boost.predict(X_test)
+
+print(f"AdaBoost Accuracy: {accuracy_score(y_test, ada_pred):.4f}")
+print(f"Gradient Boosting Accuracy: {accuracy_score(y_test, grad_pred):.4f}")</code></pre>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h4>AdaBoost</h4>
+                        <p><strong>Pros:</strong></p>
+                        <ul>
+                            <li>Simple to implement</li>
+                            <li>Works well with weak learners</li>
+                            <li>Less prone to overfitting than other methods</li>
+                        </ul>
+                        <p><strong>Cons:</strong></p>
+                        <ul>
+                            <li>Sensitive to noisy data</li>
+                            <li>Slower training time</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card">
+                        <h4>Gradient Boosting</h4>
+                        <p><strong>Pros:</strong></p>
+                        <ul>
+                            <li>More flexible loss functions</li>
+                            <li>Better performance on complex data</li>
+                            <li>Can handle missing values</li>
+                        </ul>
+                        <p><strong>Cons:</strong></p>
+                        <li>Risk of overfitting</li>
+                        <li>Requires careful tuning</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="performance-card">
+                    <h4>📊 Performance Results</h4>
+                    <div class="result-item">
+                        <span>Gradient Boosting:</span>
+                        <span class="accuracy">77.7%</span>
+                    </div>
+                    <div class="result-item">
+                        <span>AdaBoost:</span>
+                        <span class="accuracy">64.7%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Voting Section -->
+            <section class="tab-content" id="voting">
+                <h2>🗳️ Voting Ensembles</h2>
+                <div class="method-badge badge-voting">Parallel Training • Combines Diverse Models</div>
+                
+                <div class="explanation-card">
+                    <h3>How Voting Works</h3>
+                    <p>Voting ensembles combine predictions from multiple diverse models. There are two main approaches:</p>
+                    
+                    <div class="voting-types">
+                        <div class="voting-type">
+                            <h4>Hard Voting</h4>
+                            <p>Each model votes for a class, and the majority wins. Simple and interpretable.</p>
+                            <p><strong>Example:</strong> Model A: Class 1, Model B: Class 1, Model C: Class 2 → Final: Class 1</p>
+                        </div>
+                        <div class="voting-type">
+                            <h4>Soft Voting</h4>
+                            <p>Averages predicted probabilities from all models. Generally performs better when models are well-calibrated.</p>
+                            <p><strong>Example:</strong> Avg([0.7, 0.3], [0.6, 0.4], [0.2, 0.8]) = [0.5, 0.5]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>Voting Classifier Example</h3>
+                        <button class="copy-btn" data-code="voting">Copy Code</button>
+                    </div>
+                    <pre><code id="code-voting"># VOTING CLASSIFIER EXAMPLE
+from sklearn.ensemble import VotingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+from sklearn.neighbors import KNeighborsClassifier
+
+# Define base models
+estimators = [
+    ('logistic', LogisticRegression()),
+    ('svm', SVC(probability=True)),  # probability=True for soft voting
+    ('knn', KNeighborsClassifier())
+]
+
+# Hard Voting
+hard_voting = VotingClassifier(estimators=estimators, voting='hard')
+hard_voting.fit(X_train, y_train)
+hard_pred = hard_voting.predict(X_test)
+
+# Soft Voting (uses prediction probabilities)
+soft_voting = VotingClassifier(estimators=estimators, voting='soft')
+soft_voting.fit(X_train, y_train)
+soft_pred = soft_voting.predict(X_test)
+
+print(f"Hard Voting Accuracy: {accuracy_score(y_test, hard_pred):.4f}")
+print(f"Soft Voting Accuracy: {accuracy_score(y_test, soft_pred):.4f}")</code></pre>
+                </div>
+
+                <div class="tips-card">
+                    <h4>💡 Best Practices</h4>
+                    <ul>
+                        <li>Use diverse models (e.g., linear, tree-based, instance-based)</li>
+                        <li>Soft voting typically outperforms hard voting</li>
+                        <li>Ensure probability=True for SVC when using soft voting</li>
+                        <li>More diverse models = better ensemble performance</li>
+                    </ul>
+                </div>
+
+                <div class="performance-card">
+                    <h4>📊 Performance Results</h4>
+                    <div class="result-item">
+                        <span>Hard Voting:</span>
+                        <span class="accuracy">77.3%</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Soft Voting:</span>
+                        <span class="accuracy">73.3%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stacking Section -->
+            <section class="tab-content" id="stacking">
+                <h2>🏗️ Stacking (Stacked Generalization)</h2>
+                <div class="method-badge badge-stacking">Multi-Level Learning • Combines Best of Both</div>
+                
+                <div class="explanation-card">
+                    <h3>How Stacking Works</h3>
+                    <p>Stacking uses a two-level (or more) architecture:</p>
+                    <ul>
+                        <li><strong>Level 0 (Base Models):</strong> Multiple diverse models make predictions</li>
+                        <li><strong>Level 1 (Meta Model):</strong> Learns to combine base model predictions optimally</li>
+                    </ul>
+                    <p>The meta-model learns which base models to trust for different types of inputs, creating a more sophisticated ensemble than simple voting.</p>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>Stacking Classifier Example</h3>
+                        <button class="copy-btn" data-code="stacking">Copy Code</button>
+                    </div>
+                    <pre><code id="code-stacking"># STACKING CLASSIFIER EXAMPLE
+from sklearn.ensemble import StackingClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+
+# Define base models (Level 0)
+base_models = [
+    ('decision_tree', DecisionTreeClassifier()),
+    ('svm', SVC()),
+    ('logistic', LogisticRegression())
+]
+
+# Define meta-model (Level 1)
+meta_model = LogisticRegression()
+
+# Create stacking classifier
+stacking = StackingClassifier(
+    estimators=base_models,
+    final_estimator=meta_model,
+    cv=5  # 5-fold cross-validation
+)
+
+stacking.fit(X_train, y_train)
+stacking_pred = stacking.predict(X_test)
+stacking_accuracy = accuracy_score(y_test, stacking_pred)
+print(f"Stacking Accuracy: {stacking_accuracy:.4f}")</code></pre>
+                </div>
+
+                <div class="tips-card">
+                    <h4>💡 Best Practices</h4>
+                    <ul>
+                        <li>Use diverse base models with different strengths</li>
+                        <li>Cross-validation is crucial to prevent overfitting</li>
+                        <li>Simple meta-models (like logistic regression) often work best</li>
+                        <li>Consider using passthrough=True to give meta-model original features</li>
+                    </ul>
+                </div>
+
+                <div class="performance-card">
+                    <h4>📊 Performance Results</h4>
+                    <div class="result-item">
+                        <span>Basic Stacking:</span>
+                        <span class="accuracy best">83.3% ⭐</span>
+                    </div>
+                    <div class="result-item">
+                        <span>Stacking with Passthrough:</span>
+                        <span class="accuracy best">83.3% ⭐</span>
+                    </div>
+                    <p class="note">🏆 Stacking achieved the best performance in our experiments!</p>
+                </div>
+            </section>
+
+            <!-- Advanced Methods Section -->
+            <section class="tab-content" id="advanced">
+                <h2>⚡ Advanced Boosting Methods</h2>
+                <div class="method-badge badge-boosting">State-of-the-Art Gradient Boosting</div>
+                
+                <div class="explanation-card">
+                    <h3>Modern Gradient Boosting Libraries</h3>
+                    <p>These advanced libraries provide optimized implementations of gradient boosting with additional features like regularization, parallel processing, and handling of categorical variables.</p>
+                </div>
+
+                <div class="advanced-grid">
+                    <div class="advanced-card">
+                        <h3>XGBoost</h3>
+                        <div class="tag-container">
+                            <span class="tag">Most Popular</span>
+                            <span class="tag">Regularization</span>
+                        </div>
+                        <p><strong>Best For:</strong> Tabular data, competitions</p>
+                        <p><strong>Key Features:</strong></p>
+                        <ul>
+                            <li>Built-in regularization (L1 &amp; L2)</li>
+                            <li>Parallel tree construction</li>
+                            <li>Cache-aware computing</li>
+                            <li>Handles missing values</li>
+                        </ul>
+                        <p><strong>Installation:</strong></p>
+                        <code class="install-code">pip install xgboost</code>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h3>LightGBM</h3>
+                        <div class="tag-container">
+                            <span class="tag">Fastest</span>
+                            <span class="tag">Large Datasets</span>
+                        </div>
+                        <p><strong>Best For:</strong> Large datasets, speed</p>
+                        <p><strong>Key Features:</strong></p>
+                        <ul>
+                            <li>Histogram-based algorithm</li>
+                            <li>Leaf-wise tree growth</li>
+                            <li>Very fast training</li>
+                            <li>Low memory usage</li>
+                        </ul>
+                        <p><strong>Installation:</strong></p>
+                        <code class="install-code">pip install lightgbm</code>
+                    </div>
+
+                    <div class="advanced-card">
+                        <h3>CatBoost</h3>
+                        <div class="tag-container">
+                            <span class="tag">Categorical Features</span>
+                            <span class="tag">Less Tuning</span>
+                        </div>
+                        <p><strong>Best For:</strong> Categorical features, ease of use</p>
+                        <p><strong>Key Features:</strong></p>
+                        <ul>
+                            <li>Native categorical support</li>
+                            <li>Ordered boosting</li>
+                            <li>Less hyperparameter tuning</li>
+                            <li>GPU support</li>
+                        </ul>
+                        <p><strong>Installation:</strong></p>
+                        <code class="install-code">pip install catboost</code>
+                    </div>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>XGBoost Example</h3>
+                        <button class="copy-btn" data-code="xgboost">Copy Code</button>
+                    </div>
+                    <pre><code id="code-xgboost"># XGBOOST EXAMPLE (requires: pip install xgboost)
+import xgboost as xgb
+
+# XGBoost Classifier
+xgb_model = xgb.XGBClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    random_state=42
+)
+
+xgb_model.fit(X_train, y_train)
+xgb_pred = xgb_model.predict(X_test)
+xgb_accuracy = accuracy_score(y_test, xgb_pred)
+print(f"XGBoost Accuracy: {xgb_accuracy:.4f}")
+
+# Feature importance
+xgb_importance = xgb_model.feature_importances_
+print("XGBoost Feature Importances:", xgb_importance[:5])</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>LightGBM Example</h3>
+                        <button class="copy-btn" data-code="lightgbm">Copy Code</button>
+                    </div>
+                    <pre><code id="code-lightgbm"># LIGHTGBM EXAMPLE (requires: pip install lightgbm)
+import lightgbm as lgb
+
+# LightGBM Classifier
+lgb_model = lgb.LGBMClassifier(
+    n_estimators=100,
+    learning_rate=0.1,
+    max_depth=3,
+    verbose=-1  # Suppress warnings
+)
+
+lgb_model.fit(X_train, y_train)
+lgb_pred = lgb_model.predict(X_test)
+lgb_accuracy = accuracy_score(y_test, lgb_pred)
+print(f"LightGBM Accuracy: {lgb_accuracy:.4f}")</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <div class="code-header">
+                        <h3>CatBoost Example</h3>
+                        <button class="copy-btn" data-code="catboost">Copy Code</button>
+                    </div>
+                    <pre><code id="code-catboost"># CATBOOST EXAMPLE (requires: pip install catboost)
+from catboost import CatBoostClassifier
+
+# CatBoost Classifier
+cat_model = CatBoostClassifier(
+    iterations=100,
+    learning_rate=0.1,
+    depth=3,
+    verbose=0  # Suppress output
+)
+
+cat_model.fit(X_train, y_train)
+cat_pred = cat_model.predict(X_test)
+cat_accuracy = accuracy_score(y_test, cat_pred)
+print(f"CatBoost Accuracy: {cat_accuracy:.4f}")</code></pre>
+                </div>
+            </section>
+
+            <!-- Practical Lab Section -->
+            <section class="tab-content" id="lab">
+                <h2>🧪 Practical Lab</h2>
+                <div class="explanation-card">
+                    <h3>Hands-On Exercises</h3>
+                    <p>Try these exercises in your own environment. Copy the code and experiment with different parameters!</p>
+                </div>
+
+                <div class="exercise-card">
+                    <h4>Exercise 1: Complete Ensemble Pipeline</h4>
+                    <p>Build a complete pipeline comparing all ensemble methods:</p>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <button class="copy-btn" data-code="exercise1">Copy Code</button>
+                        </div>
+                        <pre><code id="code-exercise1">from sklearn.datasets import make_classification
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import (
+    RandomForestClassifier,
+    GradientBoostingClassifier,
+    VotingClassifier,
+    StackingClassifier
+)
+from sklearn.metrics import accuracy_score
+import numpy as np
+
+# Generate sample data
+X, y = make_classification(
+    n_samples=1000,
+    n_features=20,
+    n_informative=15,
+    n_redundant=5,
+    random_state=42
+)
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=42
+)
+
+# Compare all methods
+methods = {
+    'Random Forest': RandomForestClassifier(n_estimators=100),
+    'Gradient Boosting': GradientBoostingClassifier(n_estimators=100),
+    'Voting': VotingClassifier([
+        ('rf', RandomForestClassifier()),
+        ('gb', GradientBoostingClassifier())
+    ]),
+    'Stacking': StackingClassifier([
+        ('rf', RandomForestClassifier()),
+        ('gb', GradientBoostingClassifier())
+    ])
+}
+
+for name, model in methods.items():
+    model.fit(X_train, y_train)
+    pred = model.predict(X_test)
+    acc = accuracy_score(y_test, pred)
+    print(f"{name}: {acc:.4f}")</code></pre>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4>Exercise 2: Hyperparameter Tuning</h4>
+                    <p>Use GridSearchCV to find optimal parameters:</p>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <button class="copy-btn" data-code="exercise2">Copy Code</button>
+                        </div>
+                        <pre><code id="code-exercise2">from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+
+# Define parameter grid
+param_grid = {
+    'n_estimators': [50, 100, 200],
+    'max_depth': [5, 10, 15, None],
+    'min_samples_split': [2, 5, 10]
+}
+
+# Create model
+rf = RandomForestClassifier(random_state=42)
+
+# Grid search
+grid_search = GridSearchCV(
+    rf,
+    param_grid,
+    cv=5,
+    scoring='accuracy',
+    n_jobs=-1
+)
+
+grid_search.fit(X_train, y_train)
+
+print("Best parameters:", grid_search.best_params_)
+print("Best score:", grid_search.best_score_)
+
+# Test best model
+best_model = grid_search.best_estimator_
+test_score = best_model.score(X_test, y_test)
+print(f"Test accuracy: {test_score:.4f}")</code></pre>
+                    </div>
+                </div>
+
+                <div class="exercise-card">
+                    <h4>Exercise 3: Feature Importance Analysis</h4>
+                    <p>Extract and visualize feature importances:</p>
+                    <div class="code-section">
+                        <div class="code-header">
+                            <button class="copy-btn" data-code="exercise3">Copy Code</button>
+                        </div>
+                        <pre><code id="code-exercise3">import matplotlib.pyplot as plt
+import pandas as pd
+
+# Train Random Forest
+rf = RandomForestClassifier(n_estimators=100, random_state=42)
+rf.fit(X_train, y_train)
+
+# Get feature importances
+importances = rf.feature_importances_
+feature_names = [f'Feature_{i}' for i in range(X_train.shape[1])]
+
+# Create DataFrame
+importance_df = pd.DataFrame({
+    'feature': feature_names,
+    'importance': importances
+}).sort_values('importance', ascending=False)
+
+print(importance_df.head(10))
+
+# Visualize (if matplotlib available)
+plt.figure(figsize=(10, 6))
+plt.barh(importance_df['feature'][:10], importance_df['importance'][:10])
+plt.xlabel('Importance')
+plt.title('Top 10 Feature Importances')
+plt.gca().invert_yaxis()
+plt.show()</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comparison Dashboard -->
+            <section class="tab-content" id="comparison">
+                <h2>📊 Comprehensive Comparison Dashboard</h2>
+                
+                <div class="performance-chart">
+                    <h3>Performance Comparison</h3>
+                    <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/cab32f502791839b04f1a8696879462f/3416407e-e2db-4557-a1cb-ce4500780474/f5f10c5f.png" alt="Model Comparison" style="width: 100%; max-width: 900px; height: auto;">
+                </div>
+
+                <div class="table-container">
+                    <h3>Performance Results Table</h3>
+                    <table class="comparison-table" id="performanceTable">
+                        <thead>
+                            <tr>
+                                <th class="sortable" data-sort="method">Method</th>
+                                <th class="sortable" data-sort="accuracy">Accuracy</th>
+                                <th class="sortable" data-sort="type">Type</th>
+                                <th class="sortable" data-sort="category">Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Basic Stacking</td>
+                                <td><span class="accuracy best">83.33%</span></td>
+                                <td><span class="badge-stacking">Ensemble</span></td>
+                                <td>Stacking</td>
+                            </tr>
+                            <tr>
+                                <td>Stacking with Passthrough</td>
+                                <td><span class="accuracy best">83.33%</span></td>
+                                <td><span class="badge-stacking">Ensemble</span></td>
+                                <td>Stacking</td>
+                            </tr>
+                            <tr>
+                                <td>K-Nearest Neighbors</td>
+                                <td><span class="accuracy">82.00%</span></td>
+                                <td>Individual</td>
+                                <td>Individual</td>
+                            </tr>
+                            <tr>
+                                <td>Support Vector Machine</td>
+                                <td><span class="accuracy">82.00%</span></td>
+                                <td>Individual</td>
+                                <td>Individual</td>
+                            </tr>
+                            <tr>
+                                <td>Gradient Boosting</td>
+                                <td><span class="accuracy">77.67%</span></td>
+                                <td><span class="badge-boosting">Ensemble</span></td>
+                                <td>Boosting</td>
+                            </tr>
+                            <tr>
+                                <td>Hard Voting</td>
+                                <td><span class="accuracy">77.33%</span></td>
+                                <td><span class="badge-voting">Ensemble</span></td>
+                                <td>Voting</td>
+                            </tr>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td><span class="accuracy">77.00%</span></td>
+                                <td><span class="badge-bagging">Ensemble</span></td>
+                                <td>Bagging</td>
+                            </tr>
+                            <tr>
+                                <td>Bagging Classifier</td>
+                                <td><span class="accuracy">75.33%</span></td>
+                                <td><span class="badge-bagging">Ensemble</span></td>
+                                <td>Bagging</td>
+                            </tr>
+                            <tr>
+                                <td>Soft Voting</td>
+                                <td><span class="accuracy">73.33%</span></td>
+                                <td><span class="badge-voting">Ensemble</span></td>
+                                <td>Voting</td>
+                            </tr>
+                            <tr>
+                                <td>Logistic Regression</td>
+                                <td><span class="accuracy">68.33%</span></td>
+                                <td>Individual</td>
+                                <td>Individual</td>
+                            </tr>
+                            <tr>
+                                <td>Naive Bayes</td>
+                                <td><span class="accuracy">67.33%</span></td>
+                                <td>Individual</td>
+                                <td>Individual</td>
+                            </tr>
+                            <tr>
+                                <td>AdaBoost</td>
+                                <td><span class="accuracy">64.67%</span></td>
+                                <td><span class="badge-boosting">Ensemble</span></td>
+                                <td>Boosting</td>
+                            </tr>
+                            <tr>
+                                <td>Decision Tree</td>
+                                <td><span class="accuracy">55.67%</span></td>
+                                <td>Individual</td>
+                                <td>Individual</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-container">
+                    <h3>Method Characteristics Comparison</h3>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Method</th>
+                                <th>Type</th>
+                                <th>Training</th>
+                                <th>Reduces</th>
+                                <th>Speed</th>
+                                <th>Overfitting Risk</th>
+                                <th>Best Use Case</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Random Forest</td>
+                                <td><span class="badge-bagging">Bagging</span></td>
+                                <td>Parallel</td>
+                                <td>Variance</td>
+                                <td>Fast</td>
+                                <td>Low</td>
+                                <td>High variance models</td>
+                            </tr>
+                            <tr>
+                                <td>Bagging</td>
+                                <td><span class="badge-bagging">Bagging</span></td>
+                                <td>Parallel</td>
+                                <td>Variance</td>
+                                <td>Fast</td>
+                                <td>Low</td>
+                                <td>High variance models</td>
+                            </tr>
+                            <tr>
+                                <td>AdaBoost</td>
+                                <td><span class="badge-boosting">Boosting</span></td>
+                                <td>Sequential</td>
+                                <td>Bias</td>
+                                <td>Medium</td>
+                                <td>High</td>
+                                <td>Weak learners</td>
+                            </tr>
+                            <tr>
+                                <td>Gradient Boosting</td>
+                                <td><span class="badge-boosting">Boosting</span></td>
+                                <td>Sequential</td>
+                                <td>Bias &amp; Variance</td>
+                                <td>Medium</td>
+                                <td>Medium</td>
+                                <td>General purpose</td>
+                            </tr>
+                            <tr>
+                                <td>Hard Voting</td>
+                                <td><span class="badge-voting">Voting</span></td>
+                                <td>Parallel</td>
+                                <td>Variance</td>
+                                <td>Fast</td>
+                                <td>Low</td>
+                                <td>Diverse models</td>
+                            </tr>
+                            <tr>
+                                <td>Soft Voting</td>
+                                <td><span class="badge-voting">Voting</span></td>
+                                <td>Parallel</td>
+                                <td>Variance</td>
+                                <td>Fast</td>
+                                <td>Low</td>
+                                <td>Calibrated models</td>
+                            </tr>
+                            <tr>
+                                <td>Stacking</td>
+                                <td><span class="badge-stacking">Stacking</span></td>
+                                <td>Multi-level</td>
+                                <td>Both</td>
+                                <td>Slow</td>
+                                <td>Medium</td>
+                                <td>Different model types</td>
+                            </tr>
+                            <tr>
+                                <td>XGBoost</td>
+                                <td><span class="badge-boosting">Boosting</span></td>
+                                <td>Sequential</td>
+                                <td>Bias &amp; Variance</td>
+                                <td>Fast</td>
+                                <td>Medium</td>
+                                <td>Tabular data</td>
+                            </tr>
+                            <tr>
+                                <td>LightGBM</td>
+                                <td><span class="badge-boosting">Boosting</span></td>
+                                <td>Sequential</td>
+                                <td>Bias &amp; Variance</td>
+                                <td>Very Fast</td>
+                                <td>Medium</td>
+                                <td>Large datasets</td>
+                            </tr>
+                            <tr>
+                                <td>CatBoost</td>
+                                <td><span class="badge-boosting">Boosting</span></td>
+                                <td>Sequential</td>
+                                <td>Bias &amp; Variance</td>
+                                <td>Medium</td>
+                                <td>Low</td>
+                                <td>Categorical features</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section class="tab-content" id="quiz">
+                <h2>📝 Quiz: Test Your Understanding</h2>
+                
+                <div class="quiz-container" id="quizContainer">
+                    <div class="question-card">
+                        <h3>Question 1</h3>
+                        <p>What is the main difference between bagging and boosting?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q1" value="a">
+                                <span>Bagging trains models sequentially, boosting trains them in parallel</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="b">
+                                <span>Bagging trains models in parallel, boosting trains them sequentially</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="c">
+                                <span>Both train models in parallel</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q1" value="d">
+                                <span>Both train models sequentially</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <h3>Question 2</h3>
+                        <p>Which ensemble method achieved the best accuracy in our experiments?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q2" value="a">
+                                <span>Random Forest</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="b">
+                                <span>Gradient Boosting</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="c">
+                                <span>Stacking</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q2" value="d">
+                                <span>Hard Voting</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <h3>Question 3</h3>
+                        <p>What does soft voting use that hard voting does not?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q3" value="a">
+                                <span>Class labels only</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3" value="b">
+                                <span>Prediction probabilities</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3" value="c">
+                                <span>Bootstrap samples</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q3" value="d">
+                                <span>Sequential training</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <h3>Question 4</h3>
+                        <p>Which of the following is NOT a characteristic of Random Forest?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q4" value="a">
+                                <span>Uses bootstrap sampling</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4" value="b">
+                                <span>Trains trees in parallel</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4" value="c">
+                                <span>Adjusts weights on misclassified samples</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q4" value="d">
+                                <span>Reduces variance</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <h3>Question 5</h3>
+                        <p>In stacking, what is the role of the meta-model?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q5" value="a">
+                                <span>To train the base models</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5" value="b">
+                                <span>To learn how to best combine base model predictions</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5" value="c">
+                                <span>To create bootstrap samples</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q5" value="d">
+                                <span>To adjust sample weights</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="question-card">
+                        <h3>Question 6</h3>
+                        <p>Which library is best suited for datasets with many categorical features?</p>
+                        <div class="options">
+                            <label class="option">
+                                <input type="radio" name="q6" value="a">
+                                <span>XGBoost</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q6" value="b">
+                                <span>LightGBM</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q6" value="c">
+                                <span>CatBoost</span>
+                            </label>
+                            <label class="option">
+                                <input type="radio" name="q6" value="d">
+                                <span>All are equally good</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn--primary" id="submitQuiz">Submit Quiz</button>
+                    
+                    <div class="quiz-results" id="quizResults" style="display: none;">
+                        <h3>Results</h3>
+                        <p class="score" id="score"></p>
+                        <div id="answers"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Machine Learning Ensemble Methods | Interactive Educational Tool</p>
+            <p>© 2025 - Created for Educational Purposes</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

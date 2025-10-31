@@ -1,0 +1,10 @@
+Aspect,MMM,MTA
+Focus,"Strategic, business-level decisions","Tactical, campaign-level optimization"
+Data Level,Aggregated (channel/campaign level),User-level (individual touchpoints)
+Timeframe,Long-term (6 months - 3 years),Short-term (weeks to months)
+Channels,"Online + Offline (TV, radio, print, digital)",Primarily digital channels
+Measurement Approach,"Statistical modeling (regression, Bayesian)",Touchpoint tracking & attribution
+Privacy Impact,Privacy-friendly (no user tracking),Privacy-sensitive (requires cookies/tracking)
+External Factors,"Includes economy, seasonality, competitors",Limited external factor consideration
+Implementation Time,2-6 months,Weeks to implement
+Best Use Case,Budget allocation across all channels,Digital journey optimization
