@@ -1,3 +1,7 @@
+> [!Note]
+>
+> The repo got renamed form `adv_ml_ds` to `advanced_machine_learning`. The old URLs and your existing GitHub repo should all work as is (thanks to GitHub automatic redirects)
+
 # Advanced Machine Learning Class Outline
 
 > [!NOTE]
