@@ -4,7 +4,7 @@ This comprehensive Jupyter notebook provides a **beginner-friendly, hands-on** d
 
 ## 📚 Learning Objectives
 
-By completing this notebook, students will learn to:
+By completing this notebook, you will learn to:
 
 1. **Experiment Tracking** - Log parameters, metrics, and models systematically
 2. **Autologging** - Automatically capture ML metadata with minimal code
@@ -19,7 +19,7 @@ By completing this notebook, students will learn to:
 
 ## Prerequisites
 
-- Python 3.7 or higher
+- Python 3.9 or higher
 - Jupyter Notebook or JupyterLab
 
 ## Installation
@@ -30,13 +30,13 @@ By completing this notebook, students will learn to:
 
 ```bash
 # Create a new virtual environment
-python -m venv .venv
+uv venv dev1 --python=3.12
 
 # Activate it (macOS/Linux)
-source .venv/bin/activate
+source dev1/bin/activate
 
 # Or activate it (Windows)
-.venv\Scripts\activate
+dev1\Scripts\activate
 ```
 
 ### Install Required Packages
@@ -90,53 +90,8 @@ The MLflow UI provides a visual interface to explore your experiments:
 4. **Compare Runs** - Select multiple runs and click "Compare" to see side-by-side comparisons
 5. **Model Registry** - Registered models with versions and stages
 
-### Tips:
 
-- Use filters to find specific runs
-- Sort by metrics to find best models
-- Create scatter plots to visualize parameter vs metric relationships
-- Download artifacts directly from the UI
 
-## Dataset
-
-The notebook uses the **Iris dataset** from scikit-learn, a classic dataset for classification tasks:
-- **150 samples** of iris flowers
-- **4 features**: sepal length, sepal width, petal length, petal width
-- **3 classes**: setosa, versicolor, virginica
-
-This simple dataset allows students to focus on learning MLflow concepts without complexity.
-
-## Key Features of This Notebook
-
-✅ **Beginner-friendly** - Assumes no prior MLflow knowledge  
-✅ **Comprehensive** - Covers all major MLflow features  
-✅ **Hands-on** - Real code examples you can run  
-✅ **Best practices** - Industry-standard workflows  
-✅ **Troubleshooting** - Solutions to common issues  
-✅ **Self-contained** - All instructions included  
-✅ **Visual** - Includes plots and artifacts logging  
-
-## What's New (2025 Update)
-
-- ✨ Added autologging examples (easiest way to use MLflow)
-- ✨ Model loading and inference section
-- ✨ Querying experiments programmatically
-- ✨ Comprehensive best practices guide
-- ✨ Troubleshooting section with common issues
-- ✨ Fixed MLflow UI access issues (127.0.0.1 vs localhost)
-- ✨ Enhanced hyperparameter tuning with nested runs
-- ✨ Real artifact examples (confusion matrices, JSON, reports)
-- ✨ Quick reference cheat sheet
-
-## For Instructors
-
-This notebook is designed to be:
-- **Taught in 60-90 minutes** with live coding
-- **Self-study friendly** for students to complete on their own
-- **Adaptable** - Easy to modify for specific use cases
-- **Production-ready** - Teaches real-world MLOps practices
-
-Students should have basic Python and machine learning knowledge before starting.
 
 ## Model Serving (Advanced)
 
