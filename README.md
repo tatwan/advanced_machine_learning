@@ -1,4 +1,24 @@
-[toc]
+# Table of Contents
+
+- [Advanced Machine Learning Class Outline](#advanced-machine-learning-class-outline)
+- [Environment Setup](#environment-setup)
+  - [Using uv](#using-uv)
+  - [Using venv (Python built-in)](#using-venv-python-built-in)
+  - [Using conda](#using-conda)
+- [Installing Packages](#installing-packages)
+  - [Using uv](#using-uv-1)
+  - [Using pip](#using-pip)
+  - [Using conda](#using-conda-1)
+- [Running shell commands from Notebooks](#running-shell-commands-from-notebooks)
+- [Getting Started with Git](#getting-started-with-git)
+  - [Cloning the Repository](#cloning-the-repository)
+  - [Updating the Repository](#updating-the-repository)
+  - [Handling Modifications and Conflicts](#handling-modifications-and-conflicts)
+- [Python environments in VS Code](#python-environments-in-vs-code)
+- [Jupyter Notebooks in VS Code](#jupyter-notebooks-in-vs-code)
+- [Data Science in VS Code tutorial](#data-science-in-vs-code-tutorial)
+- [Manage Jupyter Kernels in VS Code](#manage-jupyter-kernels-in-vs-code)
+- [Quickstart for GitHub Codespaces](#quickstart-for-github-codespaces)
 
 > [!Note]
 >
