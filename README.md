@@ -1,13 +1,16 @@
+[toc]
+
 > [!Note]
 >
 > The repo got renamed form `adv_ml_ds` to `advanced_machine_learning`. The old URLs and your existing GitHub repo should all work as is (thanks to GitHub automatic redirects)
 
 # Advanced Machine Learning Class Outline
 
-> [!NOTE]
-> - [X] **Content for Day 1: Advanced Data Management and Model Optimization**
-> - [X] **Content for Day 2: Ensemble Methods, and Model Robustness**
-> - [X] **Content for Day 3: Model Explainability, and Deployment Considerations**
+* Day 1: Advanced Data Management and Model Optimization
+
+* Day 2: Ensemble Methods, and Model Robustness
+
+* Day 3: Model Explainability, and Deployment Considerations
 
 ## Environment Setup
 
@@ -73,6 +76,36 @@ Below are instructions for setting up virtual environments using different tools
    conda deactivate
    ```
 
+## Installing Packages 
+
+### Using uv 
+
+```
+uv pip install ipykernel pandas matplotlob scikit-learn seaborn
+```
+
+### Using pip
+
+```
+pip install ipykernel pandas matplotlob scikit-learn seaborn
+```
+
+### Using conda 
+
+```
+conda install ipykernel pandas matplotlob scikit-learn seaborn
+```
+
+## Running shell commands from Notebooks
+
+Shell commands can be executed within a Jupyter Notebook by prefixing the command with an exclamation mark (`!`). This allows users to interact with the underlying operating system directly from within their notebook environment.
+
+```
+!uv pip install ipykernel pandas matplotlob scikit-learn seaborn
+```
+
+
+
 ## Getting Started with Git
 
 ### Cloning the Repository
@@ -126,3 +159,24 @@ If you've made local modifications and want to update:
    ```bash
    git reset --hard origin/main
    ```
+
+## Python environments in VS Code
+
+Read the [official page](https://code.visualstudio.com/docs/python/environments) on the topic
+
+## Jupyter Notebooks in VS Code
+
+Read the [official page](https://code.visualstudio.com/docs/datascience/jupyter-notebooks) on the topic
+
+## Data Science in VS Code tutorial
+
+Read the [official page](https://code.visualstudio.com/docs/datascience/data-science-tutorial) on the topic
+
+## Manage Jupyter Kernels in VS Code
+
+Read the [official page](https://code.visualstudio.com/docs/datascience/jupyter-kernel-management) on the topic
+
+## Quickstart for GitHub Codespaces
+
+Read the [official page](https://docs.github.com/en/codespaces/quickstart) on the topic
+
