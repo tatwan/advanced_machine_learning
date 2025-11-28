@@ -1,0 +1,20 @@
+if (feature_28 <= 0.146) and (feature_23 <= 115.45) and (feature_2 <= 21.575) and (feature_11 <= 0.592) then class: 1 (proba: 100.0%) | based on 177 samples
+
+if (feature_28 > 0.146) and (feature_21 > 15.385) then class: 0 (proba: 100.0%) | based on 102 samples
+
+if (feature_28 <= 0.146) and (feature_23 <= 115.45) and (feature_2 > 21.575) and (feature_21 <= 14.43) then class: 1 (proba: 100.0%) | based on 22 samples
+
+if (feature_28 <= 0.146) and (feature_23 <= 115.45) and (feature_2 > 21.575) and (feature_21 > 14.43) then class: 0 (proba: 50.0%) | based on 14 samples
+
+if (feature_28 <= 0.146) and (feature_23 > 115.45) and (feature_29 > 0.278) then class: 0 (proba: 100.0%) | based on 9 samples
+
+if (feature_28 > 0.146) and (feature_21 <= 15.385) and (feature_22 > 25.055) then class: 0 (proba: 100.0%) | based on 5 samples
+
+if (feature_28 <= 0.146) and (feature_23 > 115.45) and (feature_29 <= 0.278) and (feature_2 > 18.835) then class: 0 (proba: 75.0%) | based on 4 samples
+
+if (feature_28 > 0.146) and (feature_21 <= 15.385) and (feature_22 <= 25.055) then class: 1 (proba: 100.0%) | based on 3 samples
+
+if (feature_28 <= 0.146) and (feature_23 > 115.45) and (feature_29 <= 0.278) and (feature_2 <= 18.835) then class: 1 (proba: 100.0%) | based on 3 samples
+
+if (feature_28 <= 0.146) and (feature_23 <= 115.45) and (feature_2 <= 21.575) and (feature_11 > 0.592) then class: 0 (proba: 50.0%) | based on 2 samples
+

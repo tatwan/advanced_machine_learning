@@ -1,0 +1,208 @@
+{
+    "uid": "5a7d8662-1602-498a-a818-98f5f01f1e36",
+    "name": "4_Linear",
+    "preprocessing": [
+        {
+            "scale": [
+                {
+                    "scale": [
+                        3.5397878073388034,
+                        4.277608201195157,
+                        24.35916183767844,
+                        356.6179371337436,
+                        0.5471352558254821,
+                        2.0952606070966575,
+                        48.585625750111824,
+                        4.841084912748569,
+                        6.120843873929382,
+                        33.52387746564258,
+                        574.7652566292775
+                    ],
+                    "mean": [
+                        14.124356968215157,
+                        19.163105134474325,
+                        91.8940586797066,
+                        655.3146699266503,
+                        1.1993601466992663,
+                        2.846974083129585,
+                        40.35619315403422,
+                        16.264413202933987,
+                        25.569413202933983,
+                        107.2197555012225,
+                        881.4273838630806
+                    ],
+                    "var": [
+                        12.530097720984452,
+                        18.297931922932072,
+                        593.3687654342095,
+                        127176.35308552673,
+                        0.2993569881672157,
+                        4.390117011651054,
+                        2360.563029529929,
+                        23.43610313244182,
+                        37.46472972901884,
+                        1123.8503603314184,
+                        330355.1002281192
+                    ],
+                    "n_samples_seen": 409,
+                    "n_features_in": 11,
+                    "columns": [
+                        "feature_1",
+                        "feature_2",
+                        "feature_3",
+                        "feature_4",
+                        "feature_12",
+                        "feature_13",
+                        "feature_14",
+                        "feature_21",
+                        "feature_22",
+                        "feature_23",
+                        "feature_24"
+                    ],
+                    "scale_method": "scale_normal"
+                }
+            ],
+            "ml_task": "binary_classification",
+            "params": {
+                "columns_preprocessing": {
+                    "feature_1": [
+                        "scale_normal"
+                    ],
+                    "feature_2": [
+                        "scale_normal"
+                    ],
+                    "feature_3": [
+                        "scale_normal"
+                    ],
+                    "feature_4": [
+                        "scale_normal"
+                    ],
+                    "feature_12": [
+                        "scale_normal"
+                    ],
+                    "feature_13": [
+                        "scale_normal"
+                    ],
+                    "feature_14": [
+                        "scale_normal"
+                    ],
+                    "feature_21": [
+                        "scale_normal"
+                    ],
+                    "feature_22": [
+                        "scale_normal"
+                    ],
+                    "feature_23": [
+                        "scale_normal"
+                    ],
+                    "feature_24": [
+                        "scale_normal"
+                    ]
+                },
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification"
+            }
+        }
+    ],
+    "learners": [
+        {
+            "library_version": "1.7.2",
+            "algorithm_name": "Logistic Regression",
+            "algorithm_short_name": "Linear",
+            "uid": "cd89cb91-5416-4cb9-a884-5d9a7f1f278c",
+            "params": {
+                "model_type": "Linear",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "explain_level": 0
+            },
+            "name": "learner_fold_0"
+        }
+    ],
+    "params": {
+        "additional": {
+            "max_steps": 1,
+            "max_rows_limit": null,
+            "max_cols_limit": null
+        },
+        "preprocessing": {
+            "columns_preprocessing": {
+                "feature_1": [
+                    "scale_normal"
+                ],
+                "feature_2": [
+                    "scale_normal"
+                ],
+                "feature_3": [
+                    "scale_normal"
+                ],
+                "feature_4": [
+                    "scale_normal"
+                ],
+                "feature_12": [
+                    "scale_normal"
+                ],
+                "feature_13": [
+                    "scale_normal"
+                ],
+                "feature_14": [
+                    "scale_normal"
+                ],
+                "feature_21": [
+                    "scale_normal"
+                ],
+                "feature_22": [
+                    "scale_normal"
+                ],
+                "feature_23": [
+                    "scale_normal"
+                ],
+                "feature_24": [
+                    "scale_normal"
+                ]
+            },
+            "target_preprocessing": [
+                "na_exclude"
+            ],
+            "ml_task": "binary_classification"
+        },
+        "validation_strategy": {
+            "validation_type": "split",
+            "train_ratio": 0.9,
+            "shuffle": true,
+            "stratify": true,
+            "X_path": "./mljar_compete/X.data",
+            "y_path": "./mljar_compete/y.data",
+            "results_path": "./mljar_compete"
+        },
+        "learner": {
+            "model_type": "Linear",
+            "ml_task": "binary_classification",
+            "n_jobs": -1,
+            "seed": 43,
+            "explain_level": 0
+        },
+        "automl_random_state": 42,
+        "ml_task": "binary_classification",
+        "explain_level": 0,
+        "name": "4_Linear",
+        "status": "initialized",
+        "final_loss": null,
+        "train_time": null,
+        "data_type": "original",
+        "max_time_for_learner": 60
+    },
+    "saved": [
+        "4_Linear/learner_fold_0.linear"
+    ],
+    "predictions_fname": "4_Linear/predictions_validation.csv",
+    "metric_name": "logloss",
+    "final_loss": "0.13740402748683103",
+    "train_time": 0.8786740303039551,
+    "is_stacked": false,
+    "joblib_version": "1.3.2",
+    "threshold": 0.644613774819337
+}

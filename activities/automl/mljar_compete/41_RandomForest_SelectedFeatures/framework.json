@@ -1,0 +1,130 @@
+{
+    "uid": "88503aa5-9854-4448-a7de-e4f4554c14d1",
+    "name": "41_RandomForest_SelectedFeatures",
+    "preprocessing": [
+        {
+            "ml_task": "binary_classification",
+            "drop_features": [
+                "feature_12",
+                "feature_10",
+                "feature_30",
+                "feature_4",
+                "feature_19",
+                "feature_14",
+                "feature_20",
+                "feature_11",
+                "feature_16"
+            ],
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "drop_features": [
+                    "feature_12",
+                    "random_feature",
+                    "feature_10",
+                    "feature_30",
+                    "feature_4",
+                    "feature_19",
+                    "feature_14",
+                    "feature_20",
+                    "feature_11",
+                    "feature_16"
+                ]
+            }
+        }
+    ],
+    "learners": [
+        {
+            "library_version": "1.7.2",
+            "algorithm_name": "Random Forest",
+            "algorithm_short_name": "Random Forest",
+            "uid": "78f7d507-ac33-49ad-8d13-6eab0ab2d313",
+            "params": {
+                "model_type": "Random Forest",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 45,
+                "criterion": "gini",
+                "max_features": 1.0,
+                "min_samples_split": 30,
+                "max_depth": 3,
+                "eval_metric_name": "logloss",
+                "explain_level": 0
+            },
+            "name": "learner_fold_0"
+        }
+    ],
+    "params": {
+        "additional": {
+            "trees_in_step": 100,
+            "train_cant_improve_limit": 1,
+            "min_steps": 1,
+            "max_steps": 50,
+            "early_stopping_rounds": 50,
+            "max_rows_limit": null,
+            "max_cols_limit": null
+        },
+        "preprocessing": {
+            "columns_preprocessing": {},
+            "target_preprocessing": [
+                "na_exclude"
+            ],
+            "ml_task": "binary_classification",
+            "drop_features": [
+                "feature_12",
+                "random_feature",
+                "feature_10",
+                "feature_30",
+                "feature_4",
+                "feature_19",
+                "feature_14",
+                "feature_20",
+                "feature_11",
+                "feature_16"
+            ]
+        },
+        "validation_strategy": {
+            "validation_type": "split",
+            "train_ratio": 0.9,
+            "shuffle": true,
+            "stratify": true,
+            "X_path": "./mljar_compete/X.data",
+            "y_path": "./mljar_compete/y.data",
+            "results_path": "./mljar_compete"
+        },
+        "learner": {
+            "model_type": "Random Forest",
+            "ml_task": "binary_classification",
+            "n_jobs": -1,
+            "seed": 45,
+            "criterion": "gini",
+            "max_features": 1.0,
+            "min_samples_split": 30,
+            "max_depth": 3,
+            "eval_metric_name": "logloss",
+            "explain_level": 0
+        },
+        "automl_random_state": 42,
+        "ml_task": "binary_classification",
+        "explain_level": 0,
+        "name": "41_RandomForest_SelectedFeatures",
+        "status": "initialized",
+        "final_loss": null,
+        "train_time": null,
+        "data_type": "original_features_selection",
+        "max_time_for_learner": 60
+    },
+    "saved": [
+        "41_RandomForest_SelectedFeatures/learner_fold_0.random_forest"
+    ],
+    "predictions_fname": "41_RandomForest_SelectedFeatures/predictions_validation.csv",
+    "metric_name": "logloss",
+    "final_loss": "0.10290429620522355",
+    "train_time": 1.3397800922393799,
+    "is_stacked": false,
+    "joblib_version": "1.3.2",
+    "threshold": 0.17793074676679185
+}

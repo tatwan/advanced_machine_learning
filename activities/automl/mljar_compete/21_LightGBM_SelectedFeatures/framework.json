@@ -1,0 +1,133 @@
+{
+    "uid": "eec32534-07d1-4a3d-b1d3-1825a3d29ee0",
+    "name": "21_LightGBM_SelectedFeatures",
+    "preprocessing": [
+        {
+            "ml_task": "binary_classification",
+            "drop_features": [
+                "feature_12",
+                "feature_10",
+                "feature_30",
+                "feature_4",
+                "feature_19",
+                "feature_14",
+                "feature_20",
+                "feature_11",
+                "feature_16"
+            ],
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification",
+                "drop_features": [
+                    "feature_12",
+                    "random_feature",
+                    "feature_10",
+                    "feature_30",
+                    "feature_4",
+                    "feature_19",
+                    "feature_14",
+                    "feature_20",
+                    "feature_11",
+                    "feature_16"
+                ]
+            }
+        }
+    ],
+    "learners": [
+        {
+            "library_version": "4.6.0",
+            "algorithm_name": "LightGBM",
+            "algorithm_short_name": "LightGBM",
+            "uid": "3ba8fc30-745c-43bd-8d51-89b38672685d",
+            "params": {
+                "model_type": "LightGBM",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 43,
+                "objective": "binary",
+                "num_leaves": 95,
+                "learning_rate": 0.1,
+                "feature_fraction": 0.5,
+                "bagging_fraction": 0.8,
+                "min_data_in_leaf": 50,
+                "metric": "binary_logloss",
+                "custom_eval_metric_name": null,
+                "explain_level": 0
+            },
+            "name": "learner_fold_0"
+        }
+    ],
+    "params": {
+        "additional": {
+            "max_rounds": 10000,
+            "early_stopping_rounds": 50,
+            "max_rows_limit": null,
+            "max_cols_limit": null
+        },
+        "preprocessing": {
+            "columns_preprocessing": {},
+            "target_preprocessing": [
+                "na_exclude"
+            ],
+            "ml_task": "binary_classification",
+            "drop_features": [
+                "feature_12",
+                "random_feature",
+                "feature_10",
+                "feature_30",
+                "feature_4",
+                "feature_19",
+                "feature_14",
+                "feature_20",
+                "feature_11",
+                "feature_16"
+            ]
+        },
+        "validation_strategy": {
+            "validation_type": "split",
+            "train_ratio": 0.9,
+            "shuffle": true,
+            "stratify": true,
+            "X_path": "./mljar_compete/X.data",
+            "y_path": "./mljar_compete/y.data",
+            "results_path": "./mljar_compete"
+        },
+        "learner": {
+            "model_type": "LightGBM",
+            "ml_task": "binary_classification",
+            "n_jobs": -1,
+            "seed": 43,
+            "objective": "binary",
+            "num_leaves": 95,
+            "learning_rate": 0.1,
+            "feature_fraction": 0.5,
+            "bagging_fraction": 0.8,
+            "min_data_in_leaf": 50,
+            "metric": "binary_logloss",
+            "custom_eval_metric_name": null,
+            "explain_level": 0
+        },
+        "automl_random_state": 42,
+        "ml_task": "binary_classification",
+        "explain_level": 0,
+        "name": "21_LightGBM_SelectedFeatures",
+        "status": "initialized",
+        "final_loss": null,
+        "train_time": null,
+        "data_type": "original_features_selection",
+        "max_time_for_learner": 60
+    },
+    "saved": [
+        "21_LightGBM_SelectedFeatures/learner_fold_0.lightgbm"
+    ],
+    "predictions_fname": "21_LightGBM_SelectedFeatures/predictions_validation.csv",
+    "metric_name": "logloss",
+    "final_loss": "0.04378675575900531",
+    "train_time": 1.4235289096832275,
+    "is_stacked": false,
+    "joblib_version": "1.3.2",
+    "threshold": 0.34891776943490693
+}

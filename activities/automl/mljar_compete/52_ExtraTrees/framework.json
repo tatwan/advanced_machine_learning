@@ -1,0 +1,93 @@
+{
+    "uid": "2251c830-83c2-4f8a-aa7b-0e1030599d31",
+    "name": "52_ExtraTrees",
+    "preprocessing": [
+        {
+            "ml_task": "binary_classification",
+            "params": {
+                "columns_preprocessing": {},
+                "target_preprocessing": [
+                    "na_exclude"
+                ],
+                "ml_task": "binary_classification"
+            }
+        }
+    ],
+    "learners": [
+        {
+            "library_version": "1.7.2",
+            "algorithm_name": "Extra Trees Classifier",
+            "algorithm_short_name": "Extra Trees",
+            "uid": "01109bb8-f7a1-4051-88dc-e124d17b17d1",
+            "params": {
+                "model_type": "Extra Trees",
+                "ml_task": "binary_classification",
+                "n_jobs": -1,
+                "seed": 47,
+                "criterion": "gini",
+                "max_features": 0.7,
+                "min_samples_split": 50,
+                "max_depth": 3,
+                "eval_metric_name": "logloss",
+                "explain_level": 0
+            },
+            "name": "learner_fold_0"
+        }
+    ],
+    "params": {
+        "additional": {
+            "trees_in_step": 100,
+            "max_steps": 50,
+            "early_stopping_rounds": 50,
+            "max_rows_limit": null,
+            "max_cols_limit": null
+        },
+        "preprocessing": {
+            "columns_preprocessing": {},
+            "target_preprocessing": [
+                "na_exclude"
+            ],
+            "ml_task": "binary_classification"
+        },
+        "validation_strategy": {
+            "validation_type": "split",
+            "train_ratio": 0.9,
+            "shuffle": true,
+            "stratify": true,
+            "X_path": "./mljar_compete/X.data",
+            "y_path": "./mljar_compete/y.data",
+            "results_path": "./mljar_compete"
+        },
+        "learner": {
+            "model_type": "Extra Trees",
+            "ml_task": "binary_classification",
+            "n_jobs": -1,
+            "seed": 47,
+            "criterion": "gini",
+            "max_features": 0.7,
+            "min_samples_split": 50,
+            "max_depth": 3,
+            "eval_metric_name": "logloss",
+            "explain_level": 0
+        },
+        "automl_random_state": 42,
+        "ml_task": "binary_classification",
+        "explain_level": 0,
+        "name": "52_ExtraTrees",
+        "status": "initialized",
+        "final_loss": null,
+        "train_time": null,
+        "data_type": "original",
+        "max_time_for_learner": 60
+    },
+    "saved": [
+        "52_ExtraTrees/learner_fold_0.extra_trees"
+    ],
+    "predictions_fname": "52_ExtraTrees/predictions_validation.csv",
+    "metric_name": "logloss",
+    "final_loss": "0.17100903244376572",
+    "train_time": 1.087723970413208,
+    "is_stacked": false,
+    "joblib_version": "1.3.2",
+    "threshold": 0.4704243464537582
+}
