@@ -142,28 +142,38 @@ This repository covers advanced machine learning topics organized into the follo
 
 Below are instructions for setting up virtual environments using different tools.
 
-### Using uv
+### Using uv (Recommended)
 
-1. Install uv if not already installed:
+This project uses `uv` for dependency management, which is significantly faster than standard pip.
+
+1. **Install uv** (if not already installed):
    ```bash
+   # On macOS/Linux
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   
+   # On Windows
+   powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+   
+   # Or via pip
    pip install uv
    ```
 
-2. Create a virtual environment:
+2. **Sync the environment**:
+   This command creates the virtual environment and installs all dependencies defined in `uv.lock` (or `pyproject.toml`).
    ```bash
-   uv venv dev1 --python=3.12
+   uv sync
    ```
 
-3. Activate the environment:
+3. **Activate the environment**:
    ```bash
-   source dev1/bin/activate  # On macOS/Linux
+   source .venv/bin/activate  # On macOS/Linux
    # or
-   dev1\Scripts\activate     # On Windows
+   .venv\Scripts\activate     # On Windows
    ```
 
-4. Deactivate the environment:
+   Alternatively, you can run commands directly within the environment using `uv run`:
    ```bash
-   deactivate
+   uv run jupyter lab
    ```
 
 ### Using venv (Python built-in)
@@ -204,11 +214,15 @@ Below are instructions for setting up virtual environments using different tools
 
 ## Installing Packages 
 
-### Using uv 
+### Using uv (Recommended)
 
+To add a new package to the project and update `pyproject.toml` and `uv.lock`:
+
+```bash
+uv add ipykernel pandas matplotlib scikit-learn seaborn
 ```
-uv pip install ipykernel pandas matplotlob scikit-learn seaborn
-```
+
+This ensures that all dependencies are tracked and reproducible.
 
 ### Using pip
 
