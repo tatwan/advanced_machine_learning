@@ -1,5 +1,0 @@
-ipykernel
-matplotlib
-pandas
-pywavelets
-tensorflow
