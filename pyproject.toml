@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = "==3.10.18"
 dependencies = [
     "autogluon>=1.4.0",
+    "duckdb>=1.4.3",
     "flaml>=2.3.6",
     "gradio>=6.0.1",
     "h2o>=3.46.0.9",
