@@ -1,5 +1,6 @@
-
 # Advanced Machine Learning Course (2025)
+
+![banner](images/banner.png)
 
 # Table of Contents
 
