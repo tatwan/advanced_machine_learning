@@ -1,0 +1,29 @@
+
+<rail version="0.1">
+
+<output>
+    <object name="rag_response">
+        <string name="answer" description="The final answer to the user's question, grounded in the context." />
+        <list name="sources" description="A list of source document IDs used to generate the answer.">
+            <string name="source_id" />
+        </list>
+        <string name="topic_check" 
+            description="A brief summary of whether the question was on the allowed topic of 'LLM Guardrails and Evaluation'." 
+            validators="hub://tryolabs/restricttotopic: valid_topics=['LLM Guardrails and Evaluation'], invalid_topics=['politics', 'religion', 'sports']"/>
+    </object>
+</output>
+
+<prompt>
+You are a helpful RAG chatbot. Your knowledge is limited to the provided context.
+Answer the following question based ONLY on the context provided.
+If the question is not related to 'LLM Guardrails and Evaluation', your answer should reflect that, but still follow the output format.
+
+Context:
+{{context}}
+
+Question:
+{{question}}
+
+</prompt>
+
+</rail>
