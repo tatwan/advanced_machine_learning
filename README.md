@@ -1,4 +1,4 @@
-# Advanced Machine Learning Course (2025)
+# Advanced Machine Learning Course (2026)
 
 ![banner](images/banner.png)
 
@@ -121,32 +121,58 @@ This repository covers advanced machine learning topics organized into the follo
 
 ### **02 Deep Learning**
 
-#### **Deep Learning & Neural Networks**
+#### **Autoencoders**
 - Autoencoders for data reconstruction and dimensionality reduction
-- Generative Adversarial Networks (GANs) - DCGAN implementation
+- Denoising autoencoders for financial applications
 - Deep learning for feature learning and representation
-
-#### **Natural Language Processing**
-- Introduction to NLP
-- BERT and GPT architectures
 
 #### **Transfer Learning**
 - Transfer learning techniques and applications
+- Image classification with pre-trained models
 
 ### **03 Generative AI**
 
+#### **GANs (Generative Adversarial Networks)**
+- DCGAN implementation for image generation
+- Generator and discriminator architectures
+
+#### **Natural Language Processing**
+- Introduction to NLP and text preprocessing
+- BERT and GPT architectures
+- Tokenization techniques (BPE, WordPiece, SentencePiece)
+
 #### **Intro to HuggingFace**
 - Introduction to the HuggingFace ecosystem
-
-#### **LLMs Fine Tuning**
-- Fine-tuning Large Language Models
-- Fine-tuning with HuggingFace
-- Fine-tuning with OpenAI
+- Pre-trained models and pipelines
 
 #### **LLMs Intro**
 - Introduction to Large Language Models
-- RAG Applications with LangChain
-- OpenAI and Ollama APIs
+- OpenAI, Ollama, and AWS Bedrock APIs
+- Embeddings and vector representations
+- ReAct agents
+
+#### **LLM Tooling & Function Calling**
+- Function calling with OpenAI
+- LangChain tool integration
+- Database connectivity
+
+#### **RAG (Retrieval-Augmented Generation)**
+- RAG with LangChain and LlamaIndex
+- Vector databases and semantic search
+- RAG evaluation techniques
+
+#### **LLMs Fine Tuning**
+- Fine-tuning with OpenAI API
+- Fine-tuning open-source models with HuggingFace
+- LoRA and QLoRA techniques
+
+#### **Agentic AI**
+- LangGraph for agent workflows
+- Agentic RAG applications
+
+#### **Guardrails**
+- Output validation for LLM applications
+- Safety and compliance constraints
 
 ### **04 MLOps**
 
@@ -155,7 +181,6 @@ This repository covers advanced machine learning topics organized into the follo
 - Experiment tracking using Weights & Biases (wandb)
 - Model versioning and registry
 - Artifact logging (models, plots, metrics)
-- Model deployment and serving
 - Reproducibility and collaboration workflows
 
 > [!Note]
@@ -251,13 +276,13 @@ This ensures that all dependencies are tracked and reproducible.
 ### Using pip
 
 ```
-pip install ipykernel pandas matplotlob scikit-learn seaborn
+pip install ipykernel pandas matplotlib scikit-learn seaborn
 ```
 
 ### Using conda 
 
 ```
-conda install ipykernel pandas matplotlob scikit-learn seaborn
+conda install ipykernel pandas matplotlib scikit-learn seaborn
 ```
 
 ## Running shell commands from Notebooks
@@ -265,7 +290,7 @@ conda install ipykernel pandas matplotlob scikit-learn seaborn
 Shell commands can be executed within a Jupyter Notebook by prefixing the command with an exclamation mark (`!`). This allows users to interact with the underlying operating system directly from within their notebook environment.
 
 ```
-!uv pip install ipykernel pandas matplotlob scikit-learn seaborn
+!uv pip install ipykernel pandas matplotlib scikit-learn seaborn
 ```
 
 
@@ -277,8 +302,8 @@ Shell commands can be executed within a Jupyter Notebook by prefixing the comman
 To get a copy of this repository on your local machine:
 
 ```bash
-git clone https://github.com/tatwan/adv_ml_ds.git
-cd adv_ml_ds
+git clone https://github.com/tatwan/advanced_machine_learning.git
+cd advanced_machine_learning
 ```
 
 ### Updating the Repository
