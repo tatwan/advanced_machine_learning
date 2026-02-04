@@ -134,7 +134,7 @@ This repository covers advanced machine learning topics organized into the follo
 - Coverage of classification, regression, and ranking metrics
 - Downloadable HTML tool for offline use
 
-> **🚀 Try the Interactive Demo**: [Model Evaluation Decision Tree](https://tatwan.github.io/learn/model_evaluation_interactive.html)
+> **🚀 Try the Interactive Demo**: [Model Evaluation Decision Tree](https://tatwan.github.io/model_evaluation_interactive.html)
 >
 > This interactive tool helps you decide which metrics to use based on your ML problem type, class balance, and business requirements.
 

@@ -6,7 +6,7 @@ An interactive decision tree to help you choose the right evaluation metric for 
 
 Check out the interactive version here 
 
-https://tatwan.github.io/learn/model_evaluation_interactive.html
+https://tatwan.github.io/model_evaluation_interactive.html
 
 ## How to Use
 
