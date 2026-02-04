@@ -99,4 +99,3 @@ numpy, pandas, matplotlib, seaborn, scikit-learn
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 8-10 hours total*

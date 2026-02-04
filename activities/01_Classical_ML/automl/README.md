@@ -88,4 +88,3 @@ pycaret, h2o, mljar-supervised, autogluon, flaml
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 8-10 hours total*

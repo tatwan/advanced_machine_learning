@@ -67,4 +67,3 @@ tiktoken, transformers, sentencepiece
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 2 hours total*

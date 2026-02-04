@@ -68,4 +68,3 @@ transformers, datasets, accelerate
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 3-4 hours total*

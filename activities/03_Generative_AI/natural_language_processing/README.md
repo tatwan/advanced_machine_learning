@@ -69,4 +69,3 @@ nltk, spacy, transformers
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 4-5 hours total*

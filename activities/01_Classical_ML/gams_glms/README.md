@@ -72,4 +72,3 @@ numpy, pandas, statsmodels, pygam, scikit-learn
 ---
 
 *Module Difficulty: Advanced*  
-*Estimated Time: 3-4 hours total*

@@ -318,5 +318,4 @@ These methods are widely used in:
 ---
 
 *Module Difficulty: Intermediate*
-*Estimated Time: 6-8 hours total*
 *Last Updated: December 2025*

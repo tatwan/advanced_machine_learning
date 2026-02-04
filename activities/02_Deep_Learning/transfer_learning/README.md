@@ -72,4 +72,3 @@ tensorflow, tensorflow_hub, numpy, PIL
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 4-6 hours total*

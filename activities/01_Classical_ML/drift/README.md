@@ -83,4 +83,3 @@ numpy, pandas, scipy, scikit-learn, river (for ADWIN)
 ---
 
 *Module Difficulty: Intermediate to Advanced*  
-*Estimated Time: 6-9 hours total*

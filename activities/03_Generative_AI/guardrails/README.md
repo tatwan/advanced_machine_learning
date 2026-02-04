@@ -67,4 +67,3 @@ guardrails-ai, langchain, openai
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 2-3 hours total*

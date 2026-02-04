@@ -104,4 +104,3 @@ scikit-learn, xgboost, lightgbm
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 6-9 hours total*

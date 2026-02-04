@@ -90,4 +90,3 @@ pandas, matplotlib, prophet, statsforecast, statsmodels
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 4-6 hours total*

@@ -77,4 +77,3 @@ numpy, pandas, scikit-learn, feature-engine
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 6-8 hours total*

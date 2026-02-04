@@ -72,4 +72,3 @@ openai, ollama, boto3, langchain
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 4-5 hours total*

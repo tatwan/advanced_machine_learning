@@ -86,4 +86,3 @@ langchain, llama-index, chromadb, openai, boto3, ragas
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 7-9 hours total*

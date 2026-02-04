@@ -80,4 +80,3 @@ openai, transformers, peft, bitsandbytes
 ---
 
 *Module Difficulty: Intermediate to Advanced*  
-*Estimated Time: 5-7 hours total*

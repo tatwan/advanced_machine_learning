@@ -69,4 +69,3 @@ langgraph, langchain, openai
 ---
 
 *Module Difficulty: Advanced*  
-*Estimated Time: 3-4 hours total*

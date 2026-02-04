@@ -72,4 +72,3 @@ numpy, pandas, scikit-learn, optuna
 ---
 
 *Module Difficulty: Intermediate*  
-*Estimated Time: 3-5 hours total*

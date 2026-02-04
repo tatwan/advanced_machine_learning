@@ -72,4 +72,3 @@ numpy, pandas, scikit-learn, missingno
 ---
 
 *Module Difficulty: Beginner to Intermediate*  
-*Estimated Time: 3-4 hours total*

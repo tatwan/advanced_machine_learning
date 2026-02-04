@@ -70,4 +70,3 @@ tensorflow or pytorch, numpy, matplotlib
 ---
 
 *Module Difficulty: Advanced*  
-*Estimated Time: 3-4 hours total*
