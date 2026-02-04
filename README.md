@@ -57,9 +57,11 @@ This repository covers advanced machine learning topics organized into the follo
 #### **Ensemble Methods**
 - Bagging and boosting techniques
 - Random Forests implementation and tuning
-- Gradient Boosting algorithms
+- **Gradient Boosting algorithms (XGBoost, LightGBM)** 🔥
 - AdaBoost and ensemble stacking
 - Encoding categorical variables for ensemble models
+
+> **💡 Note**: XGBoost and LightGBM are covered extensively in the ensemble lessons!
 
 #### **Model Explainability & Interpretability**
 - SHAP (SHapley Additive exPlanations) for global and local interpretability
@@ -118,6 +120,23 @@ This repository covers advanced machine learning topics organized into the follo
 - Automated forecasting with StatsForecast
 - Handling holidays and special events
 - Multi-step ahead forecasting
+
+#### **AWS SageMaker AI**
+- End-to-end ML workflow on AWS SageMaker Studio
+- Training models with built-in algorithms (XGBoost)
+- Model deployment to real-time endpoints
+- No credentials needed (IAM role-based authentication)
+- Step-by-step guide for SageMaker Studio setup
+
+#### **Model Evaluation & Metrics Selection** 🎯
+- Comprehensive guide to choosing the right evaluation metric
+- **Interactive decision tree tool** to help select metrics based on your problem
+- Coverage of classification, regression, and ranking metrics
+- Downloadable HTML tool for offline use
+
+> **🚀 Try the Interactive Demo**: [Model Evaluation Decision Tree](https://tatwan.github.io/learn/model_evaluation_interactive.html)
+>
+> This interactive tool helps you decide which metrics to use based on your ML problem type, class balance, and business requirements.
 
 ### **02 Deep Learning**
 

@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ML Metric Decision Tree - Interactive Guide</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Icons as simple SVG components
+    const ChevronRight = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    );
+
+    const ChevronLeft = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    );
+
+    const Info = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    );
+
+    const Home = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+      </svg>
+    );
+
+    const List = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+      </svg>
+    );
+
+    const Download = ({ className }) => (
+      <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+      </svg>
+    );
+
+    const MLMetricDecisionTree = () => {
+      const [path, setPath] = useState([]);
+      const [currentNode, setCurrentNode] = useState('start');
+      const [showQuickRef, setShowQuickRef] = useState(false);
+
+      // Decision tree structure
+      const tree = {
+        start: {
+          question: "What type of machine learning task?",
+          type: "decision",
+          options: [
+            { label: "Supervised Learning", next: "supervised", desc: "You have labeled data" },
+            { label: "Unsupervised Learning", next: "unsupervised", desc: "Clustering, no labels" }
+          ]
+        },
+        supervised: {
+          question: "What type of supervised learning?",
+          type: "decision",
+          options: [
+            { label: "Classification", next: "classification", desc: "Predicting discrete classes" },
+            { label: "Regression", next: "regression", desc: "Predicting continuous values" },
+            { label: "Ranking", next: "ranking", desc: "Ordering items by relevance" },
+            { label: "Object Detection", next: "object_detection", desc: "Locating & classifying objects" }
+          ]
+        },
+        classification: {
+          question: "Is your data heavily imbalanced?",
+          type: "decision",
+          info: "Imbalanced data: one class is much more frequent than others (e.g., 1% positive class)",
+          options: [
+            { label: "Yes, highly imbalanced", next: "imbalanced_class", desc: "E.g., fraud detection, rare disease" },
+            { label: "No, relatively balanced", next: "class_type", desc: "Classes have similar frequencies" }
+          ]
+        },
+        imbalanced_class: {
+          question: "Key metrics for imbalanced classification",
+          type: "metric",
+          warning: "Accuracy is misleading for imbalanced data!",
+          metrics: [
+            {
+              name: "MCC (Matthews Correlation Coefficient)",
+              priority: "Best Choice",
+              description: "Comprehensive metric accounting for all confusion matrix values. Best single metric for imbalanced binary classification.",
+              range: "-1 to +1 (1 is perfect)",
+              when: "Primary metric for imbalanced binary classification",
+              formula: "MCC = (TP*TN - FP*FN) / sqrt[(TP+FP)(TP+FN)(TN+FP)(TN+FN)]"
+            },
+            {
+              name: "AUC-PR (Precision-Recall AUC)",
+              priority: "Highly Recommended",
+              description: "Better than AUC-ROC for imbalanced data. Focuses on positive class performance.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Evaluating across all thresholds, imbalanced data",
+              note: "Preferred over AUC-ROC for rare events"
+            },
+            {
+              name: "F1-Score / F-beta",
+              priority: "Good",
+              description: "Harmonic mean of precision and recall. Use F-beta to favor recall (B>1) or precision (B<1).",
+              range: "0 to 1 (1 is perfect)",
+              when: "Balancing precision and recall",
+              formula: "F1 = 2 * (Precision * Recall) / (Precision + Recall)"
+            },
+            {
+              name: "Cohen's Kappa",
+              priority: "Good",
+              description: "Measures agreement beyond chance. Good for imbalanced datasets.",
+              range: "-1 to 1 (1 is perfect)",
+              when: "Comparing against chance performance"
+            }
+          ],
+          nextQuestion: "Now, how many classes?",
+          continueOptions: [
+            { label: "Binary (2 classes)", next: "binary_class" },
+            { label: "Multi-class (3+ classes)", next: "multiclass" },
+            { label: "Multi-label", next: "multilabel" }
+          ]
+        },
+        class_type: {
+          question: "How many classes are you predicting?",
+          type: "decision",
+          options: [
+            { label: "Binary Classification", next: "binary_class", desc: "2 classes (positive/negative)" },
+            { label: "Multi-Class", next: "multiclass", desc: "3+ mutually exclusive classes" },
+            { label: "Multi-Label", next: "multilabel", desc: "Multiple labels per instance" }
+          ]
+        },
+        binary_class: {
+          question: "What error is more costly?",
+          type: "decision",
+          info: "Consider your business context: what's worse - missing a positive case or falsely flagging a negative?",
+          options: [
+            { label: "False Negatives (FN)", next: "fn_costly", desc: "Missing disease, fraud, etc." },
+            { label: "False Positives (FP)", next: "fp_costly", desc: "False alarms, spam flags" },
+            { label: "Both equally", next: "balanced_error", desc: "Need balanced measure" },
+            { label: "True Negatives matter", next: "tn_critical", desc: "Rule-out tests" }
+          ]
+        },
+        fn_costly: {
+          question: "Metrics when False Negatives are costly",
+          type: "metric",
+          goal: "Goal: Find as many true positives as possible",
+          metrics: [
+            {
+              name: "Recall (Sensitivity)",
+              priority: "Primary Metric",
+              description: "What fraction of actual positives did you find?",
+              range: "0 to 1 (1 is perfect)",
+              when: "Missing positives is very costly",
+              formula: "Recall = TP / (TP + FN)",
+              example: "Disease detection: must catch all cases"
+            },
+            {
+              name: "F-beta Score (B > 1)",
+              priority: "Recommended",
+              description: "Weighted harmonic mean favoring recall. Common: F2-score (B=2)",
+              range: "0 to 1 (1 is perfect)",
+              when: "Recall is more important than precision, but precision still matters",
+              formula: "F-beta = (1+B^2) * (Precision * Recall) / (B^2*Precision + Recall)"
+            }
+          ],
+          continueOptions: [
+            { label: "Consider output type", next: "output_type" }
+          ]
+        },
+        fp_costly: {
+          question: "Metrics when False Positives are costly",
+          type: "metric",
+          goal: "Goal: Ensure positive predictions are correct",
+          metrics: [
+            {
+              name: "Precision",
+              priority: "Primary Metric",
+              description: "What fraction of positive predictions are actually correct?",
+              range: "0 to 1 (1 is perfect)",
+              when: "False alarms are costly",
+              formula: "Precision = TP / (TP + FP)",
+              example: "Spam detection: avoid flagging legitimate emails"
+            },
+            {
+              name: "F-beta Score (B < 1)",
+              priority: "Recommended",
+              description: "Weighted harmonic mean favoring precision. Common: F0.5-score (B=0.5)",
+              range: "0 to 1 (1 is perfect)",
+              when: "Precision is more important than recall",
+              formula: "F-beta = (1+B^2) * (Precision * Recall) / (B^2*Precision + Recall)"
+            }
+          ],
+          continueOptions: [
+            { label: "Consider output type", next: "output_type" }
+          ]
+        },
+        balanced_error: {
+          question: "Balanced metrics for equal error costs",
+          type: "metric",
+          metrics: [
+            {
+              name: "F1-Score",
+              priority: "Primary Metric",
+              description: "Harmonic mean of precision and recall. Treats both equally.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Both FP and FN are equally costly",
+              formula: "F1 = 2 * (Precision * Recall) / (Precision + Recall)"
+            },
+            {
+              name: "MCC (Matthews Correlation Coefficient)",
+              priority: "Alternative (Often Better)",
+              description: "Comprehensive metric using all confusion matrix values. Better for imbalanced data than F1.",
+              range: "-1 to +1 (1 is perfect)",
+              when: "Want single balanced metric, especially with imbalance",
+              formula: "MCC = (TP*TN - FP*FN) / sqrt[(TP+FP)(TP+FN)(TN+FP)(TN+FN)]"
+            }
+          ],
+          continueOptions: [
+            { label: "Consider output type", next: "output_type" }
+          ]
+        },
+        tn_critical: {
+          question: "Metrics when True Negatives are critical",
+          type: "metric",
+          goal: "Goal: Accurately identify negatives (rule-out capability)",
+          metrics: [
+            {
+              name: "Specificity (TNR)",
+              priority: "Primary Metric",
+              description: "What fraction of actual negatives are correctly identified?",
+              range: "0 to 1 (1 is perfect)",
+              when: "Must be certain when declaring something negative",
+              formula: "Specificity = TN / (TN + FP)",
+              example: "Medical rule-out test: confirm patient doesn't have disease"
+            },
+            {
+              name: "NPV (Negative Predictive Value)",
+              priority: "Supporting Metric",
+              description: "When you predict negative, how often are you correct?",
+              range: "0 to 1 (1 is perfect)",
+              when: "Confidence in negative predictions matters",
+              formula: "NPV = TN / (TN + FN)"
+            }
+          ],
+          continueOptions: [
+            { label: "Consider output type", next: "output_type" }
+          ]
+        },
+        output_type: {
+          question: "How will you use the model output?",
+          type: "decision",
+          options: [
+            { label: "Probability Quality", next: "prob_quality", desc: "Need well-calibrated probabilities" },
+            { label: "All Thresholds", next: "threshold_sweep", desc: "Compare across all cutoffs" },
+            { label: "Fixed Threshold", next: "fixed_threshold", desc: "Specific decision boundary" }
+          ]
+        },
+        prob_quality: {
+          question: "Probabilistic scoring metrics",
+          type: "metric",
+          goal: "Evaluating probability quality & calibration",
+          metrics: [
+            {
+              name: "Log-Loss (Binary Cross-Entropy)",
+              priority: "Primary for Probability",
+              description: "Penalizes confident wrong predictions heavily. Standard for probability evaluation.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Training neural networks, comparing probability quality",
+              formula: "LogLoss = -1/N * sum[y*log(p) + (1-y)*log(1-p)]",
+              note: "Very sensitive to confident mistakes"
+            },
+            {
+              name: "Brier Score",
+              priority: "Alternative",
+              description: "Mean squared error between predicted probabilities and actual outcomes.",
+              range: "0 to 1 (0 is perfect, lower is better)",
+              when: "Want MSE-like metric for probabilities",
+              formula: "Brier = 1/N * sum(p - y)^2"
+            },
+            {
+              name: "ECE (Expected Calibration Error)",
+              priority: "Calibration Check",
+              description: "Measures how well predicted probabilities match actual frequencies.",
+              range: "0 to 1 (0 is perfect, lower is better)",
+              when: "Checking if probabilities are well-calibrated",
+              note: "Use with reliability diagrams"
+            }
+          ]
+        },
+        threshold_sweep: {
+          question: "Threshold-independent metrics",
+          type: "metric",
+          goal: "Evaluating across all decision thresholds",
+          metrics: [
+            {
+              name: "AUC-ROC",
+              priority: "Standard for Balanced Data",
+              description: "Area under ROC curve. Measures discrimination ability across all thresholds.",
+              range: "0 to 1 (1 is perfect, 0.5 is random)",
+              when: "Balanced datasets, comparing models threshold-independently",
+              note: "Plot TPR vs FPR"
+            },
+            {
+              name: "AUC-PR",
+              priority: "Preferred for Imbalanced",
+              description: "Area under Precision-Recall curve. Better for imbalanced data.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Imbalanced datasets, focus on positive class",
+              note: "More informative than AUC-ROC for rare events"
+            }
+          ]
+        },
+        fixed_threshold: {
+          question: "Fixed threshold metrics",
+          type: "metric",
+          goal: "Evaluation at specific decision boundary",
+          metrics: [
+            {
+              name: "Accuracy",
+              priority: "Good for Balanced Data Only",
+              description: "Fraction of correct predictions. Misleading for imbalanced data!",
+              range: "0 to 1 (1 is perfect)",
+              when: "ONLY for balanced datasets",
+              formula: "Accuracy = (TP + TN) / (TP + TN + FP + FN)",
+              warning: "Avoid for imbalanced data"
+            },
+            {
+              name: "Precision, Recall, F1",
+              priority: "Choose Based on Cost",
+              description: "See previous steps for detailed guidance on which to prioritize.",
+              when: "Based on error cost analysis",
+              note: "Refer to business goal decision"
+            },
+            {
+              name: "Confusion Matrix",
+              priority: "Always Review",
+              description: "Shows TP, FP, TN, FN. Essential for understanding error types.",
+              when: "Always inspect this!",
+              note: "Foundation for all classification metrics"
+            }
+          ]
+        },
+        multiclass: {
+          question: "Multi-class classification metrics",
+          type: "metric",
+          info: "Multiple mutually exclusive classes (e.g., cat, dog, bird)",
+          metrics: [
+            {
+              name: "Balanced Accuracy",
+              priority: "Best for Imbalanced",
+              description: "Average of recall for each class. Better than accuracy for imbalanced multi-class.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Imbalanced multi-class problems",
+              formula: "Balanced Acc = (1/C) * sum(Recall_per_class)"
+            },
+            {
+              name: "Macro/Micro/Weighted F1",
+              priority: "Standard Choice",
+              description: "Macro: treats all classes equally. Micro: weights by support. Weighted: by frequency.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Most multi-class problems",
+              note: "Choose averaging strategy based on class importance"
+            },
+            {
+              name: "Cohen's Kappa",
+              priority: "For Imbalanced",
+              description: "Agreement beyond chance. Good for imbalanced multi-class.",
+              range: "-1 to 1 (1 is perfect)",
+              when: "Accounting for chance agreement"
+            },
+            {
+              name: "Top-K Accuracy",
+              priority: "For Many Classes",
+              description: "Model correct if true label in top K predictions.",
+              when: "Many classes (e.g., ImageNet top-5)",
+              example: "K=1,3,5 common values"
+            },
+            {
+              name: "Categorical Cross-Entropy",
+              priority: "For Probabilities",
+              description: "Multi-class log-loss. Standard for neural network training.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Evaluating probability quality"
+            },
+            {
+              name: "Confusion Matrix",
+              priority: "Essential",
+              description: "Shows which classes are confused with each other.",
+              when: "Always review for multi-class!",
+              note: "Visualize class-specific performance"
+            }
+          ]
+        },
+        multilabel: {
+          question: "Multi-label classification metrics",
+          type: "metric",
+          info: "Each instance can have multiple labels simultaneously",
+          metrics: [
+            {
+              name: "Hamming Loss",
+              priority: "Primary Metric",
+              description: "Fraction of incorrect labels (lower is better).",
+              range: "0 to 1 (0 is perfect, lower is better)",
+              when: "Standard multi-label metric",
+              formula: "Hamming Loss = (1/N) * sum(XOR(y_true, y_pred))"
+            },
+            {
+              name: "Jaccard Score (IoU)",
+              priority: "Alternative",
+              description: "Intersection over union of predicted and true labels.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Set-based similarity measure",
+              formula: "Jaccard = |y_true intersection y_pred| / |y_true union y_pred|"
+            },
+            {
+              name: "F1 (Micro/Macro/Weighted)",
+              priority: "Common",
+              description: "Micro: global. Macro: per label. Weighted: by support. Samples: per instance.",
+              when: "Need precision-recall balance",
+              note: "Choose averaging based on use case"
+            },
+            {
+              name: "Subset Accuracy",
+              priority: "Very Strict",
+              description: "Fraction where ALL labels are correct. Very strict metric.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Perfect matches required",
+              warning: "Often too harsh for practical use"
+            }
+          ]
+        },
+        regression: {
+          question: "Is this time-series forecasting?",
+          type: "decision",
+          options: [
+            { label: "Yes, time-series", next: "timeseries", desc: "Sequential temporal data" },
+            { label: "No, general regression", next: "general_regression", desc: "Standard regression problem" }
+          ]
+        },
+        general_regression: {
+          question: "General regression metrics",
+          type: "metric",
+          metrics: [
+            {
+              name: "RMSE (Root Mean Squared Error)",
+              priority: "Most Popular",
+              description: "Sensitive to outliers. Penalizes large errors more. Same units as target.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Want to penalize large errors",
+              formula: "RMSE = sqrt[(1/N) * sum(y - y_hat)^2]",
+              note: "Standard choice for most problems"
+            },
+            {
+              name: "MAE (Mean Absolute Error)",
+              priority: "Robust Alternative",
+              description: "Robust to outliers. Treats all errors equally. Same units as target.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Outliers present or want equal penalty",
+              formula: "MAE = (1/N) * sum|y - y_hat|"
+            },
+            {
+              name: "R-squared (R^2)",
+              priority: "Relative Fit",
+              description: "Proportion of variance explained. Scale-free.",
+              range: "-infinity to 1 (1 is perfect)",
+              when: "Comparing across different scales",
+              formula: "R^2 = 1 - (SS_res / SS_tot)",
+              note: "Can be negative if model worse than mean"
+            },
+            {
+              name: "MAPE",
+              priority: "Use with Caution",
+              description: "Percentage error. Undefined at zero. Biased toward under-predictions.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Need percentage, no zeros in data",
+              warning: "Avoid for data with zeros"
+            },
+            {
+              name: "Median Absolute Error",
+              priority: "Most Robust",
+              description: "Even more robust to outliers than MAE.",
+              when: "Heavy outliers present",
+              note: "Less commonly used but very robust"
+            }
+          ],
+          additionalInfo: {
+            title: "Choosing between metrics:",
+            points: [
+              "RMSE if large errors are critical",
+              "MAE if all errors equally important",
+              "R^2 for comparing across datasets",
+              "Avoid MAPE if any zeros in target"
+            ]
+          }
+        },
+        timeseries: {
+          question: "Time series forecasting metrics",
+          type: "metric",
+          warning: "Always use temporal cross-validation (no random shuffling!)",
+          metrics: [
+            {
+              name: "MASE (Mean Absolute Scaled Error)",
+              priority: "Gold Standard",
+              description: "Scale-free metric comparing your model to naive baseline. Values <1 mean you beat naive.",
+              range: "0 to infinity (0 is perfect, <1 is good)",
+              when: "Comparing across different time series",
+              formula: "MASE = MAE / MAE_naive",
+              note: "Best for comparing multiple series"
+            },
+            {
+              name: "RMSSE",
+              priority: "Alternative",
+              description: "Root Mean Squared Scaled Error. RMSE version of MASE.",
+              range: "0 to infinity (0 is perfect, <1 is good)",
+              when: "Want to penalize large errors + scale-free",
+              formula: "RMSSE = RMSE / RMSE_naive"
+            },
+            {
+              name: "MAE / RMSE",
+              priority: "Standard",
+              description: "Same as general regression. MAE for robustness, RMSE for penalizing large errors.",
+              when: "Single series or same scale",
+              note: "Most common in practice"
+            },
+            {
+              name: "sMAPE",
+              priority: "Better than MAPE",
+              description: "Symmetric MAPE. More stable near zero than MAPE, but still has issues.",
+              range: "0 to 200% (0 is perfect)",
+              when: "Need percentage, if MAPE too unstable",
+              warning: "Still problematic with zeros"
+            },
+            {
+              name: "Directional Accuracy",
+              priority: "For Trends",
+              description: "Percentage of correct direction predictions (up/down).",
+              when: "Direction matters more than magnitude",
+              example: "Stock price movement direction"
+            }
+          ],
+          additionalInfo: {
+            title: "Time series best practices:",
+            points: [
+              "Use walk-forward or rolling window validation",
+              "Never shuffle temporal data",
+              "Compare to seasonal naive baseline",
+              "Consider forecast horizon in evaluation"
+            ]
+          }
+        },
+        ranking: {
+          question: "Ranking & recommendation metrics",
+          type: "metric",
+          info: "Focus on top-K performance where K is what users see (e.g., 5-10 items)",
+          metrics: [
+            {
+              name: "NDCG@K",
+              priority: "Industry Standard",
+              description: "Normalized Discounted Cumulative Gain. Rewards highly relevant items at top. Handles graded relevance.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Position matters, graded relevance (e.g., 1-5 stars)",
+              formula: "NDCG = DCG / IDCG",
+              note: "Most widely used in practice"
+            },
+            {
+              name: "MAP@K",
+              priority: "Binary Relevance",
+              description: "Mean Average Precision. Averages precision at each relevant item's position.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Binary relevance, order matters",
+              note: "Good for information retrieval"
+            },
+            {
+              name: "MRR@K",
+              priority: "First Relevant",
+              description: "Mean Reciprocal Rank. Focuses on position of first relevant item.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Finding one good answer matters most",
+              example: "Question answering, search"
+            },
+            {
+              name: "Precision@K",
+              priority: "Set-based",
+              description: "Fraction of top-K that are relevant. Doesn't consider order.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Relevant items in top-K, order doesn't matter",
+              formula: "P@K = (# relevant in top-K) / K"
+            },
+            {
+              name: "Recall@K",
+              priority: "Coverage",
+              description: "Fraction of all relevant items found in top-K.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Want to find most relevant items",
+              formula: "R@K = (# relevant in top-K) / (total # relevant)"
+            },
+            {
+              name: "Hit Rate@K",
+              priority: "Binary",
+              description: "Did at least one relevant item appear in top-K?",
+              range: "0 to 1 (1 is perfect)",
+              when: "Just need one good recommendation",
+              note: "Simplest metric"
+            }
+          ],
+          additionalInfo: {
+            title: "Recommendation system considerations:",
+            points: [
+              "Coverage: % of catalog recommended",
+              "Diversity: variety in recommendations",
+              "Novelty: popular vs discovery",
+              "Serendipity: surprising yet relevant"
+            ]
+          }
+        },
+        object_detection: {
+          question: "Object detection metrics",
+          type: "metric",
+          info: "Locating and classifying objects in images",
+          metrics: [
+            {
+              name: "mAP (mean Average Precision)",
+              priority: "Gold Standard",
+              description: "Average precision across IoU thresholds and classes. Industry standard.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Standard object detection evaluation",
+              note: "COCO uses mAP@[0.5:0.95]"
+            },
+            {
+              name: "IoU (Intersection over Union)",
+              priority: "Fundamental",
+              description: "Overlap between predicted and ground truth boxes. Threshold typically 0.5 or 0.75.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Measuring box quality",
+              formula: "IoU = Area(intersection) / Area(union)"
+            },
+            {
+              name: "AP@[IoU]",
+              priority: "Specific Thresholds",
+              description: "Average Precision at specific IoU. Common: AP@0.5, AP@0.75.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Evaluating at specific overlap threshold",
+              note: "AP@0.5 is lenient, AP@0.75 is strict"
+            },
+            {
+              name: "Precision-Recall Curves",
+              priority: "Visualization",
+              description: "Plot precision vs recall at different confidence thresholds.",
+              when: "Understanding performance tradeoffs",
+              note: "mAP is area under this curve"
+            }
+          ],
+          additionalInfo: {
+            title: "Object detection notes:",
+            points: [
+              "COCO metric: mAP@[0.5:0.95] is standard",
+              "PASCAL VOC: AP@0.5",
+              "Consider small/medium/large objects separately",
+              "FPS (Frames Per Second) for speed"
+            ]
+          }
+        },
+        unsupervised: {
+          question: "Do you have ground truth labels?",
+          type: "decision",
+          info: "For clustering evaluation",
+          options: [
+            { label: "Yes, have labels", next: "clustering_external", desc: "Can compare clusters to true labels" },
+            { label: "No labels", next: "clustering_internal", desc: "Most common case" }
+          ]
+        },
+        clustering_external: {
+          question: "External validation metrics (with labels)",
+          type: "metric",
+          info: "Comparing predicted clusters to ground truth labels",
+          metrics: [
+            {
+              name: "Adjusted Rand Index (ARI)",
+              priority: "Primary Choice",
+              description: "Similarity between true and predicted clusters, adjusted for chance.",
+              range: "-1 to 1 (1 is perfect, 0 is random)",
+              when: "Standard external validation",
+              note: "Most commonly used"
+            },
+            {
+              name: "Adjusted Mutual Information (AMI)",
+              priority: "Alternative",
+              description: "Mutual information adjusted for chance. Similar to ARI.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Information-theoretic measure",
+              note: "Similar to ARI in practice"
+            },
+            {
+              name: "V-measure",
+              priority: "Comprehensive",
+              description: "Harmonic mean of homogeneity and completeness.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Want to see homogeneity and completeness",
+              note: "Homogeneity: pure clusters. Completeness: class members together"
+            },
+            {
+              name: "Fowlkes-Mallows Index",
+              priority: "Alternative",
+              description: "Geometric mean of pair-wise precision and recall.",
+              range: "0 to 1 (1 is perfect)",
+              when: "Pair-based similarity"
+            }
+          ]
+        },
+        clustering_internal: {
+          question: "Internal validation metrics (no labels)",
+          type: "metric",
+          info: "Evaluating cluster quality without ground truth",
+          warning: "These metrics can disagree - use multiple metrics!",
+          metrics: [
+            {
+              name: "Silhouette Coefficient",
+              priority: "Most Popular",
+              description: "How similar objects are to own cluster vs others. Per-sample and average.",
+              range: "-1 to 1 (1 is perfect, near 0 means overlapping)",
+              when: "Standard internal metric",
+              note: "Near 1: well-clustered. Near 0: boundary. Near -1: wrong cluster"
+            },
+            {
+              name: "Davies-Bouldin Index (DBI)",
+              priority: "Common",
+              description: "Average similarity between clusters. Lower is better.",
+              range: "0 to infinity (0 is perfect, lower is better)",
+              when: "Alternative to Silhouette",
+              note: "Based on cluster scatter and separation"
+            },
+            {
+              name: "Calinski-Harabasz Index (CHI)",
+              priority: "Variance Ratio",
+              description: "Ratio of between-cluster to within-cluster dispersion. Higher is better.",
+              range: "0 to infinity (higher is better)",
+              when: "Want variance-based metric",
+              note: "Also called Variance Ratio Criterion"
+            },
+            {
+              name: "Dunn Index",
+              priority: "Computationally Expensive",
+              description: "Ratio of min inter-cluster distance to max intra-cluster distance.",
+              range: "0 to infinity (higher is better)",
+              when: "Have computational resources",
+              warning: "Expensive for large datasets"
+            }
+          ],
+          additionalInfo: {
+            title: "Choosing number of clusters (k):",
+            points: [
+              "Elbow Method: plot metric vs k",
+              "Silhouette Analysis: compare across k",
+              "Gap Statistic: compare to null distribution",
+              "Domain knowledge often best"
+            ]
+          }
+        }
+      };
+
+      const quickReference = [
+        { task: "Binary (Balanced)", metrics: "Accuracy, F1, AUC-ROC", key: "Balance precision/recall" },
+        { task: "Binary (Imbalanced)", metrics: "MCC, AUC-PR, F1", key: "Focus on minority class" },
+        { task: "Multi-Class", metrics: "Balanced Acc, Macro F1, Kappa", key: "Per-class performance" },
+        { task: "Multi-Label", metrics: "Hamming Loss, Jaccard, F1", key: "Multiple labels" },
+        { task: "Regression", metrics: "RMSE, MAE, R^2", key: "Outlier sensitivity" },
+        { task: "Time Series", metrics: "MASE, RMSSE, MAE", key: "Scale-free comparison" },
+        { task: "Ranking", metrics: "NDCG@K, MAP@K, P@K", key: "Top-K performance" },
+        { task: "Clustering (labels)", metrics: "ARI, AMI, V-measure", key: "External validation" },
+        { task: "Clustering (no labels)", metrics: "Silhouette, DBI, CHI", key: "Use multiple" },
+        { task: "Object Detection", metrics: "mAP, IoU, AP@[IoU]", key: "COCO standard" }
+      ];
+
+      const handleChoice = (nextNode, label) => {
+        setPath([...path, { node: currentNode, choice: label }]);
+        setCurrentNode(nextNode);
+      };
+
+      const goBack = () => {
+        if (path.length > 0) {
+          const newPath = [...path];
+          const lastStep = newPath.pop();
+          setPath(newPath);
+          setCurrentNode(lastStep.node);
+        }
+      };
+
+      const reset = () => {
+        setPath([]);
+        setCurrentNode('start');
+      };
+
+      const currentData = tree[currentNode];
+
+      const PathBreadcrumb = () => (
+        <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg mb-6 border border-blue-200">
+          <div className="flex items-center gap-2 flex-wrap text-sm">
+            <Home className="w-4 h-4 text-blue-600" />
+            {path.map((step, idx) => (
+              <React.Fragment key={idx}>
+                <ChevronRight className="w-4 h-4 text-gray-400" />
+                <span className="text-blue-700 font-medium">{step.choice}</span>
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
+      );
+
+      const MetricCard = ({ metric }) => (
+        <div className="bg-white border-2 border-gray-200 rounded-lg p-5 hover:border-blue-400 hover:shadow-lg transition-all">
+          <div className="flex items-start justify-between mb-3">
+            <div>
+              <h4 className="text-lg font-bold text-gray-900">{metric.name}</h4>
+              <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-1 rounded mt-1 inline-block">
+                {metric.priority}
+              </span>
+            </div>
+          </div>
+
+          <p className="text-gray-700 mb-3">{metric.description}</p>
+
+          {metric.range && (
+            <div className="bg-gray-50 p-2 rounded mb-2">
+              <span className="text-xs font-semibold text-gray-600">Range: </span>
+              <span className="text-xs text-gray-800">{metric.range}</span>
+            </div>
+          )}
+
+          {metric.when && (
+            <div className="mb-2">
+              <span className="text-xs font-semibold text-green-700">Use when: </span>
+              <span className="text-xs text-gray-700">{metric.when}</span>
+            </div>
+          )}
+
+          {metric.formula && (
+            <div className="bg-blue-50 p-2 rounded mb-2 font-mono text-xs text-blue-900 overflow-x-auto">
+              {metric.formula}
+            </div>
+          )}
+
+          {metric.example && (
+            <div className="text-xs text-purple-700 italic">
+              Example: {metric.example}
+            </div>
+          )}
+
+          {metric.note && (
+            <div className="mt-2 text-xs bg-yellow-50 border-l-4 border-yellow-400 p-2 text-yellow-800">
+              {metric.note}
+            </div>
+          )}
+
+          {metric.warning && (
+            <div className="mt-2 text-xs bg-red-50 border-l-4 border-red-400 p-2 text-red-800">
+              {metric.warning}
+            </div>
+          )}
+        </div>
+      );
+
+      const QuickReferenceModal = () => (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Quick Reference Guide</h2>
+              <button
+                onClick={() => setShowQuickRef(false)}
+                className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+              >
+                x
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                    <th className="p-3 text-left font-semibold">Task Type</th>
+                    <th className="p-3 text-left font-semibold">Primary Metrics</th>
+                    <th className="p-3 text-left font-semibold">Key Consideration</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {quickReference.map((row, idx) => (
+                    <tr key={idx} className={idx % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                      <td className="p-3 font-semibold text-gray-900">{row.task}</td>
+                      <td className="p-3 text-gray-700 font-mono text-sm">{row.metrics}</td>
+                      <td className="p-3 text-gray-600 text-sm">{row.key}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="font-bold text-blue-900 mb-2">Pro Tips:</h3>
+              <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
+                <li>Always use multiple metrics for a complete picture</li>
+                <li>Compare against simple baselines (majority class, mean, naive forecast)</li>
+                <li>Use proper cross-validation for your task type</li>
+                <li>For imbalanced data: avoid accuracy, prefer MCC or AUC-PR</li>
+                <li>Time series: never shuffle data, use temporal validation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      );
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4 md:p-8">
+          <div className="max-w-6xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-8">
+              <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
+                ML Metric Decision Tree
+              </h1>
+              <p className="text-gray-600">Interactive guide to choosing the right evaluation metric</p>
+
+              <div className="flex gap-3 justify-center mt-4 flex-wrap">
+                <button
+                  onClick={reset}
+                  className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:border-blue-400 hover:shadow-md transition-all text-gray-700"
+                >
+                  <Home className="w-4 h-4" />
+                  Start Over
+                </button>
+                <button
+                  onClick={() => setShowQuickRef(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all"
+                >
+                  <List className="w-4 h-4" />
+                  Quick Reference
+                </button>
+              </div>
+            </div>
+
+            {/* Path Breadcrumb */}
+            {path.length > 0 && <PathBreadcrumb />}
+
+            {/* Main Content */}
+            <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 border border-gray-200">
+              {currentData.info && (
+                <div className="mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                  <div className="flex items-start gap-2">
+                    <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                    <p className="text-blue-900 text-sm">{currentData.info}</p>
+                  </div>
+                </div>
+              )}
+
+              {currentData.warning && (
+                <div className="mb-6 bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                  <p className="text-red-900 font-semibold">{currentData.warning}</p>
+                </div>
+              )}
+
+              {currentData.goal && (
+                <div className="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-r-lg">
+                  <p className="text-green-900 font-semibold text-lg">{currentData.goal}</p>
+                </div>
+              )}
+
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-6">{currentData.question}</h2>
+
+              {/* Decision Options */}
+              {currentData.type === "decision" && (
+                <div className="grid md:grid-cols-2 gap-4">
+                  {currentData.options.map((option, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleChoice(option.next, option.label)}
+                      className="group p-6 border-2 border-gray-300 rounded-xl hover:border-blue-500 hover:shadow-lg transition-all text-left bg-gradient-to-br from-white to-gray-50 hover:from-blue-50 hover:to-purple-50"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                          {option.label}
+                        </h3>
+                        <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all" />
+                      </div>
+                      <p className="text-gray-600 text-sm">{option.desc}</p>
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              {/* Metric Display */}
+              {currentData.type === "metric" && (
+                <div>
+                  <div className="grid md:grid-cols-2 gap-4 mb-6">
+                    {currentData.metrics.map((metric, idx) => (
+                      <MetricCard key={idx} metric={metric} />
+                    ))}
+                  </div>
+
+                  {currentData.additionalInfo && (
+                    <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-5 mb-6">
+                      <h4 className="font-bold text-purple-900 mb-3">{currentData.additionalInfo.title}</h4>
+                      <ul className="space-y-2">
+                        {currentData.additionalInfo.points.map((point, idx) => (
+                          <li key={idx} className="text-purple-800 text-sm flex items-start gap-2">
+                            <span className="text-purple-600 font-bold">*</span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {currentData.continueOptions && (
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-700 mb-4">{currentData.nextQuestion || "Continue:"}</h3>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {currentData.continueOptions.map((option, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleChoice(option.next, option.label)}
+                            className="p-4 border-2 border-blue-300 rounded-lg hover:border-blue-500 hover:shadow-lg transition-all text-left bg-white hover:bg-blue-50 flex items-center justify-between group"
+                          >
+                            <span className="font-semibold text-gray-900 group-hover:text-blue-600">
+                              {option.label}
+                            </span>
+                            <ChevronRight className="w-5 h-5 text-blue-500 group-hover:translate-x-1 transition-all" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Back Button */}
+              {path.length > 0 && (
+                <button
+                  onClick={goBack}
+                  className="mt-8 flex items-center gap-2 px-6 py-3 bg-gray-200 hover:bg-gray-300 rounded-lg transition-all text-gray-700 font-semibold"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                  Go Back
+                </button>
+              )}
+            </div>
+
+            {/* Footer */}
+            <div className="text-center mt-8 text-gray-500 text-sm">
+              <p>Version 5 - Complete Edition | Comprehensive ML Metric Selection Guide</p>
+              <p className="mt-2 text-xs">
+                Download this file to use offline - just open in any browser!
+              </p>
+            </div>
+          </div>
+
+          {/* Quick Reference Modal */}
+          {showQuickRef && <QuickReferenceModal />}
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<MLMetricDecisionTree />);
+  </script>
+</body>
+</html>
